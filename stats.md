@@ -1,12 +1,12 @@
 # Blocklist Statistics
 
-- AdGuard DNS Filter: 156,948
-- HaGeZi Normal: 161,875
-- AdAway: 6,540
-- OISD Big: 336,030
-- Dan Pollock: 12,872
-- Peter Lowe: 3,503
-- Dandelion Sprout: 439
+- AdGuard DNS Filter: 156,935
+- HaGeZi Normal: 84,033
+- AdAway: 4,585
+- OISD Big: 250,817
+- Dan Pollock: 9,796
+- Peter Lowe: 301
+- Dandelion Sprout: 243
 
 ## Unique Domains
 
