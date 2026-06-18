@@ -1,0 +1,159 @@
+name: Update Master DNS Blocklist
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build combined blocklist
+        run: |
+          cat > build.py << 'EOF'
+          import re
+          import urllib.request
+          from datetime import datetime
+
+          SOURCES = {
+              "AdGuard DNS Filter": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
+              "HaGeZi Normal": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_34.txt",
+              "AdAway": "https://adaway.org/hosts.txt",
+              "OISD Big": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_27.txt",
+              "Dan Pollock": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_4.txt",
+              "Peter Lowe": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_3.txt",
+              "Dandelion Sprout": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_39.txt",
+          }
+
+          DOMAIN_RE = re.compile(
+              r"^(?=.{1,253}$)(?!-)[a-z0-9.-]+(?<!-)$",
+              re.IGNORECASE
+          )
+
+          domains = set()
+          source_stats = {}
+
+          def add_domain(domain):
+              domain = domain.lower().strip().rstrip(".")
+
+              if not domain:
+                  return
+
+              if domain.startswith("localhost"):
+                  return
+
+              if "*" in domain:
+                  return
+
+              if "/" in domain:
+                  return
+
+              if ":" in domain:
+                  return
+
+              if not "." in domain:
+                  return
+
+              if DOMAIN_RE.match(domain):
+                  domains.add(domain)
+
+          for name, url in SOURCES.items():
+              print(f"Downloading {name}")
+
+              response = urllib.request.urlopen(url)
+              text = response.read().decode("utf-8", errors="ignore")
+
+              count = 0
+
+              for raw in text.splitlines():
+                  line = raw.strip()
+
+                  if not line:
+                      continue
+
+                  if line.startswith("!") or line.startswith("#"):
+                      continue
+
+                  # hosts format
+                  if line.startswith("0.0.0.0 ") or line.startswith("127.0.0.1 "):
+                      parts = line.split()
+                      if len(parts) >= 2:
+                          add_domain(parts[1])
+                          count += 1
+                      continue
+
+                  # AdGuard/uBO format
+                  if line.startswith("||"):
+                      domain = line[2:]
+
+                      if "^" in domain:
+                          domain = domain.split("^")[0]
+
+                      if "$" in domain:
+                          domain = domain.split("$")[0]
+
+                      add_domain(domain)
+                      count += 1
+                      continue
+
+                  # plain domain
+                  if (
+                      " " not in line
+                      and "/" not in line
+                      and not line.startswith("@@")
+                  ):
+                      add_domain(line)
+                      count += 1
+
+              source_stats[name] = count
+
+          sorted_domains = sorted(domains)
+
+          with open("DNSZeroList.txt", "w", encoding="utf-8") as f:
+              f.write("! DNSZeroList\n")
+              f.write(f"! Generated: {datetime.utcnow().isoformat()}Z\n")
+              f.write(f"! Unique Domains: {len(sorted_domains)}\n")
+              f.write("!\n")
+
+              for domain in sorted_domains:
+                  f.write(f"||{domain}^\n")
+
+          with open("stats.md", "w", encoding="utf-8") as f:
+              f.write("# Blocklist Statistics\n\n")
+
+              for name, count in source_stats.items():
+                  f.write(f"- {name}: {count:,}\n")
+
+              f.write(f"\n## Unique Domains\n\n{len(sorted_domains):,}\n")
+
+          print(f"Generated {len(sorted_domains):,} unique domains")
+          EOF
+
+          python build.py
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add DNSZeroList.txt stats.md
+
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Update blocklist"
+            git push
+          fi
