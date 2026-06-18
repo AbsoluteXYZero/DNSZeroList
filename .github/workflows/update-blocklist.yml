@@ -36,7 +36,6 @@ jobs:
               "AdGuard DNS Filter": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
               "HaGeZi Normal": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_34.txt",
               "AdAway": "https://adaway.org/hosts.txt",
-              "OISD Big": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_27.txt",
               "Dan Pollock": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_4.txt",
               "Peter Lowe": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_3.txt",
               "Dandelion Sprout": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_39.txt",
@@ -50,23 +49,17 @@ jobs:
           domains = set()
           source_stats = {}
 
-          # -----------------------------
-          # TRUE CANONICAL NORMALIZER
-          # -----------------------------
           def normalize(domain: str) -> str:
               domain = domain.lower().strip().rstrip(".")
 
-              # remove AdGuard/uBO rule syntax completely
               for sep in ["^", "$", "|", ",", " "]:
                   domain = domain.split(sep)[0]
 
-              # remove port if present
               if ":" in domain:
                   domain = domain.split(":")[0]
 
               domain = domain.strip()
 
-              # IDN normalization (critical for real dedupe)
               try:
                   domain = idna.encode(domain).decode("ascii")
               except Exception:
@@ -99,9 +92,6 @@ jobs:
               domains.add(domain)
               return len(domains) > before
 
-          # -----------------------------
-          # PROCESS SOURCES
-          # -----------------------------
           for name, url in SOURCES.items():
               print(f"Downloading {name}")
 
@@ -120,9 +110,6 @@ jobs:
                   if line.startswith("!") or line.startswith("#"):
                       continue
 
-                  # -------------------------
-                  # HOSTS FORMAT
-                  # -------------------------
                   if line.startswith("0.0.0.0 ") or line.startswith("127.0.0.1 "):
                       parts = line.split()
                       if len(parts) >= 2:
@@ -131,9 +118,6 @@ jobs:
                               unique_count += 1
                       continue
 
-                  # -------------------------
-                  # ADGUARD / UBO FORMAT
-                  # -------------------------
                   if line.startswith("||"):
                       domain = line[2:]
                       raw_count += 1
@@ -141,9 +125,6 @@ jobs:
                           unique_count += 1
                       continue
 
-                  # -------------------------
-                  # PLAIN DOMAIN FORMAT
-                  # -------------------------
                   if (
                       " " not in line
                       and "/" not in line
@@ -155,9 +136,6 @@ jobs:
 
               source_stats[name] = unique_count
 
-          # -----------------------------
-          # OUTPUT FILES
-          # -----------------------------
           sorted_domains = sorted(domains)
 
           with open("DNSZeroList.txt", "w", encoding="utf-8") as f:
