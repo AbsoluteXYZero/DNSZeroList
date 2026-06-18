@@ -21,11 +21,15 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install dependencies
+        run: pip install idna
+
       - name: Build combined blocklist
         run: |
           cat > build.py << 'EOF'
           import re
           import urllib.request
+          import idna
           from datetime import datetime
 
           SOURCES = {
@@ -47,22 +51,28 @@ jobs:
           source_stats = {}
 
           # -----------------------------
-          # NORMALIZATION (KEY FIX)
+          # TRUE CANONICAL NORMALIZER
           # -----------------------------
           def normalize(domain: str) -> str:
               domain = domain.lower().strip().rstrip(".")
 
-              # strip AdGuard/uBO modifiers
-              domain = domain.split("^")[0]
-              domain = domain.split("$")[0]
-              domain = domain.split("|")[0]
-              domain = domain.split(",")[0]
+              # remove AdGuard/uBO rule syntax completely
+              for sep in ["^", "$", "|", ",", " "]:
+                  domain = domain.split(sep)[0]
 
-              # strip port if present
+              # remove port if present
               if ":" in domain:
                   domain = domain.split(":")[0]
 
-              return domain.strip()
+              domain = domain.strip()
+
+              # IDN normalization (critical for real dedupe)
+              try:
+                  domain = idna.encode(domain).decode("ascii")
+              except Exception:
+                  pass
+
+              return domain
 
           def add_domain(domain: str) -> bool:
               domain = normalize(domain)
@@ -85,8 +95,9 @@ jobs:
               if not DOMAIN_RE.match(domain):
                   return False
 
+              before = len(domains)
               domains.add(domain)
-              return True
+              return len(domains) > before
 
           # -----------------------------
           # PROCESS SOURCES
@@ -125,7 +136,6 @@ jobs:
                   # -------------------------
                   if line.startswith("||"):
                       domain = line[2:]
-
                       raw_count += 1
                       if add_domain(domain):
                           unique_count += 1
@@ -146,7 +156,7 @@ jobs:
               source_stats[name] = unique_count
 
           # -----------------------------
-          # OUTPUT
+          # OUTPUT FILES
           # -----------------------------
           sorted_domains = sorted(domains)
 
