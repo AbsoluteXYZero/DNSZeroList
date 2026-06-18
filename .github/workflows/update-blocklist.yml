@@ -36,6 +36,7 @@ jobs:
               "AdGuard DNS Filter": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
               "HaGeZi Normal": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_34.txt",
               "AdAway": "https://adaway.org/hosts.txt",
+              "OISD Big": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_27.txt",
               "Dan Pollock": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_4.txt",
               "Peter Lowe": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_3.txt",
               "Dandelion Sprout": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_39.txt",
@@ -45,9 +46,6 @@ jobs:
               r"^(?=.{1,253}$)(?!-)[a-z0-9.-]+(?<!-)$",
               re.IGNORECASE
           )
-
-          domains = set()
-          source_stats = {}
 
           def normalize(domain: str) -> str:
               domain = domain.lower().strip().rstrip(".")
@@ -67,95 +65,120 @@ jobs:
 
               return domain
 
-          def add_domain(domain: str) -> bool:
+          def add_domain(domain: str, target_set: set) -> bool:
               domain = normalize(domain)
 
               if not domain:
                   return False
-
               if domain.startswith("localhost"):
                   return False
-
               if "*" in domain:
                   return False
-
               if "/" in domain:
                   return False
-
               if "." not in domain:
                   return False
-
               if not DOMAIN_RE.match(domain):
                   return False
 
-              before = len(domains)
-              domains.add(domain)
-              return len(domains) > before
+              before = len(target_set)
+              target_set.add(domain)
+              return len(target_set) > before
 
-          for name, url in SOURCES.items():
-              print(f"Downloading {name}")
+          def process_sources(exclude_oisd=False):
+              domains = set()
+              stats = {}
 
-              response = urllib.request.urlopen(url)
-              text = response.read().decode("utf-8", errors="ignore")
-
-              raw_count = 0
-              unique_count = 0
-
-              for raw in text.splitlines():
-                  line = raw.strip()
-
-                  if not line:
+              for name, url in SOURCES.items():
+                  if exclude_oisd and name == "OISD Big":
                       continue
 
-                  if line.startswith("!") or line.startswith("#"):
-                      continue
+                  print(f"Downloading {name}")
 
-                  if line.startswith("0.0.0.0 ") or line.startswith("127.0.0.1 "):
-                      parts = line.split()
-                      if len(parts) >= 2:
+                  response = urllib.request.urlopen(url)
+                  text = response.read().decode("utf-8", errors="ignore")
+
+                  raw_count = 0
+                  unique_count = 0
+
+                  for raw in text.splitlines():
+                      line = raw.strip()
+
+                      if not line:
+                          continue
+                      if line.startswith("!") or line.startswith("#"):
+                          continue
+
+                      if line.startswith("0.0.0.0 ") or line.startswith("127.0.0.1 "):
+                          parts = line.split()
+                          if len(parts) >= 2:
+                              raw_count += 1
+                              if add_domain(parts[1], domains):
+                                  unique_count += 1
+                          continue
+
+                      if line.startswith("||"):
+                          domain = line[2:]
                           raw_count += 1
-                          if add_domain(parts[1]):
+                          if add_domain(domain, domains):
                               unique_count += 1
-                      continue
+                          continue
 
-                  if line.startswith("||"):
-                      domain = line[2:]
-                      raw_count += 1
-                      if add_domain(domain):
-                          unique_count += 1
-                      continue
+                      if (
+                          " " not in line
+                          and "/" not in line
+                          and not line.startswith("@@")
+                      ):
+                          raw_count += 1
+                          if add_domain(line, domains):
+                              unique_count += 1
 
-                  if (
-                      " " not in line
-                      and "/" not in line
-                      and not line.startswith("@@")
-                  ):
-                      raw_count += 1
-                      if add_domain(line):
-                          unique_count += 1
+                  stats[name] = unique_count
 
-              source_stats[name] = unique_count
+              return domains, stats
 
-          sorted_domains = sorted(domains)
+          # -------------------------
+          # BUILD BOTH LISTS
+          # -------------------------
+          full_domains, full_stats = process_sources(exclude_oisd=False)
+          no_oisd_domains, no_oisd_stats = process_sources(exclude_oisd=True)
 
+          full_sorted = sorted(full_domains)
+          no_oisd_sorted = sorted(no_oisd_domains)
+
+          # -------------------------
+          # WRITE FULL LIST
+          # -------------------------
           with open("DNSZeroList.txt", "w", encoding="utf-8") as f:
-              f.write("! DNSZeroList\n")
+              f.write("! DNSZeroList (FULL)\n")
               f.write(f"! Generated: {datetime.utcnow().isoformat()}Z\n")
-              f.write(f"! Unique Domains: {len(sorted_domains)}\n")
+              f.write(f"! Unique Domains: {len(full_sorted)}\n")
               f.write("!\n")
+              for d in full_sorted:
+                  f.write(f"||{d}^\n")
 
-              for domain in sorted_domains:
-                  f.write(f"||{domain}^\n")
+          # -------------------------
+          # WRITE NO-OISD LIST
+          # -------------------------
+          with open("DNSZeroList_no_oisd.txt", "w", encoding="utf-8") as f:
+              f.write("! DNSZeroList (NO OISD)\n")
+              f.write(f"! Generated: {datetime.utcnow().isoformat()}Z\n")
+              f.write(f"! Unique Domains: {len(no_oisd_sorted)}\n")
+              f.write("!\n")
+              for d in no_oisd_sorted:
+                  f.write(f"||{d}^\n")
 
+          # -------------------------
+          # STATS (FULL ONLY)
+          # -------------------------
           with open("stats.md", "w", encoding="utf-8") as f:
-              f.write("# Blocklist Statistics\n\n")
-
-              for name, count in source_stats.items():
+              f.write("# Blocklist Statistics (FULL)\n\n")
+              for name, count in full_stats.items():
                   f.write(f"- {name}: {count:,}\n")
+              f.write(f"\n## Unique Domains (Full)\n\n{len(full_sorted):,}\n")
+              f.write(f"\n## Unique Domains (No OISD)\n\n{len(no_oisd_sorted):,}\n")
 
-              f.write(f"\n## Unique Domains\n\n{len(sorted_domains):,}\n")
-
-          print(f"Generated {len(sorted_domains):,} unique domains")
+          print(f"Full: {len(full_sorted):,} | No OISD: {len(no_oisd_sorted):,}")
           EOF
 
           python build.py
@@ -165,11 +188,11 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-          git add DNSZeroList.txt stats.md
+          git add DNSZeroList.txt DNSZeroList_no_oisd.txt stats.md
 
           if git diff --cached --quiet; then
             echo "No changes"
           else
-            git commit -m "Update blocklist"
+            git commit -m "Update blocklist (full + no OISD)"
             git push
           fi
