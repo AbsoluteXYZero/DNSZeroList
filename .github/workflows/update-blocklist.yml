@@ -30,6 +30,7 @@ jobs:
           import re
           import urllib.request
           import idna
+          import time
           from datetime import datetime
 
           SOURCES = {
@@ -40,10 +41,8 @@ jobs:
               "Dan Pollock": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_4.txt",
               "Peter Lowe": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_3.txt",
               "Dandelion Sprout": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_39.txt",
-
               "EasyList": "https://easylist.to/easylist/easylist.txt",
               "EasyPrivacy": "https://easylist.to/easylist/easyprivacy.txt",
-
               "uBO Ads": "https://ublockorigin.github.io/uAssets/filters/filters.txt",
               "uBO Privacy": "https://ublockorigin.github.io/uAssets/filters/privacy.txt",
               "uBO Badware": "https://ublockorigin.github.io/uAssets/filters/badware.txt",
@@ -56,6 +55,21 @@ jobs:
               r"^(?=.{1,253}$)(?!-)[a-z0-9.-]+(?<!-)$",
               re.IGNORECASE
           )
+
+          def fetch(url, retries=3):
+              for i in range(retries):
+                  try:
+                      req = urllib.request.Request(
+                          url,
+                          headers={
+                              "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120 Safari/537.36"
+                          }
+                      )
+                      return urllib.request.urlopen(req, timeout=30).read().decode("utf-8", errors="ignore")
+                  except Exception:
+                      if i == retries - 1:
+                          raise
+                      time.sleep(2)
 
           def normalize(domain: str) -> str:
               domain = domain.lower().strip().rstrip(".")
@@ -118,7 +132,7 @@ jobs:
 
               for name, url in SOURCES.items():
                   print(f"Downloading {name}")
-                  text = urllib.request.urlopen(url).read().decode("utf-8", errors="ignore")
+                  text = fetch(url)
 
                   unique_count = 0
 
