@@ -46,37 +46,59 @@ jobs:
           domains = set()
           source_stats = {}
 
-          def add_domain(domain):
+          # -----------------------------
+          # NORMALIZATION (KEY FIX)
+          # -----------------------------
+          def normalize(domain: str) -> str:
               domain = domain.lower().strip().rstrip(".")
 
+              # strip AdGuard/uBO modifiers
+              domain = domain.split("^")[0]
+              domain = domain.split("$")[0]
+              domain = domain.split("|")[0]
+              domain = domain.split(",")[0]
+
+              # strip port if present
+              if ":" in domain:
+                  domain = domain.split(":")[0]
+
+              return domain.strip()
+
+          def add_domain(domain: str) -> bool:
+              domain = normalize(domain)
+
               if not domain:
-                  return
+                  return False
 
               if domain.startswith("localhost"):
-                  return
+                  return False
 
               if "*" in domain:
-                  return
+                  return False
 
               if "/" in domain:
-                  return
+                  return False
 
-              if ":" in domain:
-                  return
+              if "." not in domain:
+                  return False
 
-              if not "." in domain:
-                  return
+              if not DOMAIN_RE.match(domain):
+                  return False
 
-              if DOMAIN_RE.match(domain):
-                  domains.add(domain)
+              domains.add(domain)
+              return True
 
+          # -----------------------------
+          # PROCESS SOURCES
+          # -----------------------------
           for name, url in SOURCES.items():
               print(f"Downloading {name}")
 
               response = urllib.request.urlopen(url)
               text = response.read().decode("utf-8", errors="ignore")
 
-              count = 0
+              raw_count = 0
+              unique_count = 0
 
               for raw in text.splitlines():
                   line = raw.strip()
@@ -87,39 +109,45 @@ jobs:
                   if line.startswith("!") or line.startswith("#"):
                       continue
 
-                  # hosts format
+                  # -------------------------
+                  # HOSTS FORMAT
+                  # -------------------------
                   if line.startswith("0.0.0.0 ") or line.startswith("127.0.0.1 "):
                       parts = line.split()
                       if len(parts) >= 2:
-                          add_domain(parts[1])
-                          count += 1
+                          raw_count += 1
+                          if add_domain(parts[1]):
+                              unique_count += 1
                       continue
 
-                  # AdGuard/uBO format
+                  # -------------------------
+                  # ADGUARD / UBO FORMAT
+                  # -------------------------
                   if line.startswith("||"):
                       domain = line[2:]
 
-                      if "^" in domain:
-                          domain = domain.split("^")[0]
-
-                      if "$" in domain:
-                          domain = domain.split("$")[0]
-
-                      add_domain(domain)
-                      count += 1
+                      raw_count += 1
+                      if add_domain(domain):
+                          unique_count += 1
                       continue
 
-                  # plain domain
+                  # -------------------------
+                  # PLAIN DOMAIN FORMAT
+                  # -------------------------
                   if (
                       " " not in line
                       and "/" not in line
                       and not line.startswith("@@")
                   ):
-                      add_domain(line)
-                      count += 1
+                      raw_count += 1
+                      if add_domain(line):
+                          unique_count += 1
 
-              source_stats[name] = count
+              source_stats[name] = unique_count
 
+          # -----------------------------
+          # OUTPUT
+          # -----------------------------
           sorted_domains = sorted(domains)
 
           with open("DNSZeroList.txt", "w", encoding="utf-8") as f:
