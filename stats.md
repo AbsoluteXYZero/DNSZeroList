@@ -16,5 +16,8 @@
 - uBO Unbreak: 62
 - uBO Resource Abuse: 11
 
-## Unique Domains
+## FULL Unique Domains
 523,677
+
+## NO OISD Unique Domains
+274,740
