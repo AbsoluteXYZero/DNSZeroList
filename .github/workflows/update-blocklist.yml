@@ -1,182 +1,130 @@
-name: Update Master DNS Blocklist (Source Tracked)
+import re
+import urllib.request
+import idna
+import time
+from datetime import datetime
 
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: "0 */6 * * *"
+SOURCES = {
+    "AdGuard DNS Filter": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
+    "HaGeZi Normal": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_34.txt",
+    "AdAway": "https://adaway.org/hosts.txt",
+    "OISD Big": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_27.txt",
+    "Dan Pollock": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_4.txt",
+    "Peter Lowe": "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=adblock",
+    "Dandelion Sprout": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_39.txt",
 
-permissions:
-  contents: write
+    "EasyList": "https://easylist.to/easylist/easylist.txt",
+    "EasyPrivacy": "https://easylist.to/easylist/easyprivacy.txt",
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+    "uBO Ads": "https://ublockorigin.github.io/uAssets/filters/filters.txt",
+    "uBO Privacy": "https://ublockorigin.github.io/uAssets/filters/privacy.txt",
+    "uBO Badware": "https://ublockorigin.github.io/uAssets/filters/badware.txt",
+    "uBO Quick Fixes": "https://ublockorigin.github.io/uAssets/filters/quick-fixes.txt",
+    "uBO Unbreak": "https://ublockorigin.github.io/uAssets/filters/unbreak.txt",
+    "uBO Resource Abuse": "https://ublockorigin.github.io/uAssets/filters/resource-abuse.txt",
+}
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+def fetch(url):
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    return urllib.request.urlopen(req, timeout=30).read().decode("utf-8", errors="ignore")
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+def normalize(domain):
+    domain = domain.lower().strip().rstrip(".")
+    for sep in ["^", "$", "|", ",", " "]:
+        domain = domain.split(sep)[0]
+    if ":" in domain:
+        domain = domain.split(":")[0]
+    try:
+        domain = idna.encode(domain).decode("ascii")
+    except:
+        pass
+    return domain
 
-      - name: Install dependencies
-        run: pip install idna
+def extract_domain(line):
+    line = line.strip()
 
-      - name: Build combined blocklist
-        run: |
-          cat > build.py << 'EOF'
-          import re
-          import urllib.request
-          import idna
-          import time
-          from datetime import datetime
+    if line.startswith("0.0.0.0 ") or line.startswith("127.0.0.1 "):
+        parts = line.split()
+        return parts[1] if len(parts) > 1 else None
 
-          SOURCES = {
-              "AdGuard DNS Filter": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
-              "HaGeZi Normal": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_34.txt",
-              "AdAway": "https://adaway.org/hosts.txt",
-              "OISD Big": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_27.txt",
-              "Dan Pollock": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_4.txt",
-              "Peter Lowe": "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=adblock",
-              "Dandelion Sprout": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_39.txt",
+    if line.startswith("||"):
+        return line[2:].split("^")[0]
 
-              "EasyList": "https://easylist.to/easylist/easylist.txt",
-              "EasyPrivacy": "https://easylist.to/easylist/easyprivacy.txt",
+    return None
 
-              "uBO Ads": "https://ublockorigin.github.io/uAssets/filters/filters.txt",
-              "uBO Privacy": "https://ublockorigin.github.io/uAssets/filters/privacy.txt",
-              "uBO Badware": "https://ublockorigin.github.io/uAssets/filters/badware.txt",
-              "uBO Quick Fixes": "https://ublockorigin.github.io/uAssets/filters/quick-fixes.txt",
-              "uBO Unbreak": "https://ublockorigin.github.io/uAssets/filters/unbreak.txt",
-              "uBO Resource Abuse": "https://ublockorigin.github.io/uAssets/filters/resource-abuse.txt",
-          }
 
-          def fetch(url, retries=3):
-              for i in range(retries):
-                  try:
-                      req = urllib.request.Request(
-                          url,
-                          headers={"User-Agent": "Mozilla/5.0"}
-                      )
-                      return urllib.request.urlopen(req, timeout=30).read().decode("utf-8", errors="ignore")
-                  except Exception:
-                      if i == retries - 1:
-                          raise
-                      time.sleep(2)
+# -------------------------
+# CORE STORAGE
+# -------------------------
+domains = set()
+domain_sources = {}  # THIS IS THE KEY FIX
 
-          def normalize(domain: str) -> str:
-              domain = domain.lower().strip().rstrip(".")
+def add(domain, source):
+    domain = normalize(domain)
 
-              for sep in ["^", "$", "|", ",", " "]:
-                  domain = domain.split(sep)[0]
+    if not domain or "*" in domain or "/" in domain or "." not in domain:
+        return False
 
-              if ":" in domain:
-                  domain = domain.split(":")[0]
+    domains.add(domain)
 
-              try:
-                  domain = idna.encode(domain).decode("ascii")
-              except Exception:
-                  pass
+    if domain not in domain_sources:
+        domain_sources[domain] = set()
 
-              return domain
+    domain_sources[domain].add(source)
 
-          # STRICT PARSER (NO GUESSING)
-          def extract_domain(line: str):
-              line = line.strip()
+    return True
 
-              if line.startswith("0.0.0.0 ") or line.startswith("127.0.0.1 "):
-                  parts = line.split()
-                  return parts[1] if len(parts) > 1 else None
 
-              if line.startswith("||"):
-                  return line[2:].split("^")[0]
+def process():
+    stats = {}
 
-              return None
+    for name, url in SOURCES.items():
+        print(f"Downloading {name}")
+        text = fetch(url)
 
-          def add_domain(domain: str, target_set: set):
-              domain = normalize(domain)
+        count = 0
 
-              if not domain:
-                  return False
-              if "*" in domain or "/" in domain or "." not in domain:
-                  return False
+        for line in text.splitlines():
+            if not line or line.startswith(("!", "#")):
+                continue
 
-              target_set.add(domain)
-              return True
+            domain = extract_domain(line)
+            if not domain:
+                continue
 
-          def process_sources(exclude_oisd=False):
-              domains = set()
-              stats = {}
+            if add(domain, name):
+                count += 1
 
-              for name, url in SOURCES.items():
-                  if exclude_oisd and name == "OISD Big":
-                      continue
+        stats[name] = count
 
-                  print(f"Downloading {name}")
-                  text = fetch(url)
+    return stats
 
-                  count = 0
 
-                  for line in text.splitlines():
-                      if not line or line.startswith(("!", "#")):
-                          continue
+stats = process()
 
-                      domain = extract_domain(line)
-                      if not domain:
-                          continue
+sorted_domains = sorted(domains)
 
-                      if add_domain(domain, domains):
-                          count += 1
+# -------------------------
+# WRITE MAIN LIST (WITH SOURCES INLINE)
+# -------------------------
+with open("DNSZeroList.txt", "w", encoding="utf-8") as f:
+    f.write("! DNSZeroList (FULL)\n")
+    f.write(f"! Generated: {datetime.utcnow().isoformat()}Z\n")
+    f.write(f"! Unique Domains: {len(sorted_domains)}\n\n")
 
-                          # DEBUG TAG OUTPUT (THIS IS WHAT YOU WANTED)
-                          print(f"{domain}  ! {name}")
+    for d in sorted_domains:
+        sources = ", ".join(sorted(domain_sources.get(d, [])))
 
-                  stats[name] = count
+        # AdGuard-safe comment format
+        f.write(f"||{d}^    ! {sources}\n")
 
-              return domains, stats
 
-          full_domains, full_stats = process_sources(exclude_oisd=False)
-          full_sorted = sorted(full_domains)
+# -------------------------
+# STATS
+# -------------------------
+with open("stats.md", "w", encoding="utf-8") as f:
+    f.write("# Blocklist Stats\n\n")
+    for k, v in stats.items():
+        f.write(f"- {k}: {v:,}\n")
 
-          no_oisd_domains, no_oisd_stats = process_sources(exclude_oisd=True)
-          no_oisd_sorted = sorted(no_oisd_domains)
-
-          with open("DNSZeroList.txt", "w", encoding="utf-8") as f:
-              f.write("! DNSZeroList (FULL)\n")
-              f.write(f"! Generated: {datetime.utcnow().isoformat()}Z\n")
-              f.write(f"! Unique Domains: {len(full_sorted)}\n\n")
-              for d in full_sorted:
-                  f.write(f"||{d}^\n")
-
-          with open("DNSZeroList_no_oisd.txt", "w", encoding="utf-8") as f:
-              f.write("! DNSZeroList (NO OISD)\n")
-              f.write(f"! Generated: {datetime.utcnow().isoformat()}Z\n")
-              f.write(f"! Unique Domains: {len(no_oisd_sorted)}\n\n")
-              for d in no_oisd_sorted:
-                  f.write(f"||{d}^\n")
-
-          with open("stats.md", "w", encoding="utf-8") as f:
-              f.write("# Blocklist Stats\n\n")
-              for k, v in full_stats.items():
-                  f.write(f"- {k}: {v:,}\n")
-
-          print(f"FULL: {len(full_sorted)} | NO OISD: {len(no_oisd_sorted)}")
-          EOF
-
-          python build.py
-
-      - name: Commit changes
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-
-          git add DNSZeroList.txt DNSZeroList_no_oisd.txt stats.md
-
-          if git diff --cached --quiet; then
-            echo "No changes"
-          else
-            git commit -m "Update DNSZeroList with source tracing"
-            git push
-          fi
+print(f"DONE: {len(sorted_domains)} domains")
