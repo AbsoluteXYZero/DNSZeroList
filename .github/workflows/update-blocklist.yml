@@ -1,4 +1,4 @@
-name: Update Master DNS Blocklist
+name: Update Master DNS Blocklist (Source Tracked)
 
 on:
   workflow_dispatch:
@@ -53,11 +53,6 @@ jobs:
               "uBO Resource Abuse": "https://ublockorigin.github.io/uAssets/filters/resource-abuse.txt",
           }
 
-          DOMAIN_RE = re.compile(
-              r"^(?=.{1,253}$)(?!-)[a-z0-9.-]+(?<!-)$",
-              re.IGNORECASE
-          )
-
           def fetch(url, retries=3):
               for i in range(retries):
                   try:
@@ -87,38 +82,25 @@ jobs:
 
               return domain
 
-          # -------------------------------------------------------
-          # STRICT PARSER (NO GUESSING = FIX FOR YOUR BREAKAGE)
-          # -------------------------------------------------------
+          # STRICT PARSER (NO GUESSING)
           def extract_domain(line: str):
               line = line.strip()
 
-              # hosts format ONLY
               if line.startswith("0.0.0.0 ") or line.startswith("127.0.0.1 "):
                   parts = line.split()
-                  if len(parts) >= 2:
-                      return parts[1]
-                  return None
+                  return parts[1] if len(parts) > 1 else None
 
-              # uBO / AdGuard network rule ONLY
               if line.startswith("||"):
                   return line[2:].split("^")[0]
 
-              # EVERYTHING ELSE IS INVALID
               return None
 
-          def add_domain(domain: str, target_set: set) -> bool:
+          def add_domain(domain: str, target_set: set):
               domain = normalize(domain)
 
               if not domain:
                   return False
-              if "*" in domain:
-                  return False
-              if "/" in domain:
-                  return False
-              if "." not in domain:
-                  return False
-              if not DOMAIN_RE.match(domain):
+              if "*" in domain or "/" in domain or "." not in domain:
                   return False
 
               target_set.add(domain)
@@ -148,25 +130,19 @@ jobs:
                       if add_domain(domain, domains):
                           count += 1
 
+                          # DEBUG TAG OUTPUT (THIS IS WHAT YOU WANTED)
+                          print(f"{domain}  ! {name}")
+
                   stats[name] = count
 
               return domains, stats
 
-          # -------------------------
-          # BUILD FULL
-          # -------------------------
           full_domains, full_stats = process_sources(exclude_oisd=False)
           full_sorted = sorted(full_domains)
 
-          # -------------------------
-          # BUILD NO OISD
-          # -------------------------
           no_oisd_domains, no_oisd_stats = process_sources(exclude_oisd=True)
           no_oisd_sorted = sorted(no_oisd_domains)
 
-          # -------------------------
-          # WRITE FULL LIST
-          # -------------------------
           with open("DNSZeroList.txt", "w", encoding="utf-8") as f:
               f.write("! DNSZeroList (FULL)\n")
               f.write(f"! Generated: {datetime.utcnow().isoformat()}Z\n")
@@ -174,9 +150,6 @@ jobs:
               for d in full_sorted:
                   f.write(f"||{d}^\n")
 
-          # -------------------------
-          # WRITE NO OISD LIST
-          # -------------------------
           with open("DNSZeroList_no_oisd.txt", "w", encoding="utf-8") as f:
               f.write("! DNSZeroList (NO OISD)\n")
               f.write(f"! Generated: {datetime.utcnow().isoformat()}Z\n")
@@ -184,18 +157,12 @@ jobs:
               for d in no_oisd_sorted:
                   f.write(f"||{d}^\n")
 
-          # -------------------------
-          # STATS
-          # -------------------------
           with open("stats.md", "w", encoding="utf-8") as f:
-              f.write("# Blocklist Statistics\n\n")
-              for name, count in full_stats.items():
-                  f.write(f"- {name}: {count:,}\n")
+              f.write("# Blocklist Stats\n\n")
+              for k, v in full_stats.items():
+                  f.write(f"- {k}: {v:,}\n")
 
-              f.write(f"\n## FULL: {len(full_sorted):,}\n")
-              f.write(f"## NO OISD: {len(no_oisd_sorted):,}\n")
-
-          print(f"FULL: {len(full_sorted):,} | NO OISD: {len(no_oisd_sorted):,}")
+          print(f"FULL: {len(full_sorted)} | NO OISD: {len(no_oisd_sorted)}")
           EOF
 
           python build.py
@@ -210,6 +177,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes"
           else
-            git commit -m "Update DNSZeroList (strict DNS-safe parser fix)"
+            git commit -m "Update DNSZeroList with source tracing"
             git push
           fi
