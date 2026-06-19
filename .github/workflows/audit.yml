@@ -1,4 +1,4 @@
-name: Audit Blocklist (|| rule matcher)
+name: Audit Blocklist (Reliable || matcher)
 
 on:
   workflow_dispatch:
@@ -8,16 +8,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Find matching || rules
+      - name: Robust || rule audit
         run: |
+          set -e
+
           DOMAIN="androidpay-users-pa.googleapis.com"
           PARENT="${DOMAIN#*.}"
 
-          echo "======================================"
-          echo "AUDITING DOMAIN"
-          echo "======================================"
-          echo "DOMAIN : $DOMAIN"
-          echo "PARENT : $PARENT"
+          echo "AUDITING: $DOMAIN"
+          echo "PARENT: $PARENT"
           echo "======================================"
 
           declare -A SOURCES=(
@@ -40,50 +39,61 @@ jobs:
 
           FOUND=0
 
+          fetch() {
+            curl -fsSL --retry 3 --retry-delay 2 \
+              -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120" \
+              "$1" || echo ""
+          }
+
           for NAME in "${!SOURCES[@]}"; do
             echo ""
             echo "Checking: $NAME"
 
-            TEXT=$(curl -fsSL -L -A "Mozilla/5.0" "${SOURCES[$NAME]}")
+            TEXT=$(fetch "${SOURCES[$NAME]}")
+
+            if [[ -z "$TEXT" ]]; then
+              echo "⚠ WARNING: EMPTY RESPONSE from $NAME"
+              continue
+            fi
+
+            MATCHS=0
 
             while IFS= read -r line; do
 
-              # ONLY uBlock / AdGuard network rules
               [[ "$line" != \|\|* ]] && continue
 
-              # strip syntax
               RULE="${line#||}"
               RULE="${RULE%\^}"
 
-              # match exact or subdomain
               if [[ "$DOMAIN" == "$RULE" || "$DOMAIN" == *".$RULE" ]]; then
-                echo "✔ MATCH FOUND"
-                echo "   LIST : $NAME"
-                echo "   RULE : $line"
-                echo "   MATCHS DOMAIN : $DOMAIN"
-                echo "--------------------------------------"
+                echo "✔ MATCH"
+                echo "   LIST: $NAME"
+                echo "   RULE: $line"
+                MATCHS=1
                 FOUND=1
               fi
 
-              # parent match check (googleapis.com case)
               if [[ "$PARENT" == "$RULE" || "$PARENT" == *".$RULE" ]]; then
                 echo "⚠ PARENT MATCH"
-                echo "   LIST : $NAME"
-                echo "   RULE : $line"
-                echo "   MATCHS PARENT : $PARENT"
-                echo "--------------------------------------"
+                echo "   LIST: $NAME"
+                echo "   RULE: $line"
+                MATCHS=1
                 FOUND=1
               fi
 
             done <<< "$TEXT"
+
+            if [[ "$MATCHS" -eq 0 ]]; then
+              echo "No matches in $NAME"
+            fi
 
           done
 
           echo ""
           echo "======================================"
 
-          if [ "$FOUND" -eq 0 ]; then
-            echo "RESULT: NO MATCH FOUND IN ANY || RULE"
+          if [[ "$FOUND" -eq 0 ]]; then
+            echo "RESULT: NO MATCH FOUND (or blocked fetch / empty responses)"
           else
-            echo "RESULT: BLOCKING RULE FOUND"
+            echo "RESULT: MATCHES FOUND"
           fi
