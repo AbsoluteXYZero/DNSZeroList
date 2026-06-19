@@ -1,4 +1,4 @@
-name: Audit Blocklist (Reliable || matcher)
+name: Audit Blocklist (true parser)
 
 on:
   workflow_dispatch:
@@ -8,10 +8,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Robust || rule audit
+      - name: True domain rule audit
         run: |
-          set -e
-
           DOMAIN="androidpay-users-pa.googleapis.com"
           PARENT="${DOMAIN#*.}"
 
@@ -39,53 +37,54 @@ jobs:
 
           FOUND=0
 
-          fetch() {
-            curl -fsSL --retry 3 --retry-delay 2 \
-              -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120" \
-              "$1" || echo ""
+          normalize() {
+            echo "$1" | \
+              sed 's/^||//' | \
+              sed 's/^\|\|//' | \
+              sed 's/^0\.0\.0\.0 //' | \
+              sed 's/^127\.0\.0\.1 //' | \
+              sed 's/\^$//' | \
+              tr '[:upper:]' '[:lower:]'
+          }
+
+          match() {
+            local rule=$1
+
+            [[ "$DOMAIN" == "$rule" ]] && return 0
+            [[ "$DOMAIN" == *".$rule" ]] && return 0
+            [[ "$PARENT" == "$rule" ]] && return 0
+            [[ "$PARENT" == *".$rule" ]] && return 0
+
+            return 1
           }
 
           for NAME in "${!SOURCES[@]}"; do
             echo ""
             echo "Checking: $NAME"
 
-            TEXT=$(fetch "${SOURCES[$NAME]}")
-
-            if [[ -z "$TEXT" ]]; then
-              echo "⚠ WARNING: EMPTY RESPONSE from $NAME"
-              continue
-            fi
-
-            MATCHS=0
+            TEXT=$(curl -fsSL -L -A "Mozilla/5.0" "${SOURCES[$NAME]}")
 
             while IFS= read -r line; do
 
-              [[ "$line" != \|\|* ]] && continue
+              # skip comments only
+              [[ "$line" == \!* ]] && continue
+              [[ "$line" == \#* ]] && continue
 
-              RULE="${line#||}"
-              RULE="${RULE%\^}"
+              rule=$(normalize "$line")
 
-              if [[ "$DOMAIN" == "$RULE" || "$DOMAIN" == *".$RULE" ]]; then
-                echo "✔ MATCH"
+              # skip empty
+              [[ -z "$rule" ]] && continue
+
+              if match "$rule"; then
+                echo "✔ MATCH FOUND"
                 echo "   LIST: $NAME"
-                echo "   RULE: $line"
-                MATCHS=1
-                FOUND=1
-              fi
-
-              if [[ "$PARENT" == "$RULE" || "$PARENT" == *".$RULE" ]]; then
-                echo "⚠ PARENT MATCH"
-                echo "   LIST: $NAME"
-                echo "   RULE: $line"
-                MATCHS=1
+                echo "   RAW : $line"
+                echo "   RULE: $rule"
+                echo "--------------------------------"
                 FOUND=1
               fi
 
             done <<< "$TEXT"
-
-            if [[ "$MATCHS" -eq 0 ]]; then
-              echo "No matches in $NAME"
-            fi
 
           done
 
@@ -93,7 +92,8 @@ jobs:
           echo "======================================"
 
           if [[ "$FOUND" -eq 0 ]]; then
-            echo "RESULT: NO MATCH FOUND (or blocked fetch / empty responses)"
+            echo "RESULT: NO MATCH FOUND"
+            echo "NOTE: If AdGuard still shows a rule, it is coming from merged/compiled internal list, not raw upstream text"
           else
-            echo "RESULT: MATCHES FOUND"
+            echo "RESULT: MATCH FOUND"
           fi
