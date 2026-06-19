@@ -39,10 +39,18 @@ jobs:
               "AdAway": "https://adaway.org/hosts.txt",
               "OISD Big": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_27.txt",
               "Dan Pollock": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_4.txt",
-              "Peter Lowe": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_3.txt",
+              "Peter Lowe": "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=adblock",
               "Dandelion Sprout": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_39.txt",
 
+              "EasyList": "https://easylist.to/easylist/easylist.txt",
+              "EasyPrivacy": "https://easylist.to/easylist/easyprivacy.txt",
+
               "uBO Ads": "https://ublockorigin.github.io/uAssets/filters/filters.txt",
+              "uBO Privacy": "https://ublockorigin.github.io/uAssets/filters/privacy.txt",
+              "uBO Badware": "https://ublockorigin.github.io/uAssets/filters/badware.txt",
+              "uBO Quick Fixes": "https://ublockorigin.github.io/uAssets/filters/quick-fixes.txt",
+              "uBO Unbreak": "https://ublockorigin.github.io/uAssets/filters/unbreak.txt",
+              "uBO Resource Abuse": "https://ublockorigin.github.io/uAssets/filters/resource-abuse.txt",
           }
 
           DOMAIN_RE = re.compile(
@@ -56,7 +64,7 @@ jobs:
                       req = urllib.request.Request(
                           url,
                           headers={
-                              "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120 Safari/537.36"
+                              "User-Agent": "Mozilla/5.0 (X11; Linux x86_64)"
                           }
                       )
                       return urllib.request.urlopen(req, timeout=30).read().decode("utf-8", errors="ignore")
@@ -81,25 +89,22 @@ jobs:
 
               return domain
 
+          # ---------------------------------------------------
+          # STRICT PARSER (NO GUESSING = FIX FOR YOUR ISSUE)
+          # ---------------------------------------------------
           def extract_domain(line: str):
               line = line.strip()
 
+              # hosts format ONLY
               if line.startswith("0.0.0.0 ") or line.startswith("127.0.0.1 "):
                   parts = line.split()
                   return parts[1] if len(parts) > 1 else None
 
+              # uBO / AdGuard network rules ONLY
               if line.startswith("||"):
-                  return line[2:]
+                  return line[2:].split("^")[0]
 
-              if (
-                  " " not in line
-                  and "/" not in line
-                  and not line.startswith("!")
-                  and not line.startswith("#")
-                  and not line.startswith("@@")
-              ):
-                  return line
-
+              # EVERYTHING ELSE IS IGNORED (IMPORTANT FIX)
               return None
 
           def add_domain(domain: str, target_set: set) -> bool:
@@ -116,9 +121,8 @@ jobs:
               if not DOMAIN_RE.match(domain):
                   return False
 
-              before = len(target_set)
               target_set.add(domain)
-              return len(target_set) > before
+              return True
 
           def process_sources(exclude_oisd=False):
               domains = set()
@@ -131,7 +135,7 @@ jobs:
                   print(f"Downloading {name}")
                   text = fetch(url)
 
-                  unique_count = 0
+                  count = 0
 
                   for line in text.splitlines():
                       if not line or line.startswith(("!", "#")):
@@ -142,9 +146,9 @@ jobs:
                           continue
 
                       if add_domain(domain, domains):
-                          unique_count += 1
+                          count += 1
 
-                  stats[name] = unique_count
+                  stats[name] = count
 
               return domains, stats
 
@@ -161,7 +165,7 @@ jobs:
           no_oisd_sorted = sorted(no_oisd_domains)
 
           # -------------------------
-          # WRITE FULL LIST
+          # WRITE FULL
           # -------------------------
           with open("DNSZeroList.txt", "w", encoding="utf-8") as f:
               f.write("! DNSZeroList (FULL)\n")
@@ -171,7 +175,7 @@ jobs:
                   f.write(f"||{d}^\n")
 
           # -------------------------
-          # WRITE NO OISD LIST
+          # WRITE NO OISD
           # -------------------------
           with open("DNSZeroList_no_oisd.txt", "w", encoding="utf-8") as f:
               f.write("! DNSZeroList (NO OISD)\n")
@@ -184,12 +188,12 @@ jobs:
           # STATS
           # -------------------------
           with open("stats.md", "w", encoding="utf-8") as f:
-              f.write("# Blocklist Statistics (FULL)\n\n")
+              f.write("# Blocklist Statistics\n\n")
               for name, count in full_stats.items():
                   f.write(f"- {name}: {count:,}\n")
 
-              f.write(f"\n## FULL Unique Domains\n{len(full_sorted):,}\n")
-              f.write(f"\n## NO OISD Unique Domains\n{len(no_oisd_sorted):,}\n")
+              f.write(f"\n## FULL: {len(full_sorted):,}\n")
+              f.write(f"## NO OISD: {len(no_oisd_sorted):,}\n")
 
           print(f"FULL: {len(full_sorted):,} | NO OISD: {len(no_oisd_sorted):,}")
           EOF
@@ -206,6 +210,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes"
           else
-            git commit -m "Update blocklist (full + no OISD)"
+            git commit -m "Update DNSZeroList (safe parsing fix)"
             git push
           fi
