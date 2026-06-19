@@ -1,4 +1,4 @@
-name: Audit Blocklist Domain Source (Accurate)
+name: Audit Blocklist (|| rule matcher)
 
 on:
   workflow_dispatch:
@@ -8,14 +8,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Accurate rule-based audit
+      - name: Find matching || rules
         run: |
           DOMAIN="androidpay-users-pa.googleapis.com"
           PARENT="${DOMAIN#*.}"
 
-          echo "AUDITING: $DOMAIN"
-          echo "PARENT: $PARENT"
-          echo "--------------------------------"
+          echo "======================================"
+          echo "AUDITING DOMAIN"
+          echo "======================================"
+          echo "DOMAIN : $DOMAIN"
+          echo "PARENT : $PARENT"
+          echo "======================================"
 
           declare -A SOURCES=(
             ["AdGuard DNS Filter"]="https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt"
@@ -45,50 +48,30 @@ jobs:
 
             while IFS= read -r line; do
 
-              # strip whitespace
-              line="${line//$'\r'/}"
+              # ONLY uBlock / AdGuard network rules
+              [[ "$line" != \|\|* ]] && continue
 
-              # skip comments
-              [[ "$line" == \!* ]] && continue
-              [[ "$line" == \#* ]] && continue
+              # strip syntax
+              RULE="${line#||}"
+              RULE="${RULE%\^}"
 
-              MATCH=0
-
-              # -------------------------
-              # HOSTS FORMAT
-              # -------------------------
-              if [[ "$line" == 0.0.0.0* || "$line" == 127.0.0.1* ]]; then
-                rule=$(echo "$line" | awk '{print $2}')
-                [[ "$rule" == "$DOMAIN" || "$rule" == "$PARENT" ]] && MATCH=1
-              fi
-
-              # -------------------------
-              # uBO / AdGuard rule format
-              # -------------------------
-              if [[ "$line" == \|\|* ]]; then
-                rule="${line#||}"
-                rule="${rule%\^}"
-
-                [[ "$DOMAIN" == "$rule" ]] && MATCH=1
-                [[ "$DOMAIN" == *".$rule" ]] && MATCH=1
-                [[ "$PARENT" == "$rule" ]] && MATCH=1
-              fi
-
-              # -------------------------
-              # plain domain entries
-              # -------------------------
-              if [[ "$line" == *.* && "$line" != *" "* && "$line" != \|\|* ]]; then
-                rule="$line"
-                [[ "$DOMAIN" == "$rule" ]] && MATCH=1
-                [[ "$DOMAIN" == *".$rule" ]] && MATCH=1
-                [[ "$PARENT" == "$rule" ]] && MATCH=1
-              fi
-
-              if [[ "$MATCH" -eq 1 ]]; then
+              # match exact or subdomain
+              if [[ "$DOMAIN" == "$RULE" || "$DOMAIN" == *".$RULE" ]]; then
                 echo "✔ MATCH FOUND"
-                echo "   LIST: $NAME"
-                echo "   RULE: $line"
-                echo "--------------------------------"
+                echo "   LIST : $NAME"
+                echo "   RULE : $line"
+                echo "   MATCHS DOMAIN : $DOMAIN"
+                echo "--------------------------------------"
+                FOUND=1
+              fi
+
+              # parent match check (googleapis.com case)
+              if [[ "$PARENT" == "$RULE" || "$PARENT" == *".$RULE" ]]; then
+                echo "⚠ PARENT MATCH"
+                echo "   LIST : $NAME"
+                echo "   RULE : $line"
+                echo "   MATCHS PARENT : $PARENT"
+                echo "--------------------------------------"
                 FOUND=1
               fi
 
@@ -97,11 +80,10 @@ jobs:
           done
 
           echo ""
-          echo "================================"
+          echo "======================================"
 
-          if [[ "$FOUND" -eq 0 ]]; then
-            echo "RESULT: NO MATCH FOUND IN SOURCES"
-            echo "NOTE: Likely blocked by AdGuard internal filters or custom rules"
+          if [ "$FOUND" -eq 0 ]; then
+            echo "RESULT: NO MATCH FOUND IN ANY || RULE"
           else
             echo "RESULT: BLOCKING RULE FOUND"
           fi
