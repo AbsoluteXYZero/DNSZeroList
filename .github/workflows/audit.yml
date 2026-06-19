@@ -1,4 +1,4 @@
-name: Find Domain Source
+name: Audit Blocklist Domain Source
 
 on:
   workflow_dispatch:
@@ -8,9 +8,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Search lists
+      - name: Find domain in upstream lists
         run: |
           DOMAIN="androidpay-users-pa.googleapis.com"
+
+          echo "Searching for: $DOMAIN"
+          echo "----------------------------------------"
 
           declare -A SOURCES=(
             ["AdGuard DNS Filter"]="https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt"
@@ -30,10 +33,34 @@ jobs:
             ["uBO Resource Abuse"]="https://ublockorigin.github.io/uAssets/filters/resource-abuse.txt"
           )
 
+          FOUND=0
+
           for NAME in "${!SOURCES[@]}"; do
             echo "Checking: $NAME"
 
-            if curl -fsSL -A "Mozilla/5.0" "${SOURCES[$NAME]}" | grep -qi "$DOMAIN"; then
-              echo "FOUND IN: $NAME"
+            TEXT=$(curl -fsSL -L \
+              -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120 Safari/537.36" \
+              "${SOURCES[$NAME]}")
+
+            # exact match
+            if echo "$TEXT" | grep -qi "$DOMAIN"; then
+              echo "✔ FOUND EXACT in: $NAME"
+              FOUND=1
+            fi
+
+            # parent domain match (IMPORTANT FIX)
+            PARENT=$(echo "$DOMAIN" | sed 's/^[^.]*\.//')
+
+            if echo "$TEXT" | grep -qi "$PARENT"; then
+              echo "⚠ POSSIBLE PARENT MATCH in: $NAME ($PARENT)"
+              FOUND=1
             fi
           done
+
+          echo "----------------------------------------"
+
+          if [ "$FOUND" -eq 0 ]; then
+            echo "RESULT: NOT FOUND IN ANY SOURCE LIST"
+          else
+            echo "RESULT: FOUND (see matches above)"
+          fi
