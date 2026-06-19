@@ -1,0 +1,39 @@
+name: Find Domain Source
+
+on:
+  workflow_dispatch:
+
+jobs:
+  search:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Search lists
+        run: |
+          DOMAIN="androidpay-users-pa.googleapis.com"
+
+          declare -A SOURCES=(
+            ["AdGuard DNS Filter"]="https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt"
+            ["HaGeZi Normal"]="https://adguardteam.github.io/HostlistsRegistry/assets/filter_34.txt"
+            ["AdAway"]="https://adaway.org/hosts.txt"
+            ["OISD Big"]="https://adguardteam.github.io/HostlistsRegistry/assets/filter_27.txt"
+            ["Dan Pollock"]="https://adguardteam.github.io/HostlistsRegistry/assets/filter_4.txt"
+            ["Peter Lowe"]="https://adguardteam.github.io/HostlistsRegistry/assets/filter_3.txt"
+            ["Dandelion Sprout"]="https://adguardteam.github.io/HostlistsRegistry/assets/filter_39.txt"
+            ["EasyList"]="https://easylist.to/easylist/easylist.txt"
+            ["EasyPrivacy"]="https://easylist.to/easylist/easyprivacy.txt"
+            ["uBO Ads"]="https://ublockorigin.github.io/uAssets/filters/filters.txt"
+            ["uBO Privacy"]="https://ublockorigin.github.io/uAssets/filters/privacy.txt"
+            ["uBO Badware"]="https://ublockorigin.github.io/uAssets/filters/badware.txt"
+            ["uBO Quick Fixes"]="https://ublockorigin.github.io/uAssets/filters/quick-fixes.txt"
+            ["uBO Unbreak"]="https://ublockorigin.github.io/uAssets/filters/unbreak.txt"
+            ["uBO Resource Abuse"]="https://ublockorigin.github.io/uAssets/filters/resource-abuse.txt"
+          )
+
+          for NAME in "${!SOURCES[@]}"; do
+            echo "Checking: $NAME"
+
+            if curl -fsSL -A "Mozilla/5.0" "${SOURCES[$NAME]}" | grep -qi "$DOMAIN"; then
+              echo "FOUND IN: $NAME"
+            fi
+          done
