@@ -1,4 +1,4 @@
-# Blocklist Statistics
+# Blocklist Stats
 
 - AdGuard DNS Filter: 157,275
 - HaGeZi Normal: 158,455
@@ -7,14 +7,11 @@
 - Dan Pollock: 12,879
 - Peter Lowe: 0
 - Dandelion Sprout: 438
-- EasyList: 53,011
-- EasyPrivacy: 46,866
+- EasyList: 53,012
+- EasyPrivacy: 46,867
 - uBO Ads: 217
 - uBO Privacy: 173
-- uBO Badware: 2,915
+- uBO Badware: 2,931
 - uBO Quick Fixes: 14
 - uBO Unbreak: 264
 - uBO Resource Abuse: 13
-
-## FULL: 607,666
-## NO OISD: 269,486
