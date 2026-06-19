@@ -1,4 +1,4 @@
-name: Audit Blocklist Domain Source
+name: Audit Blocklist Domain Source (Rule-Aware)
 
 on:
   workflow_dispatch:
@@ -8,12 +8,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Find domain in upstream lists
+      - name: Rule-aware domain audit
         run: |
           DOMAIN="androidpay-users-pa.googleapis.com"
 
-          echo "Searching for: $DOMAIN"
-          echo "----------------------------------------"
+          echo "======================================"
+          echo "AUDITING: $DOMAIN"
+          echo "======================================"
+
+          # -----------------------------
+          # Targets (domain + parent)
+          # -----------------------------
+          PARENT="${DOMAIN#*.}"
+
+          TARGETS=(
+            "$DOMAIN"
+            "$PARENT"
+          )
+
+          echo "Targets:"
+          for t in "${TARGETS[@]}"; do
+            echo " - $t"
+          done
+
+          echo ""
+          echo "======================================"
 
           declare -A SOURCES=(
             ["AdGuard DNS Filter"]="https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt"
@@ -42,25 +61,33 @@ jobs:
               -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120 Safari/537.36" \
               "${SOURCES[$NAME]}")
 
-            # exact match
-            if echo "$TEXT" | grep -qi "$DOMAIN"; then
-              echo "✔ FOUND EXACT in: $NAME"
-              FOUND=1
-            fi
+            while IFS= read -r line; do
+              # only process blocking rules
+              [[ "$line" == \|\|* ]] || continue
 
-            # parent domain match (IMPORTANT FIX)
-            PARENT=$(echo "$DOMAIN" | sed 's/^[^.]*\.//')
+              RULE=${line#||}
+              RULE=${RULE%\^}
 
-            if echo "$TEXT" | grep -qi "$PARENT"; then
-              echo "⚠ POSSIBLE PARENT MATCH in: $NAME ($PARENT)"
-              FOUND=1
-            fi
+              for T in "${TARGETS[@]}"; do
+                # DNS rule match: suffix match OR exact match
+                if [[ "$T" == "$RULE" ]] || [[ "$T" == *".$RULE" ]]; then
+                  echo "✔ MATCH"
+                  echo "   LIST: $NAME"
+                  echo "   RULE: $line"
+                  echo "   MATCHES: $T"
+                  echo "--------------------------------------"
+                  FOUND=1
+                fi
+              done
+            done <<< "$TEXT"
+
           done
 
-          echo "----------------------------------------"
+          echo ""
+          echo "======================================"
 
           if [ "$FOUND" -eq 0 ]; then
-            echo "RESULT: NOT FOUND IN ANY SOURCE LIST"
+            echo "RESULT: NO MATCH FOUND"
           else
-            echo "RESULT: FOUND (see matches above)"
+            echo "RESULT: BLOCKING RULE FOUND (see above)"
           fi
