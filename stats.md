@@ -1,13 +1,13 @@
 # Blocklist Statistics (FULL)
 
-- AdGuard DNS Filter: 156,953
-- HaGeZi Normal: 84,032
+- AdGuard DNS Filter: 157,057
+- HaGeZi Normal: 84,031
 - AdAway: 4,585
-- OISD Big: 250,860
-- Dan Pollock: 9,796
-- Peter Lowe: 301
+- OISD Big: 250,660
+- Dan Pollock: 9,800
+- Peter Lowe: 308
 - Dandelion Sprout: 243
-- EasyList: 1,281
+- EasyList: 1,282
 - EasyPrivacy: 15,105
 - uBO Ads: 126
 - uBO Privacy: 41
@@ -17,7 +17,7 @@
 - uBO Resource Abuse: 11
 
 ## FULL Unique Domains
-523,677
+523,592
 
 ## NO OISD Unique Domains
-274,740
+274,849
