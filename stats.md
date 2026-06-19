@@ -9,12 +9,9 @@
 - Dandelion Sprout: 243
 - uBO Ads: 143
 - uBO Privacy: 46
-- uBO Badware: 272
-- uBO Unbreak: 72
-- uBO Resource Abuse: 11
 
 ## FULL Unique Domains
-592,524
+592,169
 
 ## NO OISD Unique Domains
-254,126
+253,755
