@@ -1,4 +1,4 @@
-name: Audit Blocklist Domain Source (Rule-Aware)
+name: Audit Blocklist Domain Source (Accurate)
 
 on:
   workflow_dispatch:
@@ -8,31 +8,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Rule-aware domain audit
+      - name: Accurate rule-based audit
         run: |
           DOMAIN="androidpay-users-pa.googleapis.com"
-
-          echo "======================================"
-          echo "AUDITING: $DOMAIN"
-          echo "======================================"
-
-          # -----------------------------
-          # Targets (domain + parent)
-          # -----------------------------
           PARENT="${DOMAIN#*.}"
 
-          TARGETS=(
-            "$DOMAIN"
-            "$PARENT"
-          )
-
-          echo "Targets:"
-          for t in "${TARGETS[@]}"; do
-            echo " - $t"
-          done
-
-          echo ""
-          echo "======================================"
+          echo "AUDITING: $DOMAIN"
+          echo "PARENT: $PARENT"
+          echo "--------------------------------"
 
           declare -A SOURCES=(
             ["AdGuard DNS Filter"]="https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt"
@@ -55,39 +38,70 @@ jobs:
           FOUND=0
 
           for NAME in "${!SOURCES[@]}"; do
+            echo ""
             echo "Checking: $NAME"
 
-            TEXT=$(curl -fsSL -L \
-              -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120 Safari/537.36" \
-              "${SOURCES[$NAME]}")
+            TEXT=$(curl -fsSL -L -A "Mozilla/5.0" "${SOURCES[$NAME]}")
 
             while IFS= read -r line; do
-              # only process blocking rules
-              [[ "$line" == \|\|* ]] || continue
 
-              RULE=${line#||}
-              RULE=${RULE%\^}
+              # strip whitespace
+              line="${line//$'\r'/}"
 
-              for T in "${TARGETS[@]}"; do
-                # DNS rule match: suffix match OR exact match
-                if [[ "$T" == "$RULE" ]] || [[ "$T" == *".$RULE" ]]; then
-                  echo "✔ MATCH"
-                  echo "   LIST: $NAME"
-                  echo "   RULE: $line"
-                  echo "   MATCHES: $T"
-                  echo "--------------------------------------"
-                  FOUND=1
-                fi
-              done
+              # skip comments
+              [[ "$line" == \!* ]] && continue
+              [[ "$line" == \#* ]] && continue
+
+              MATCH=0
+
+              # -------------------------
+              # HOSTS FORMAT
+              # -------------------------
+              if [[ "$line" == 0.0.0.0* || "$line" == 127.0.0.1* ]]; then
+                rule=$(echo "$line" | awk '{print $2}')
+                [[ "$rule" == "$DOMAIN" || "$rule" == "$PARENT" ]] && MATCH=1
+              fi
+
+              # -------------------------
+              # uBO / AdGuard rule format
+              # -------------------------
+              if [[ "$line" == \|\|* ]]; then
+                rule="${line#||}"
+                rule="${rule%\^}"
+
+                [[ "$DOMAIN" == "$rule" ]] && MATCH=1
+                [[ "$DOMAIN" == *".$rule" ]] && MATCH=1
+                [[ "$PARENT" == "$rule" ]] && MATCH=1
+              fi
+
+              # -------------------------
+              # plain domain entries
+              # -------------------------
+              if [[ "$line" == *.* && "$line" != *" "* && "$line" != \|\|* ]]; then
+                rule="$line"
+                [[ "$DOMAIN" == "$rule" ]] && MATCH=1
+                [[ "$DOMAIN" == *".$rule" ]] && MATCH=1
+                [[ "$PARENT" == "$rule" ]] && MATCH=1
+              fi
+
+              if [[ "$MATCH" -eq 1 ]]; then
+                echo "✔ MATCH FOUND"
+                echo "   LIST: $NAME"
+                echo "   RULE: $line"
+                echo "--------------------------------"
+                FOUND=1
+              fi
+
             done <<< "$TEXT"
 
           done
 
           echo ""
-          echo "======================================"
+          echo "================================"
 
-          if [ "$FOUND" -eq 0 ]; then
-            echo "RESULT: NO MATCH FOUND"
+          if [[ "$FOUND" -eq 0 ]]; then
+            echo "RESULT: NO MATCH FOUND IN SOURCES"
+            echo "NOTE: Likely blocked by AdGuard internal filters or custom rules"
           else
-            echo "RESULT: BLOCKING RULE FOUND (see above)"
+            echo "RESULT: BLOCKING RULE FOUND"
           fi
