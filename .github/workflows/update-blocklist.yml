@@ -1,7 +1,35 @@
+name: Update Master DNS Blocklist
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install idna
+
+      - name: Build combined blocklist
+        run: |
+          cat << 'EOF' > build.py
 import re
 import urllib.request
 import idna
-import time
 from datetime import datetime
 
 SOURCES = {
@@ -53,11 +81,8 @@ def extract_domain(line):
     return None
 
 
-# -------------------------
-# CORE STORAGE
-# -------------------------
 domains = set()
-domain_sources = {}  # THIS IS THE KEY FIX
+domain_sources = {}
 
 def add(domain, source):
     domain = normalize(domain)
@@ -79,7 +104,7 @@ def process():
     stats = {}
 
     for name, url in SOURCES.items():
-        print(f"Downloading {name}")
+        print("Downloading", name)
         text = fetch(url)
 
         count = 0
@@ -104,27 +129,33 @@ stats = process()
 
 sorted_domains = sorted(domains)
 
-# -------------------------
-# WRITE MAIN LIST (WITH SOURCES INLINE)
-# -------------------------
 with open("DNSZeroList.txt", "w", encoding="utf-8") as f:
-    f.write("! DNSZeroList (FULL)\n")
-    f.write(f"! Generated: {datetime.utcnow().isoformat()}Z\n")
-    f.write(f"! Unique Domains: {len(sorted_domains)}\n\n")
+    f.write("! DNSZeroList\n")
+    f.write(f"! Generated: {datetime.utcnow().isoformat()}Z\n\n")
 
     for d in sorted_domains:
         sources = ", ".join(sorted(domain_sources.get(d, [])))
-
-        # AdGuard-safe comment format
         f.write(f"||{d}^    ! {sources}\n")
 
-
-# -------------------------
-# STATS
-# -------------------------
 with open("stats.md", "w", encoding="utf-8") as f:
-    f.write("# Blocklist Stats\n\n")
     for k, v in stats.items():
-        f.write(f"- {k}: {v:,}\n")
+        f.write(f"- {k}: {v}\n")
 
-print(f"DONE: {len(sorted_domains)} domains")
+print("DONE", len(sorted_domains))
+EOF
+
+          python build.py
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add DNSZeroList.txt stats.md
+
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Update DNSZeroList"
+            git push
+          fi
