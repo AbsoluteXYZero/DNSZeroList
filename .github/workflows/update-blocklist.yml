@@ -24,13 +24,12 @@ jobs:
       - name: Install dependencies
         run: pip install idna
 
-      - name: Create script file
+      - name: Build blocklist
         run: |
-          echo "import urllib.request" > build.py
-          echo "import idna" >> build.py
-          echo "from datetime import datetime" >> build.py
-
-          cat >> build.py << 'EOF'
+          python3 - << 'PY'
+import urllib.request
+import idna
+from datetime import datetime
 
 SOURCES = {
     "AdGuard DNS Filter": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
@@ -59,7 +58,7 @@ def fetch(url):
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
     return urllib.request.urlopen(req, timeout=30).read().decode("utf-8", errors="ignore")
 
-def normalize(d):
+def norm(d):
     d = d.lower().strip().rstrip(".")
     for s in ["^", "$", "|", ",", " "]:
         d = d.split(s)[0]
@@ -83,20 +82,16 @@ def extract(line):
 
     return None
 
-def add(d, source):
-    d = normalize(d)
+def add(d, src):
+    d = norm(d)
     if not d or "*" in d or "/" in d or "." not in d:
         return
 
     domains.add(d)
-
-    if d not in sources:
-        sources[d] = set()
-
-    sources[d].add(source)
+    sources.setdefault(d, set()).add(src)
 
 for name, url in SOURCES.items():
-    print("Downloading", name)
+    print("Downloading:", name)
     text = fetch(url)
 
     for line in text.splitlines():
@@ -108,25 +103,25 @@ for name, url in SOURCES.items():
             add(d, name)
 
 with open("DNSZeroList.txt", "w", encoding="utf-8") as f:
-    f.write("! DNSZeroList\n")
-    f.write(f"! Generated: {datetime.utcnow().isoformat()}Z\n\n")
+    f.write("! DNSZeroList (FULL)\n")
+    f.write(f"! Generated: {datetime.utcnow().isoformat()}Z\n")
+    f.write(f"! Unique Domains: {len(domains)}\n\n")
 
     for d in sorted(domains):
-        src = ", ".join(sorted(sources.get(d, [])))
-        f.write(f"||{d}^    ! {src}\n")
+        f.write(f"||{d}^    ! {', '.join(sorted(sources.get(d, [])))}\n")
 
-print("DONE", len(domains))
-EOF
+with open("stats.md", "w", encoding="utf-8") as f:
+    f.write(f"Total domains: {len(domains)}\n")
 
-      - name: Run script
-        run: python build.py
+print("DONE:", len(domains))
+PY
 
       - name: Commit changes
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-          git add DNSZeroList.txt
+          git add DNSZeroList.txt stats.md
 
           if git diff --cached --quiet; then
             echo "No changes"
