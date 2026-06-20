@@ -24,9 +24,8 @@ jobs:
       - name: Install dependencies
         run: pip install idna
 
-      - name: Build combined blocklist
-        run: |
-          cat << 'EOF' > build.py
+      - name: Build blocklist
+        run: python - << 'PY'
 import re
 import urllib.request
 import idna
@@ -68,7 +67,7 @@ def normalize(domain):
         pass
     return domain
 
-def extract_domain(line):
+def extract(line):
     line = line.strip()
 
     if line.startswith("0.0.0.0 ") or line.startswith("127.0.0.1 "):
@@ -82,7 +81,7 @@ def extract_domain(line):
 
 
 domains = set()
-domain_sources = {}
+sources_map = {}
 
 def add(domain, source):
     domain = normalize(domain)
@@ -92,59 +91,46 @@ def add(domain, source):
 
     domains.add(domain)
 
-    if domain not in domain_sources:
-        domain_sources[domain] = set()
+    if domain not in sources_map:
+        sources_map[domain] = set()
 
-    domain_sources[domain].add(source)
+    sources_map[domain].add(source)
 
     return True
 
 
-def process():
-    stats = {}
+for name, url in SOURCES.items():
+    print("Downloading:", name)
+    text = fetch(url)
 
-    for name, url in SOURCES.items():
-        print("Downloading", name)
-        text = fetch(url)
+    for line in text.splitlines():
+        if not line or line.startswith(("!", "#")):
+            continue
 
-        count = 0
+        d = extract(line)
+        if not d:
+            continue
 
-        for line in text.splitlines():
-            if not line or line.startswith(("!", "#")):
-                continue
+        add(d, name)
 
-            domain = extract_domain(line)
-            if not domain:
-                continue
-
-            if add(domain, name):
-                count += 1
-
-        stats[name] = count
-
-    return stats
-
-
-stats = process()
 
 sorted_domains = sorted(domains)
 
 with open("DNSZeroList.txt", "w", encoding="utf-8") as f:
-    f.write("! DNSZeroList\n")
-    f.write(f"! Generated: {datetime.utcnow().isoformat()}Z\n\n")
+    f.write("! DNSZeroList (FULL)\n")
+    f.write(f"! Generated: {datetime.utcnow().isoformat()}Z\n")
+    f.write(f"! Unique Domains: {len(sorted_domains)}\n\n")
 
     for d in sorted_domains:
-        sources = ", ".join(sorted(domain_sources.get(d, [])))
-        f.write(f"||{d}^    ! {sources}\n")
+        src = ", ".join(sorted(sources_map.get(d, [])))
+        f.write(f"||{d}^    ! {src}\n")
 
 with open("stats.md", "w", encoding="utf-8") as f:
-    for k, v in stats.items():
-        f.write(f"- {k}: {v}\n")
+    for k in SOURCES:
+        f.write(f"- {k}\n")
 
-print("DONE", len(sorted_domains))
-EOF
-
-          python build.py
+print("DONE:", len(sorted_domains))
+PY
 
       - name: Commit changes
         run: |
