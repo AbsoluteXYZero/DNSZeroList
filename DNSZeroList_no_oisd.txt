@@ -1,8 +1,8 @@
 ! Title: Zero Unified Blocklist (no OISD)
 ! Description: Deduplicated merge of multiple ad/tracker/malware lists for AdGuard Home.
-! Last modified: 2026-07-22 13:23:37 UTC
+! Last modified: 2026-07-23 01:57:48 UTC
 ! Sources: 14 included
-! Total rules: 332117 (blocks: 328270, exceptions: 3847)
+! Total rules: 332286 (blocks: 328439, exceptions: 3847)
 ! Cosmetic/scriptlet rules are stripped (not usable by DNS-level filtering).
 ! Each rule is preceded by a comment listing its source list(s).
 !
@@ -3559,8 +3559,6 @@ $websocket,domain=pornhub.com|redtube.com|redtube.com.br|tube8.com|tube8.es|tube
 ! uBO Badware
 /^https:\/\/[0-9a-z]{3,}\.[-a-z]{10,}\.(?:li[fv]e|top|xyz)\/[a-z]{8}\/(?:article\d{4}\.doc)?\?utm_campaign=\w{40,}/$doc,match-case,to=life|live|top|xyz
 ! uBO Badware
-/^https:\/\/[0-9a-z]{30,}\.s3\.[-a-z]+\d+\.backblazeb2\.com\/W[0-9A-Za-z]*in0[0-9A-Za-z]*Er0[0-9A-Za-z]*\/index\.html/$doc,match-case,domain=backblazeb2.com
-! uBO Badware
 /^https:\/\/[0-9a-z]{4}\.[a-z]{15,}\.monster\/\?[0-9a-f]{16,}$/$doc
 ! uBO Badware
 /^https:\/\/[0-9a-z]{6,8}\.[a-z]{2,10}\/[!.+,=?@\[][\/0-9a-z]{20,30}\.[-a-z]{2,7}$/$doc,to=agency|art|asia|auction|bar|beauty|beer|best|biz|bond|business|cam|cards|casa|click|cloud|coupons|courses|cv|digital|diy|fashion|food|forum|gay|guru|hair|info|life|live|living|link|ltd|my|ooo|property|pw|qpon|republican|rocks|run|sale|sbs|services|shop|skin|store|studio|support|surf|tattoo|tech|today|top|uno|watch|work,match-case
@@ -3627,7 +3625,7 @@ $websocket,domain=pornhub.com|redtube.com|redtube.com.br|tube8.com|tube8.es|tube
 ! uBO Badware
 /^https:\/\/[a-z]{5,10}\.[a-z]{5,10}\.[a-z]{3}\/y1\.html$/$doc,match-case,to=com|top|~weebly.com
 ! uBO Badware
-/^https:\/\/[a-z]{5,20}-[0-9a-z]{16}\.z03\.azurefd\.net\/[0-9A-Za-z]+0[0-9A-Za-z]+\/index\.html/$doc,match-case,domain=z03.azurefd.net
+/^https:\/\/[a-z]{5,20}-[0-9a-z]{16}\.z0\d\.azurefd\.net\/[0-9A-Za-z]+0[0-9A-Za-z]+\/index\.html/$doc,match-case,domain=azurefd.net
 ! uBO Badware
 /^https:\/\/[a-z]{5,7}\.[0-9a-z]{12}\.top\/[0-9a-f]{32}\/[0-9-a-f]{32}\/$/$doc,match-case,to=top
 ! uBO Badware
@@ -10961,7 +10959,7 @@ $websocket,domain=pornhub.com|redtube.com|redtube.com.br|tube8.com|tube8.es|tube
 ! EasyPrivacy
 /tenant.min.js
 ! uBO Badware
-/text_tel.js$domain=app|dev|fit|me|page|site|github.io
+/text_tel.js$domain=app|dev|fit|me|page|site|github.io|azurestaticapps.net
 ! EasyPrivacy
 /thermostat.js
 ! uBO Unbreak
@@ -23884,7 +23882,7 @@ wykop.pl$badfilter
 ||0kag.com^
 ! HaGeZi Normal
 ||0kal38g35ctc.top^
-! AdGuard DNS Filter
+! AdGuard DNS Filter, HaGeZi Normal
 ||0kplffrs42.com^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||0l34c7sqy.com^
@@ -30026,6 +30024,8 @@ wykop.pl$badfilter
 ||1sexsex.com^
 ! HaGeZi Normal
 ||1share1condom.com^
+! uBO Privacy
+||1shortlink.com/api/v1/full-pages?api_key=*&url=$urlskip=?url -base64,doc
 ! HaGeZi Normal
 ||1shot-club.com^
 ! HaGeZi Normal
@@ -31944,6 +31944,8 @@ wykop.pl$badfilter
 ||28zqnq9cwko3t79e.rest^
 ! HaGeZi Normal
 ||2902gallery.com^
+! AdGuard DNS Filter, EasyList
+||290d8227a2.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||291hkcido.de^
 ! EasyPrivacy
@@ -33376,6 +33378,8 @@ wykop.pl$badfilter
 ||3448.com^
 ! HaGeZi Normal
 ||345ddz.com^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||345l5yutmz7lu5pbuqy17umn1m.cfd^
 ! HaGeZi Normal
 ||34710af267.com^
 ! HaGeZi Normal
@@ -34044,6 +34048,8 @@ wykop.pl$badfilter
 ||3bulcx-launches.appsflyersdk.com^
 ! HaGeZi Normal
 ||3bute.com^
+! AdGuard DNS Filter, EasyList
+||3bx67ftc79c374r1.cfd^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||3bzsoex618.com^
 ! HaGeZi Normal
@@ -36674,6 +36680,8 @@ wykop.pl$badfilter
 ||520withsidebar.com^
 ! HaGeZi Normal
 ||520xingyun.com^
+! AdGuard DNS Filter, EasyList
+||5249857ceb.com^
 ! HaGeZi Normal
 ||525674e9cbee9e90.com^
 ! HaGeZi Normal
@@ -38274,6 +38282,8 @@ wykop.pl$badfilter
 ||64ah.com^
 ! HaGeZi Normal
 ||64cc74a351c2.top^
+! AdGuard DNS Filter, EasyList
+||64ce7c22c5.com^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||64f14dbf1b.8dc714cafe.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -41198,7 +41208,7 @@ wykop.pl$badfilter
 ||84mua.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||84toexecutors.com^
-! AdGuard DNS Filter
+! AdGuard DNS Filter, HaGeZi Normal
 ||84v3xysu80.com^
 ! HaGeZi Normal
 ||84xhw4-cdn-settings.appsflyersdk.com^
@@ -41810,7 +41820,7 @@ wykop.pl$badfilter
 ||8h7gh.xyz^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||8h7j79qxm.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||8h98wlh967mhq6mb8owjw9mn.cfd^
 ! Dan Pollock
 ||8hj500ro4t7.groovepages.com^
@@ -44482,8 +44492,6 @@ wykop.pl$badfilter
 ||a.rohde-schwarz.com.cn^
 ! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
 ||a.rohde-schwarz.com^
-! HaGeZi Normal
-||a.rs6.net^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||a.rule34.porn^
 ! AdGuard DNS Filter, HaGeZi Normal
@@ -54215,8 +54223,6 @@ wykop.pl$badfilter
 ! AdGuard DNS Filter
 ||abc8-vay.com^
 ! HaGeZi Normal
-||abc882.com^
-! HaGeZi Normal
 ||abcabdc.xyz^
 ! HaGeZi Normal
 ||abcalliedmoving.com^
@@ -54909,8 +54915,6 @@ wykop.pl$badfilter
 ! EasyPrivacy
 ||abmr.net^$third-party
 ! HaGeZi Normal
-||abmunnaa.com^
-! HaGeZi Normal
 ||abn-ad.com^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||abnad.net^
@@ -55014,6 +55018,8 @@ wykop.pl$badfilter
 ||aboundkarthli.cfd^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||aboundplausibleeloquent.com^
+! EasyList
+||aboundskeets.cfd^
 ! Dan Pollock
 ||abourselfi.com^
 ! HaGeZi Normal
@@ -55288,7 +55294,7 @@ wykop.pl$badfilter
 ||absrywzhcedfx.website^
 ! AdGuard DNS Filter, EasyPrivacy
 ||absscw.vegis.ro^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||absspdolwqcqc.website^
 ! HaGeZi Normal
 ||abstainreckonyawn.com^
@@ -56330,6 +56336,8 @@ wykop.pl$badfilter
 ||acgycvkvhcchy.space^
 ! AdGuard DNS Filter
 ||acgzr.lovisajewellery.eu^
+! AdGuard DNS Filter, EasyList
+||acharyastonilypageboy.cyou^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||achatesgushily.cfd^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -56338,6 +56346,8 @@ wykop.pl$badfilter
 ||achcdn.com^$popup
 ! HaGeZi Normal
 ||achechonly.com^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||acheergigabitshamans.qpon^
 ! HaGeZi Normal
 ||achel-xof.com^
 ! AdGuard DNS Filter, EasyList
@@ -56588,6 +56598,8 @@ wykop.pl$badfilter
 ||acornfacilitatechecking.com^
 ! HaGeZi Normal
 ||acornfarmerconnate.com^
+! HaGeZi Normal
+||acorntar.com^
 ! HaGeZi Normal
 ||acortar.net^
 ! HaGeZi Normal
@@ -58552,8 +58564,6 @@ wykop.pl$badfilter
 ||ad.eloan.co.jp^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||ad.empressleak.biz^
-! HaGeZi Normal
-||ad.environment.api.powerplatform.com^
 ! Dan Pollock
 ||ad.eporner.com^
 ! HaGeZi Normal
@@ -74503,8 +74513,6 @@ wykop.pl$badfilter
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||ae5e473975.com^
 ! HaGeZi Normal
-||ae788.bet^
-! HaGeZi Normal
 ||ae888bet1.com^
 ! AdGuard DNS Filter
 ||ae888vip.com^
@@ -74568,6 +74576,8 @@ wykop.pl$badfilter
 ||aeeonmart.com^
 ! AdGuard DNS Filter, EasyPrivacy
 ||aeewjq.dr-vegefru.com^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||aefaldyseawife.cyou^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||aeffe3nhrua5hua.com^
 ! HaGeZi Normal
@@ -77609,6 +77619,8 @@ wykop.pl$badfilter
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||ahort.xyz^
 ! HaGeZi Normal
+||ahousewaits.com^
+! HaGeZi Normal
 ||ahov1.top^
 ! AdGuard DNS Filter, EasyList
 ||ahowxrqijvvwm.space^
@@ -79544,7 +79556,7 @@ wykop.pl$badfilter
 ||akqqnwloyzkoy.top^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||akrotertarsalpacked.cfd^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||akrxfobddpgzo.space^
 ! HaGeZi Normal
 ||aksawndu.com^
@@ -80040,7 +80052,7 @@ wykop.pl$badfilter
 ||alamocapital.actonservice.com^
 ! AdGuard DNS Filter, EasyList
 ||alamwslfrqwdz.online^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||alangharmer.shop^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||alaninscaraipeterrar.cyou^
@@ -80416,6 +80428,8 @@ wykop.pl$badfilter
 ||alfa9.com^
 ! HaGeZi Normal
 ||alfabankua.zendesk.com^
+! HaGeZi Normal
+||alfacleaner.com^
 ! HaGeZi Normal
 ||alfadart.com^
 ! AdGuard DNS Filter, HaGeZi Normal
@@ -82204,6 +82218,8 @@ wykop.pl$badfilter
 ||alumnialliances.msnd20.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||alumniheadfirstshamrock.com^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||alumnolbonelet.qpon^
 ! HaGeZi Normal
 ||aluna.co^
 ! HaGeZi Normal
@@ -83102,6 +83118,8 @@ wykop.pl$badfilter
 ||americkedoplnky.cz^
 ! HaGeZi Normal
 ||ameriprisefinancial.demdex.net^
+! HaGeZi Normal
+||ameronbooking-res91325.com^
 ! EasyPrivacy
 ||amersc.actonservice.com^
 ! HaGeZi Normal
@@ -83388,6 +83406,8 @@ wykop.pl$badfilter
 ||amoredate.com^
 ! uBO Badware
 ||amoredate.com^$doc
+! AdGuard DNS Filter, EasyList
+||amoriniecology.shop^
 ! HaGeZi Normal
 ||amorousconvenientwhere.com^
 ! AdGuard DNS Filter, EasyList
@@ -99618,7 +99638,7 @@ wykop.pl$badfilter
 ||aoulpo.puccini.pl^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||aousjfw8z.com^
-! EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||aouuldqzry.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||aouvvblbuvhuo.online^
@@ -99930,6 +99950,8 @@ wykop.pl$badfilter
 ||aphid.thyself.me^
 ! AdGuard DNS Filter, EasyList
 ||aphidididlety.cfd^
+! AdGuard DNS Filter, EasyList
+||aphidsleslievenetes.cfd^
 ! AdGuard DNS Filter, EasyList
 ||aphoticlaiktinamou.qpon^
 ! HaGeZi Normal
@@ -101330,6 +101352,8 @@ wykop.pl$badfilter
 ||api.hearclearco.store^
 ! AdGuard DNS Filter
 ||api.helefitness.com.br^
+! EasyPrivacy
+||api.helloextend.com/mintsight
 ! AdGuard DNS Filter
 ||api.herbalista.net^
 ! AdGuard DNS Filter
@@ -104130,8 +104154,6 @@ wykop.pl$badfilter
 ||app.flatex.de^
 ! AdGuard DNS Filter, EasyPrivacy
 ||app.fleet2.vauxhall.co.uk^
-! HaGeZi Normal
-||app.flipsnack.com^
 ! EasyPrivacy
 ||app.flowyour.money^
 ! EasyPrivacy
@@ -104684,8 +104706,6 @@ wykop.pl$badfilter
 ||app.livechatoo.com^
 ! EasyPrivacy
 ||app.liven.com.au^
-! HaGeZi Normal
-||app.loanspq.com^
 ! AdGuard DNS Filter
 ||app.longbeachstate.com^
 ! EasyPrivacy
@@ -110593,8 +110613,6 @@ wykop.pl$badfilter
 ! AdGuard DNS Filter, EasyList
 ||astraor770.com^
 ! HaGeZi Normal
-||astrayentireillegimateillegimate.com^
-! HaGeZi Normal
 ||astrazeneca.demdex.net^
 ! HaGeZi Normal
 ||astrideentire.com^
@@ -116444,7 +116462,7 @@ wykop.pl$badfilter
 ||b6f2a46f29.com^
 ! HaGeZi Normal
 ||b6jfpzyfkphujpg.cyou^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||b6my4gm47kq87u.cfd^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||b6w3qq1bo9qo8t5ng2334.cfd^
@@ -119988,6 +120006,8 @@ wykop.pl$badfilter
 ||bbsdx.jp^
 ! uBO Badware
 ||bbsdx.jp^$doc
+! AdGuard DNS Filter, EasyList
+||bbselruntdiqq.site^
 ! HaGeZi Normal
 ||bbssf7-cdn-settings.appsflyersdk.com^
 ! HaGeZi Normal
@@ -124976,6 +124996,8 @@ wykop.pl$badfilter
 ||bianxianmao.com^
 ! HaGeZi Normal
 ||biao6.com^
+! AdGuard DNS Filter, EasyList
+||biapcxrfhszxf.online^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||biaqghckapnum.online^
 ! Dan Pollock
@@ -126134,6 +126156,8 @@ wykop.pl$badfilter
 ||bindaudibleoppressive.com^
 ! Dan Pollock
 ||bindedge.com^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||binderyvocalic.cfd^
 ! Dan Pollock
 ||bindfast.com^
 ! HaGeZi Normal
@@ -129438,6 +129462,8 @@ wykop.pl$badfilter
 ||bmi.marketing-bmiimaging.com^
 ! AdGuard DNS Filter
 ||bmia.bloomberglp.com^
+! HaGeZi Normal
+||bmiacgmroqf.in^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||bmicmpktyo.com^
 ! EasyPrivacy
@@ -133032,6 +133058,8 @@ wykop.pl$badfilter
 ||brciir-inapps.appsflyersdk.com^
 ! HaGeZi Normal
 ||brciir-launches.appsflyersdk.com^
+! AdGuard DNS Filter, EasyList
+||brcjnsdlegbxd.site^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||brcjvwooqneol.online^
 ! EasyPrivacy
@@ -133747,6 +133775,8 @@ wykop.pl$badfilter
 ! HaGeZi Normal
 ||brilmaver.com^
 ! HaGeZi Normal
+||brimaxedgetrade.de^
+! HaGeZi Normal
 ||brimes.de^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||brimhugo.qpon^
@@ -133754,6 +133784,8 @@ wykop.pl$badfilter
 ||brimsesugarer.cyou^
 ! HaGeZi Normal
 ||brimturnluscious.com^
+! HaGeZi Normal
+||brinavor.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||bringalzolaist.qpon^
 ! EasyPrivacy
@@ -134050,8 +134082,6 @@ wykop.pl$badfilter
 ||brodsands.com^
 ! HaGeZi Normal
 ||brodyjeane.com^
-! HaGeZi Normal
-||broglimbol.cyou^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||broidbaxtone.cfd^
 ! HaGeZi Normal
@@ -135258,7 +135288,7 @@ wykop.pl$badfilter
 ||btmean.cardosystems.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||btmpxsnzu.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||btmzitaepnybv.site^
 ! EasyPrivacy
 ||btn.listonic.com^
@@ -136162,6 +136192,8 @@ wykop.pl$badfilter
 ||bundlemoviepumice.com^
 ! AdGuard DNS Filter, EasyList
 ||bundookbabiedhalogen.cfd^
+! AdGuard DNS Filter, EasyList
+||bundthoecake.cyou^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||bunfcjddgmnrd.online^
 ! HaGeZi Normal
@@ -136352,6 +136384,8 @@ wykop.pl$badfilter
 ||burldh.made-kim.co.kr^
 ! HaGeZi Normal
 ||burledvitamin.shop^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||burlersplanxty.shop^
 ! HaGeZi Normal
 ||burleskspoiler.com^
 ! Dan Pollock
@@ -137368,7 +137402,7 @@ wykop.pl$badfilter
 ||bwlwbt.rbarevistas.com^
 ! AdGuard DNS Filter
 ||bwmetrics.jegy.hu^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||bwmm4ep65y7i751j.cfd^
 ! AdGuard DNS Filter, EasyPrivacy
 ||bwmxdg.kimono-365.jp^
@@ -139688,8 +139722,6 @@ wykop.pl$badfilter
 ||cache.cloudswiftcdn.com^$all
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||cache.myth.dev^
-! HaGeZi Normal
-||cache.nebula.phx3.secureserver.net^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||cache.picxxxhub.com^
 ! AdGuard DNS Filter
@@ -142476,6 +142508,8 @@ wykop.pl$badfilter
 ||caranebulbils.cfd^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||caranethymele.cfd^
+! AdGuard DNS Filter, EasyList
+||carangabrie.shop^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||carapanasaump.cyou^
 ! AdGuard DNS Filter, EasyList
@@ -142566,8 +142600,6 @@ wykop.pl$badfilter
 ||cardcoherentsquare.com^
 ! HaGeZi Normal
 ||cardedcrannog.cfd^
-! HaGeZi Normal
-||cardeductdoctrine.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||cardermats.com^
 ! EasyPrivacy
@@ -142974,6 +143006,8 @@ wykop.pl$badfilter
 ||carrefour-enbacktoschool4.pages.dev^$all
 ! AdGuard DNS Filter
 ||carreira.brunaeugenio.com.br^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||carrelsfrankly.shop^
 ! AdGuard DNS Filter, EasyPrivacy
 ||carreras.unisabana.edu.co^
 ! Dan Pollock
@@ -144948,8 +144982,6 @@ wykop.pl$badfilter
 ||cdcfg.jasmineandmarigold.com^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||cdclub.net^
-! HaGeZi Normal
-||cdcosmos.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||cdcresxhvfo.com^
 ! HaGeZi Normal
@@ -148010,7 +148042,7 @@ wykop.pl$badfilter
 ||cetlog.jp^
 ! EasyPrivacy
 ||cetlog.jp^$third-party
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||cetn9tfi9enwxkeiriilv96718.rest^
 ! AdGuard DNS Filter, HaGeZi Normal, Peter Lowe
 ||cetrk.com^
@@ -150512,6 +150544,10 @@ wykop.pl$badfilter
 ||chooseandyproductions.com^
 ! HaGeZi Normal
 ||choosebestaccessdoors.com^
+! EasyPrivacy
+||choosefi.com/api/site/track
+! EasyPrivacy
+||choosefi.com/block-event
 ! HaGeZi Normal
 ||chooseridge.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -151748,7 +151784,7 @@ wykop.pl$badfilter
 ||civviesimmi.cyou^
 ! HaGeZi Normal
 ||ciwieswaters.top^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||ciwplazwumpsd.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||ciwswcooilzwj.space^
@@ -154976,7 +155012,7 @@ wykop.pl$badfilter
 ||clmm88.co^
 ! AdGuard DNS Filter
 ||clmmz.me^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||clnbmqqizvqjf.website^
 ! AdGuard DNS Filter, EasyPrivacy
 ||clnbze.dziennikbaltycki.pl^
@@ -155242,6 +155278,8 @@ wykop.pl$badfilter
 ||clothsense.com^
 ! HaGeZi Normal
 ||clotstupara.com^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||clotterknives.shop^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||cloturebrier.qpon^
 ! HaGeZi Normal
@@ -157579,8 +157617,6 @@ wykop.pl$badfilter
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||codzcuagowz.com^
 ! HaGeZi Normal
-||codzienny-sklep.xyz^
-! HaGeZi Normal
 ||coecalpulping.com^
 ! AdGuard DNS Filter, EasyList
 ||coeditenternat.qpon^
@@ -157696,7 +157732,7 @@ wykop.pl$badfilter
 ||coghlekhu.cyou^
 ! HaGeZi Normal
 ||cogitoai.cn^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||cogltshbnfxue.website^
 ! EasyPrivacy
 ||cogmatch.net^$third-party
@@ -158062,7 +158098,7 @@ wykop.pl$badfilter
 ||coldflownews.com^
 ! EasyList
 ||coldflownews.com^$popup
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||coldlylobossansara.cfd^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||coldnessswarthyclinic.com^
@@ -159658,6 +159694,8 @@ wykop.pl$badfilter
 ||comics-analytics-api.pocketfm.com^
 ! HaGeZi Normal
 ||comics18.cam^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||comicsarabesk.cfd^
 ! HaGeZi Normal
 ||comicsbyhaemi.com^
 ! HaGeZi Normal
@@ -163684,7 +163722,7 @@ wykop.pl$badfilter
 ||copshoproom.com^
 ! HaGeZi Normal
 ||copterdeals.de^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||copulaehooillipe.qpon^
 ! AdGuard DNS Filter, EasyList
 ||copulaestating.cfd^
@@ -164466,6 +164504,8 @@ wykop.pl$badfilter
 ||couchtuner.*/sw.js$script,1p
 ! HaGeZi Normal
 ||coudawaisto.net^
+! AdGuard DNS Filter, EasyList
+||coufndkotctek.space^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||cougar.augmentedmindapp.com^
 ! AdGuard DNS Filter, HaGeZi Normal
@@ -166326,6 +166366,8 @@ wykop.pl$badfilter
 ||cqbuchouhua.com^
 ! HaGeZi Normal
 ||cqc.ru^
+! AdGuard DNS Filter, EasyList
+||cqcafrzrckzyh.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||cqcaoltqtarmz.space^
 ! AdGuard DNS Filter, HaGeZi Normal, Peter Lowe
@@ -167560,6 +167602,8 @@ wykop.pl$badfilter
 ||crispwireless.com^
 ! HaGeZi Normal
 ||cristalbarbershop.com^
+! EasyList
+||cristidial.shop^
 ! HaGeZi Normal
 ||cristinaferrarecooks.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -168198,7 +168242,7 @@ wykop.pl$badfilter
 ||crusher38.top^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||crushespileate.cyou^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||crushharnmunic.cyou^
 ! HaGeZi Normal
 ||crushing-pension.pro^
@@ -169810,6 +169854,8 @@ wykop.pl$badfilter
 ||culinaryinsanesarcasm.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||culizyxhdblqa.website^
+! EasyList
+||culledge.qpon^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||culledmyosin.cyou^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -171682,6 +171728,8 @@ wykop.pl$badfilter
 ||cyxkugcvigm.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||cyxyzrpolrjnh.online^
+! HaGeZi Normal
+||cyyyion.uk^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||cyyzrgvrnbomn.online^
 ! HaGeZi Normal
@@ -171826,6 +171874,8 @@ wykop.pl$badfilter
 ||czggeketcjxvz.site^
 ! HaGeZi Normal
 ||czghjt.com^
+! AdGuard DNS Filter, EasyList
+||czghtiblticfr.site^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||czgxwtlqklaju.site^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -188531,6 +188581,8 @@ wykop.pl$badfilter
 ! HaGeZi Normal
 ||deepsiek.com.cn^
 ! HaGeZi Normal
+||deepsnitch.ai^
+! HaGeZi Normal
 ||deepssek.com.cn^
 ! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
 ||deeptack.com^
@@ -192243,8 +192295,6 @@ wykop.pl$badfilter
 ! EasyList
 ||di7stero.com^$popup
 ! HaGeZi Normal
-||diabaesper.cyou^
-! HaGeZi Normal
 ||diabetdoc.ru^
 ! HaGeZi Normal
 ||diabetesickness.com^
@@ -192744,7 +192794,7 @@ wykop.pl$badfilter
 ||didthere.com^
 ! Dan Pollock, HaGeZi Normal, Peter Lowe
 ||didtheyreadit.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||didymlanaz.shop^
 ! EasyPrivacy
 ||didzrr.nutraholic.com^
@@ -194276,6 +194326,8 @@ wykop.pl$badfilter
 ||dirtyrhino.com^
 ! EasyList
 ||dirtyvideo.fun/js/script_
+! HaGeZi Normal
+||dirvantosi.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||dirwvuplonywi.space^
 ! AdAway
@@ -195802,7 +195854,7 @@ wykop.pl$badfilter
 ||dkyp75kj7ldlr.cloudfront.net^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||dkyzxjlvlfjae.store^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||dkzecuszkcnxk.space^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||dkzerqre.ligula.se^
@@ -198904,6 +198956,8 @@ wykop.pl$badfilter
 ||downybrushed.com^
 ! HaGeZi Normal
 ||downyexhale.com^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||downyfoghorn.cfd^
 ! HaGeZi Normal
 ||downypiece.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -200650,7 +200704,7 @@ wykop.pl$badfilter
 ||dsbixe.com^
 ! HaGeZi Normal
 ||dsbjdeh.cn^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||dsbmvn.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||dsbohcqqdvbyt.site^
@@ -200834,7 +200888,7 @@ wykop.pl$badfilter
 ||dsgnjf.com^
 ! HaGeZi Normal
 ||dsgretaillimited.demdex.net^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||dsgsif.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||dsgvgw.com^
@@ -201417,6 +201471,8 @@ wykop.pl$badfilter
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||dszlbx.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||dszmtq.com^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||dszqfx.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||dszqgc.com^
@@ -201424,6 +201480,8 @@ wykop.pl$badfilter
 ||dszqsm.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||dszqzq.com^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||dszred.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||dszres.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -202830,6 +202888,8 @@ wykop.pl$badfilter
 ||dwashhxhmzhjs.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||dwavamtujydry.store^
+! AdGuard DNS Filter, EasyList
+||dwbbiueimhkgo.site^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||dwbhepiqyzihi.space^
 ! AdGuard DNS Filter, EasyPrivacy
@@ -207432,7 +207492,7 @@ wykop.pl$badfilter
 ||edgemanpotable.com^
 ! uBO Badware
 ||edgeone.app/gotadocsignnewdocsing.*.html$doc
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||edgersoptimes.qpon^
 ! HaGeZi Normal
 ||edgetag.io^
@@ -211412,8 +211472,6 @@ wykop.pl$badfilter
 ||em1.yoursantander.co.uk^
 ! EasyPrivacy
 ||em6802.musesapp.com^
-! HaGeZi Normal
-||em7bch.sbs^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||em7ky342lo.com^
 ! HaGeZi Normal
@@ -216154,8 +216212,6 @@ wykop.pl$badfilter
 ||es-gmtdmp.mookie1.com^
 ! AdGuard DNS Filter, EasyPrivacy
 ||es-go.experian.com^
-! HaGeZi Normal
-||es-html.com^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||es-log.vietnamplus.vn^
 ! AdGuard DNS Filter, EasyPrivacy
@@ -216802,6 +216858,8 @@ wykop.pl$badfilter
 ||esvtlgehfyaim.site^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||esvunifeyiqhk.website^
+! HaGeZi Normal
+||eswedfxl.shop^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||eswfsinghtywb.website^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -218090,6 +218148,8 @@ wykop.pl$badfilter
 ||euripisahidic.cyou^
 ! HaGeZi Normal
 ||eurl-container.com^
+! HaGeZi Normal
+||eurlexodus.com^
 ! HaGeZi Normal
 ||eurltddiffusion.com^
 ! HaGeZi Normal
@@ -219934,7 +219994,7 @@ wykop.pl$badfilter
 ||evkjai.grandado.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||evkjlmtnqwwcu.space^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||evlesqjydtqfo.space^
 ! AdAway
 ||evm1.stackadapt.com^
@@ -221832,7 +221892,7 @@ wykop.pl$badfilter
 ||exucn.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||exulsbmitdvzd.online^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||exuviumprocyon.cyou^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||exvcrrhwxtjuk.website^
@@ -225073,6 +225133,8 @@ wykop.pl$badfilter
 ! HaGeZi Normal
 ||fatbike-discounter.com^
 ! HaGeZi Normal
+||fatboss-fr.fr^
+! HaGeZi Normal
 ||fatburner-guru.de^
 ! HaGeZi Normal
 ||fatburnerking.at^
@@ -225938,8 +226000,6 @@ wykop.pl$badfilter
 ||fczbxdexx.com^
 ! AdGuard DNS Filter
 ||fczgnb.hudsonjeans.com^
-! HaGeZi Normal
-||fczlatan.net^
 ! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
 ||fd.bawag.at^
 ! HaGeZi Normal
@@ -227018,6 +227078,8 @@ wykop.pl$badfilter
 ||ferntravelleddeduct.com^
 ! HaGeZi Normal
 ||fernwehcampingde.com^
+! EasyList
+||feroceanosmia.cyou^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||ferocitycandour.com^
 ! HaGeZi Normal
@@ -227172,7 +227234,7 @@ wykop.pl$badfilter
 ||fetchapiutility.com^
 ! HaGeZi Normal
 ||fetchergumdrop.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||fetchesseminar.cyou^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||fetchlately.com^
@@ -227668,6 +227730,8 @@ wykop.pl$badfilter
 ||fglee.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||fgllllfedeltb.website^
+! AdGuard DNS Filter, EasyList
+||fglnuemnfeyfh.space^
 ! AdGuard DNS Filter, EasyPrivacy
 ||fglrgt.ruggable.com^
 ! HaGeZi Normal
@@ -229370,10 +229434,6 @@ wykop.pl$badfilter
 ||finance-offer.com^
 ! uBO Badware
 ||finance-superchain.net^$all
-! HaGeZi Normal
-||finance90-minus20.sbs^
-! HaGeZi Normal
-||finance94-culpa78.sbs^
 ! EasyList
 ||financeads.net/tb.php$third-party
 ! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
@@ -230355,8 +230415,6 @@ wykop.pl$badfilter
 ! EasyPrivacy
 ||fishki.net/counter/
 ! HaGeZi Normal
-||fishroad-jeu.fr^
-! HaGeZi Normal
 ||fishspies.com^
 ! HaGeZi Normal
 ||fishtownanalytics-collector-1340672531.us-east-1.elb.amazonaws.com^
@@ -230386,7 +230444,7 @@ wykop.pl$badfilter
 ||fistpoke.com^
 ! HaGeZi Normal
 ||fistucabdle.cfd^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||fistulanigel.com^
 ! HaGeZi Normal
 ||fistwaygrub.com^
@@ -230744,6 +230802,8 @@ wykop.pl$badfilter
 ||fizzclean-ss.checkoutera.com^
 ! HaGeZi Normal
 ||fizzclean.com.de^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||fizzledesire.com^
 ! HaGeZi Normal
 ||fizzslots.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -232336,6 +232396,8 @@ wykop.pl$badfilter
 ||fluese.com^
 ! AdGuard DNS Filter, EasyList
 ||flueulster.cfd^
+! AdGuard DNS Filter, EasyList
+||flufferchrisma.qpon^
 ! HaGeZi Normal
 ||fluffnestly.de^
 ! AdGuard DNS Filter, HaGeZi Normal
@@ -232376,6 +232438,8 @@ wykop.pl$badfilter
 ||fluidsurveys.com^$third-party
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||fluiyhtncueau.store^
+! HaGeZi Normal
+||flujodetrabajo.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||flukedlegato.cyou^
 ! HaGeZi Normal
@@ -233256,7 +233320,7 @@ wykop.pl$badfilter
 ||foggyspizza.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||foghug.site^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||fogiedigmeat.shop^
 ! Dan Pollock
 ||fogjunkossze.com^
@@ -234331,8 +234395,6 @@ wykop.pl$badfilter
 ! EasyPrivacy
 ||forms2.vistage.com^
 ! HaGeZi Normal
-||formscrack.xyz^
-! HaGeZi Normal
 ||formspark.rongviet.com.vn^
 ! uBO Badware
 ||formspark.rongviet.com.vn^$all
@@ -234424,6 +234486,8 @@ wykop.pl$badfilter
 ||forter.com^
 ! EasyPrivacy
 ||forter.com^$third-party
+! HaGeZi Normal
+||forteresseaifr.com^
 ! HaGeZi Normal
 ||fortezzahotel.com^
 ! HaGeZi Normal
@@ -237223,6 +237287,8 @@ wykop.pl$badfilter
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||frimambeerstecture.qpon^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||fringesplasherbatteau.cyou^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||frioencwksyur.website^
 ! AdGuard DNS Filter
 ||frionene.xyz^
@@ -237688,7 +237754,7 @@ wykop.pl$badfilter
 ||fryduxmudk.in^
 ! HaGeZi Normal
 ||fryeschuhe.de^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||fryhzcadnypnn.online^
 ! AdGuard DNS Filter
 ||frzbly.cosdlazdrowia.pl^
@@ -239464,6 +239530,8 @@ wykop.pl$badfilter
 ||fwefafajrjaz.com^
 ! HaGeZi Normal
 ||fwegwonurb.in^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||fwepmrpj.com^
 ! HaGeZi Normal
 ||fwertty.shop^
 ! HaGeZi Normal
@@ -239716,6 +239784,8 @@ wykop.pl$badfilter
 ||fxsglobal.com^
 ! AdGuard DNS Filter
 ||fxshopeevip99.com^
+! HaGeZi Normal
+||fxsqsng.com^
 ! HaGeZi Normal, Peter Lowe
 ||fxstyle.net^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -240936,7 +241006,7 @@ wykop.pl$badfilter
 ||gajatqaqlq.com^
 ! HaGeZi Normal
 ||gajipafhglwkq.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||gajjbsoorzpux.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||gajyhhatyhace.site^
@@ -243750,7 +243820,7 @@ wykop.pl$badfilter
 ||geecradv.com^
 ! AdGuard DNS Filter
 ||geede.info^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||geeeotkykzmhw.online^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||geegad.com^
@@ -245886,8 +245956,6 @@ wykop.pl$badfilter
 ||getthisappnow.com^
 ! EasyList
 ||getthisappnow.com^$popup
-! HaGeZi Normal
-||gettingridofskintags.net^
 ! AdGuard DNS Filter, EasyPrivacy
 ||gettoknow.skookum.com^
 ! HaGeZi Normal
@@ -247292,6 +247360,8 @@ wykop.pl$badfilter
 ||gijqmewim.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||gikwhxotzqqzc.site^
+! AdGuard DNS Filter, EasyList
+||gilakigorse.cfd^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||gilarditus.com^
 ! HaGeZi Normal
@@ -247644,7 +247714,7 @@ wykop.pl$badfilter
 ||gisaauszugonline.at^
 ! HaGeZi Normal
 ||gisantscubit.com^
-! EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||gisantsdecourt.cyou^
 ! HaGeZi Normal
 ||giselablohm.de^
@@ -248086,6 +248156,8 @@ wykop.pl$badfilter
 ||gkhkmodocwnzu.site^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||gkihrlitlfndl.space^
+! AdGuard DNS Filter, EasyList
+||gkikhldehxcuh.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||gkiqilinrzqfy.site^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -248236,7 +248308,7 @@ wykop.pl$badfilter
 ||gladlyconceitcucumbers.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||gladlydotselfevident.com^
-! HaGeZi Normal
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||gladlythattoady.com^
 ! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
 ||gladysway.com^
@@ -248446,7 +248518,7 @@ wykop.pl$badfilter
 ||glaugrowaixu.net^
 ! HaGeZi Normal
 ||glaultoa.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||glaurydhan.qpon^
 ! HaGeZi Normal
 ||glav78-cdn-settings.appsflyersdk.com^
@@ -249796,7 +249868,7 @@ wykop.pl$badfilter
 ||gnfr03906.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||gnfwcrhdmmlku.store^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||gngrppcsucaqn.online^
 ! AdGuard DNS Filter, EasyPrivacy
 ||gnh2.destinia.lv^
@@ -252160,6 +252232,8 @@ wykop.pl$badfilter
 ||goetzwache.de^
 ! HaGeZi Normal
 ||goeventfree.ru^
+! HaGeZi Normal
+||goexecutivesignals.com^
 ! Dan Pollock
 ||gofem.oewabox.at^
 ! HaGeZi Normal
@@ -253914,6 +253988,8 @@ wykop.pl$badfilter
 ||gowhougru.net^
 ! HaGeZi Normal
 ||gownattacks.com^
+! AdGuard DNS Filter
+||gownbea.icu^
 ! AdGuard DNS Filter, EasyList
 ||gowningberi.cfd^
 ! HaGeZi Normal
@@ -254284,6 +254360,8 @@ wykop.pl$badfilter
 ||gpukye.holabirdsports.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||gpvcziftlqnyl.online^
+! HaGeZi Normal
+||gpvgfsqk.shop^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||gpvnguetcenxt.online^
 ! AdGuard DNS Filter, EasyList
@@ -255496,6 +255574,8 @@ wykop.pl$badfilter
 ||grievecamouflage.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||grievedvicerecord.com^
+! AdGuard DNS Filter, EasyList
+||grievesdowels.qpon^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||grievespieteenstate.cyou^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -255576,6 +255656,8 @@ wykop.pl$badfilter
 ||grilmarktt.com^
 ! HaGeZi Normal
 ||grilroussy.net^
+! EasyList
+||grilsecalico.cfd^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||grim-pizza.pro^
 ! HaGeZi Normal
@@ -255742,7 +255824,7 @@ wykop.pl$badfilter
 ||grograngol.com^
 ! AdGuard DNS Filter, EasyList
 ||grogsvolteskulls.cfd^
-! EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||groinedsamucu.qpon^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||groinenamel.com^
@@ -256140,7 +256222,7 @@ wykop.pl$badfilter
 ||grscty.com/images/banner/
 ! AdGuard DNS Filter, EasyList
 ||grsm.io^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||grsmwtanzonba.site^
 ! HaGeZi Normal
 ||grt01.com^
@@ -267057,8 +267139,6 @@ wykop.pl$badfilter
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||hackletrappels.com^
 ! HaGeZi Normal
-||hacklienquan.org^
-! HaGeZi Normal
 ||hacklink.tech^
 ! HaGeZi Normal
 ||hacklot.com^
@@ -267806,7 +267886,7 @@ wykop.pl$badfilter
 ||hangel-handel.de^
 ! AdGuard DNS Filter, EasyList
 ||hangersguids.qpon^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||hanggarnetsubs.cyou^
 ! AdGuard DNS Filter
 ||hanghaiqt.com^
@@ -268684,7 +268764,7 @@ wykop.pl$badfilter
 ||hatter-story.info^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||hatteryambry.qpon^
-! EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||hattismbagass.cyou^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||hatwhipbesiege.com^
@@ -271524,6 +271604,8 @@ wykop.pl$badfilter
 ||heritagerailbikes.com^
 ! HaGeZi Normal
 ||heritagevillage.ca^
+! AdGuard DNS Filter, EasyList
+||herjmttufhptm.online^
 ! HaGeZi Normal
 ||herlange.com^
 ! HaGeZi Normal
@@ -272200,6 +272282,8 @@ wykop.pl$badfilter
 ||hgff11.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||hgfosqroovvpw.website^
+! AdGuard DNS Filter, EasyList
+||hgfphskjefadz.space^
 ! AdGuard DNS Filter
 ||hggxww.megadumptiel.nl^
 ! AdGuard DNS Filter
@@ -272344,7 +272428,7 @@ wykop.pl$badfilter
 ||hheazz-cdn-settings.appsflyersdk.com^
 ! HaGeZi Normal
 ||hheazz-launches.appsflyersdk.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||hheilezujujcw.online^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||hhepwzpsjkkms.site^
@@ -272708,6 +272792,8 @@ wykop.pl$badfilter
 ||hig-finance.com^
 ! AdGuard DNS Filter
 ||higbju.lovelingjewelry.co.kr^
+! AdGuard DNS Filter, EasyList
+||higglerkimchigibaro.cyou^
 ! EasyPrivacy
 ||high-cdn.com/log.php?
 ! HaGeZi Normal
@@ -273518,6 +273604,8 @@ wykop.pl$badfilter
 ||hitboxbenchmarker.com^
 ! Dan Pollock, HaGeZi Normal
 ||hitboxcentral.com^
+! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
+||hitboxdesigns.com^
 ! HaGeZi Normal
 ||hitcashtag.com^
 ! uBO Ads
@@ -275166,6 +275254,8 @@ wykop.pl$badfilter
 ||hokmlnzfftxvg.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||hoksomuptak.net^
+! AdGuard DNS Filter, EasyList
+||hoktacbzsrzhx.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||hoktrips.com^
 ! EasyList
@@ -283946,7 +284036,7 @@ wykop.pl$badfilter
 ||ihoorgeecmauh.net^
 ! AdGuard DNS Filter, EasyList
 ||ihopymzvbzqop.site^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||ihoqcfudcejol.space^
 ! HaGeZi Normal
 ||ihorxx-cdn-settings.appsflyersdk.com^
@@ -284158,7 +284248,7 @@ wykop.pl$badfilter
 ||iitech.dk^
 ! HaGeZi Normal
 ||iitopgirl.net^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||iiujofozcajnc.website^
 ! AdGuard DNS Filter
 ||iiutq.xyz^
@@ -287510,8 +287600,6 @@ wykop.pl$badfilter
 ||immoweb.be/*/track/
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||immoxdzdke.com^
-! HaGeZi Normal
-||immucfesti.cyou^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||immundbaluch.qpon^
 ! HaGeZi Normal
@@ -295488,7 +295576,7 @@ wykop.pl$badfilter
 ||iplis.ru^
 ! EasyPrivacy
 ||iplist.cc^$third-party
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||ipliyvfccqzrq.online^
 ! HaGeZi Normal
 ||iplocation-api.wp.trt.com.tr^
@@ -296270,6 +296358,8 @@ wykop.pl$badfilter
 ||irpopup.ir^
 ! Dandelion Sprout
 ||irpush.com^
+! AdGuard DNS Filter
+||irq0ql8or.com^
 ! AdGuard DNS Filter, EasyPrivacy
 ||irqewz.vilebrequin.com^
 ! AdGuard DNS Filter
@@ -298307,6 +298397,8 @@ wykop.pl$badfilter
 ! HaGeZi Normal
 ||iz.quiahussars.com^
 ! HaGeZi Normal
+||iz.rivaledunpoled.shop^
+! HaGeZi Normal
 ||iz.unpayorly.com^
 ! AdGuard DNS Filter, EasyList
 ||iz8mix82p4t6c97.rest^
@@ -299665,6 +299757,8 @@ wykop.pl$badfilter
 ! AdGuard DNS Filter
 ||jbmnge.samsamo.net^
 ! AdGuard DNS Filter, EasyList
+||jbmrxdksmadql.website^
+! AdGuard DNS Filter, EasyList
 ||jboibfgygqffg.site^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||jboppyhawqzfo.online^
@@ -300666,7 +300760,7 @@ wykop.pl$badfilter
 ||jergq.fit^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||jerhzr.icu^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||jerichoclaiver.qpon^
 ! AdGuard DNS Filter, EasyList
 ||jerkilyrebop.qpon^
@@ -300800,6 +300894,8 @@ wykop.pl$badfilter
 ||jetstar.demdex.net^
 ! HaGeZi Normal
 ||jett-jamison.com^
+! EasyList
+||jettagebuccina.shop^
 ! HaGeZi Normal
 ||jette-handel.de^
 ! AdGuard DNS Filter, EasyList
@@ -301332,6 +301428,8 @@ wykop.pl$badfilter
 ||jhc1nd-cdn-settings.appsflyersdk.com^
 ! HaGeZi Normal
 ||jhc1nd-conversions.appsflyersdk.com^
+! AdGuard DNS Filter, EasyList
+||jhcaueiixiy.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||jhcbturgsvujd.site^
 ! HaGeZi Normal
@@ -304824,7 +304922,7 @@ wykop.pl$badfilter
 ||jsfuel.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||jsfuz.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||jsgujxgckuxmb.site^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||jsgvuduhprrzf.space^
@@ -308226,7 +308324,7 @@ wykop.pl$badfilter
 ||karte.io/mirror-record/
 ! EasyPrivacy
 ||karte.io/rewrite-log/
-! HaGeZi Normal
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||karthliunstagy.com^
 ! EasyPrivacy
 ||kartik.devishetty.com^
@@ -308298,6 +308396,8 @@ wykop.pl$badfilter
 ||kasperskyos.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||kasrsihavelear.org^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||kassakafroscozing.cyou^
 ! HaGeZi Normal
 ||kassecap.com^
 ! HaGeZi Normal
@@ -308976,6 +309076,8 @@ wykop.pl$badfilter
 ||kdata.fr^
 ! EasyPrivacy
 ||kdata.fr^$third-party
+! AdGuard DNS Filter, EasyList
+||kdbzuhckmqvno.website^
 ! HaGeZi Normal
 ||kdc.demdex.net^
 ! HaGeZi Normal
@@ -309686,7 +309788,7 @@ wykop.pl$badfilter
 ||ketenhayz.qpon^
 ! HaGeZi Normal
 ||keterhanova.myshopify.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||ketgwlvnlsixd.website^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||ketmiecuppinbummler.cfd^
@@ -312028,6 +312130,8 @@ wykop.pl$badfilter
 ||kleidungangebote.com^
 ! HaGeZi Normal
 ||kleidungfrilufts.com^
+! AdGuard DNS Filter, EasyList
+||kleigcapreolaortal.qpon^
 ! HaGeZi Normal
 ||klein-shop.de^
 ! HaGeZi Normal
@@ -312130,6 +312234,8 @@ wykop.pl$badfilter
 ||klik66.co^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||klikajadeh.com^
+! HaGeZi Normal
+||klikanggaran.com^
 ! Dan Pollock
 ||klikasz-i-masz.com^
 ! HaGeZi Normal
@@ -313558,6 +313664,8 @@ wykop.pl$badfilter
 ||kopkangen.xyz^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||kopmsfmihhrlg.store^
+! HaGeZi Normal
+||koppermuller-markt.de^
 ! AdGuard DNS Filter, EasyList
 ||koprinosoonerdecane.qpon^
 ! AdGuard DNS Filter
@@ -314174,6 +314282,8 @@ wykop.pl$badfilter
 ||krasisa.info^
 ! Dan Pollock
 ||krasnaya.co.uk^
+! HaGeZi Normal
+||krasnomaga.link^
 ! EasyPrivacy
 ||kratosdefense.actonservice.com^
 ! HaGeZi Normal
@@ -314576,6 +314686,8 @@ wykop.pl$badfilter
 ||ksiowqrhlr.com^
 ! HaGeZi Normal
 ||ksj.d7jyu2dnjykvx.amplifyapp.com^
+! AdGuard DNS Filter, EasyList
+||ksjfhunxtgomv.site^
 ! AdGuard DNS Filter
 ||ksjjog.xspo.de^
 ! AdGuard DNS Filter
@@ -315122,7 +315234,7 @@ wykop.pl$badfilter
 ||kuites.click^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||kuiyizyzoadmf.online^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||kujifkvgkygii.site^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||kujsc5.ru^
@@ -315786,7 +315898,7 @@ wykop.pl$badfilter
 ||kxcdn.com/prj/
 ! EasyPrivacy
 ||kxcdn.com/track.js
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||kxcpsknpsodie.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||kxdnxsjlxp.com^
@@ -316036,6 +316148,8 @@ wykop.pl$badfilter
 ||kyriesvortex.cyou^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||kyrineembryos.shop^
+! AdGuard DNS Filter, EasyList
+||kyrinespathicschisms.cfd^
 ! HaGeZi Normal
 ||kyrmtjxzbdzszrrkgt.com^
 ! uBO Badware
@@ -317024,6 +317138,8 @@ wykop.pl$badfilter
 ||labelfeethopper.com^
 ! HaGeZi Normal
 ||labelparis.com^
+! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
+||labelsensor.com^
 ! HaGeZi Normal
 ||labersa.com^
 ! HaGeZi Normal
@@ -317690,6 +317806,8 @@ wykop.pl$badfilter
 ||lancerjp.com^$doc
 ! AdGuard DNS Filter, EasyList
 ||lancerrammage.cfd^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||lancetsyager.shop^
 ! HaGeZi Normal
 ||lancily.com^
 ! EasyPrivacy
@@ -317898,6 +318016,8 @@ wykop.pl$badfilter
 ||landsnail.motin.eu^
 ! EasyPrivacy
 ||landstar.actonservice.com^
+! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
+||landsuites.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||landtheir.com^
 ! EasyPrivacy
@@ -321712,7 +321832,7 @@ wykop.pl$badfilter
 ||lewd.ws^
 ! AdGuard DNS Filter, EasyList
 ||lewdballersyeomen.cfd^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||lewdesttramful.com^
 ! HaGeZi Normal
 ||lewdhookup7a.com^
@@ -323666,6 +323786,8 @@ wykop.pl$badfilter
 ||linelife.home-chat.jp^$doc
 ! HaGeZi Normal
 ||lineme.im^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||linen-static.online^
 ! HaGeZi Normal
 ||linenhomestudio.com^
 ! HaGeZi Normal
@@ -327136,6 +327258,8 @@ wykop.pl$badfilter
 ||ljpdbywkxcuo.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||ljpdwxykkqyxk.online^
+! AdGuard DNS Filter, EasyList
+||ljphydgsjmbqf.space^
 ! HaGeZi Normal
 ||ljpkka-cdn-settings.appsflyersdk.com^
 ! HaGeZi Normal
@@ -330252,7 +330376,7 @@ wykop.pl$badfilter
 ||load.events.sulamita.com.br^
 ! AdGuard DNS Filter
 ||load.evga.envolee.com^
-! AdGuard DNS Filter, HaGeZi Normal
+! AdGuard DNS Filter
 ||load.evgyfydc.arando-online.de^
 ! AdGuard DNS Filter
 ||load.ewdk.e-wheels.dk^
@@ -340529,6 +340653,8 @@ wykop.pl$badfilter
 ! AdGuard DNS Filter, EasyList
 ||looedmisersexuvium.cyou^
 ! AdGuard DNS Filter, EasyList
+||looeysthirsts.shop^
+! AdGuard DNS Filter, EasyList
 ||loofsjunoniaclaps.cfd^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||loohaiturigavik.net^
@@ -340684,6 +340810,8 @@ wykop.pl$badfilter
 ||loopme.me^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||loopmeedge.net^
+! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
+||looprecycled.com^
 ! HaGeZi Normal
 ||loopvehiclehour.com^
 ! HaGeZi Normal
@@ -342698,7 +342826,7 @@ wykop.pl$badfilter
 ||lsacomban.com^
 ! Dan Pollock
 ||lsassoc.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||lsasvdsltojjh.site^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||lsawards.com^
@@ -346512,7 +346640,7 @@ wykop.pl$badfilter
 ||magarimot.com^
 ! Dan Pollock
 ||magasine-omnicuiseur.fr^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||magasinpanda.qpon^
 ! HaGeZi Normal
 ||magasset.com^
@@ -363612,6 +363740,8 @@ wykop.pl$badfilter
 ||megdexchange.com^
 ! EasyList
 ||megdexchange.com^$popup
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||megergortyganmamluks.cfd^
 ! HaGeZi Normal
 ||meglickingpeck.com^
 ! Dan Pollock
@@ -363965,6 +364095,8 @@ wykop.pl$badfilter
 ! AdGuard DNS Filter, HaGeZi Normal
 ||mellowtel.com^
 ! AdGuard DNS Filter, EasyList
+||mellowwatch.pro^
+! AdGuard DNS Filter, EasyList
 ||melodic-mess.com^
 ! HaGeZi Normal
 ||melodigear.com^
@@ -364202,7 +364334,7 @@ wykop.pl$badfilter
 ||mempa.fra-01.braze.eu^
 ! HaGeZi Normal
 ||mempalace.tech^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||memsqfweijlej.online^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||memtkh.com^
@@ -364329,6 +364461,8 @@ wykop.pl$badfilter
 ! HaGeZi Normal
 ||mentech.shop^
 ! HaGeZi Normal
+||menteechain.com^
+! HaGeZi Normal
 ||mentfieldlgs.com^
 ! AdGuard DNS Filter, EasyList
 ||menthalegati.shop^
@@ -364372,6 +364506,8 @@ wykop.pl$badfilter
 ||menukipielet.cfd^
 ! HaGeZi Normal
 ||menustarten.com^
+! HaGeZi Normal
+||menutiga.com^
 ! HaGeZi Normal
 ||meo257na3rch.com^
 ! HaGeZi Normal
@@ -364722,6 +364858,8 @@ wykop.pl$badfilter
 ||mesodepointed.com^
 ! HaGeZi Normal
 ||meson.ai^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||mesopicppa.cyou^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||mesorepearlin.cyou^
 ! Dan Pollock
@@ -371946,7 +372084,7 @@ wykop.pl$badfilter
 ||mfafexwjjgcxt.website^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||mfaihrmxqtnoe.site^
-! EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||mfamazona.cyou^
 ! EasyPrivacy
 ||mfamcw.sodexobeneficios.com.br^
@@ -372078,7 +372216,7 @@ wykop.pl$badfilter
 ||mfsebike.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||mftdhrlywaeil.space^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||mftibozjrapll.online^
 ! AdGuard DNS Filter
 ||mftkh.trustcache.com^
@@ -372436,7 +372574,7 @@ wykop.pl$badfilter
 ||mhc-sec-eu.myhomescreen.tv^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||mhcszfqsnh.com^
-! EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||mhdhecithlyem.website^
 ! AdGuard DNS Filter
 ||mhdnspro.com^
@@ -372850,6 +372988,8 @@ wykop.pl$badfilter
 ||microfrontend-analytics-cdn.spotifycdn.com^
 ! HaGeZi Normal
 ||microg.net^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||microjusting.cyou^
 ! AdGuard DNS Filter, EasyPrivacy
 ||microlearning.att.com^
 ! EasyPrivacy
@@ -376260,7 +376400,7 @@ wykop.pl$badfilter
 ||mnusq.vmax-escooter.us^
 ! Dan Pollock
 ||mnutan.fr^
-! EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||mnvjbzrbxpvxe.online^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||mnwce.killerbodyfood.com^
@@ -379576,6 +379716,8 @@ wykop.pl$badfilter
 ||moucoowhoubou.com^
 ! HaGeZi Normal
 ||moucoustiso.net^
+! AdGuard DNS Filter, EasyList
+||moujikestus.cyou^
 ! HaGeZi Normal
 ||moujooseehize.net^
 ! HaGeZi Normal
@@ -384532,8 +384674,6 @@ wykop.pl$badfilter
 ||mydreamday.fr^
 ! HaGeZi Normal
 ||mydreampetstore.com^
-! HaGeZi Normal
-||mydrive.effem.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||mydudpwdtyimy.website^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -384554,6 +384694,8 @@ wykop.pl$badfilter
 ||myecat1.ieasyclick.net^
 ! AdGuard DNS Filter
 ||myecat1.ieasytest.net^
+! HaGeZi Normal
+||myecourier.com^
 ! Dan Pollock
 ||myedebred.fr^
 ! HaGeZi Normal
@@ -384566,7 +384708,7 @@ wykop.pl$badfilter
 ||myemailtracking.com^$popup
 ! EasyList
 ||myeongbeauty.com/ads/
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||myesutdnuyddu.com^
 ! HaGeZi Normal
 ||myeudaemonia.ai^
@@ -384934,6 +385076,8 @@ wykop.pl$badfilter
 ||myocean.jp^$doc
 ! AdGuard DNS Filter, EasyList
 ||myogenunroomy.cfd^
+! AdGuard DNS Filter, EasyList
+||myoiddeck.shop^
 ! HaGeZi Normal
 ||myolnyr5bsk18.com^
 ! AdGuard DNS Filter, HaGeZi Normal
@@ -385958,6 +386102,8 @@ wykop.pl$badfilter
 ||n6sgyu-launches.appsflyersdk.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||n6wxm.com^
+! AdGuard DNS Filter, EasyList
+||n6zgmbhebezkzgfh5qg6wgfp1i8p1l3ozqk8l.rest^
 ! Dan Pollock
 ||n7.nskfyl.com^
 ! AdGuard DNS Filter
@@ -388000,7 +388146,7 @@ wykop.pl$badfilter
 ||nbynicole.com^
 ! HaGeZi Normal
 ||nbyxwj.cn^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||nbyzajbqcjruf.online^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||nbyzrdjsondlh.space^
@@ -388408,6 +388554,8 @@ wykop.pl$badfilter
 ||ndxtxyjehno.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||ndyerqhzszt.com^
+! AdGuard DNS Filter, EasyList
+||ndyjyatbrctvo.site^
 ! HaGeZi Normal
 ||ndyv.top^
 ! AdGuard DNS Filter, HaGeZi Normal
@@ -389274,6 +389422,8 @@ wykop.pl$badfilter
 ||nerohut.com^$third-party
 ! HaGeZi Normal
 ||nerojimsee.xyz^
+! AdGuard DNS Filter, EasyList
+||neronicenteria.cyou^
 ! HaGeZi Normal
 ||neroo.de^
 ! HaGeZi Normal
@@ -391262,7 +391412,7 @@ wykop.pl$badfilter
 ||nextjscms-sgtm-staging.1800gotjunk.com^
 ! AdGuard DNS Filter
 ||nextjscms-sgtm.1800gotjunk.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||nextkalam.qpon^
 ! HaGeZi Normal
 ||nextleveltracking.eu^
@@ -392876,7 +393026,7 @@ wykop.pl$badfilter
 ||nis.euvou.events^
 ! EasyPrivacy
 ||nisaapp.nexus-dt.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||nisabfvttxztw.online^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||niscprts.com^
@@ -394386,8 +394536,6 @@ wykop.pl$badfilter
 ||nonagonunspent.cfd^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||nonaircise.com^
-! HaGeZi Normal
-||nonandacoly.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||nonbasepiquet.shop^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -394812,6 +394960,8 @@ wykop.pl$badfilter
 ||norvahaus.de^
 ! HaGeZi Normal
 ||norvatix.io^
+! HaGeZi Normal
+||norvekoeu.com^
 ! HaGeZi Normal
 ||norvexapharma.com^
 ! HaGeZi Normal
@@ -397537,6 +397687,8 @@ wykop.pl$badfilter
 ! AdGuard DNS Filter, EasyList
 ||nvftdcwewfhow.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||nvfzwkhsmyyna.online^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||nvgezlkkqshtt.online^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||nvgnealcimsdq.space^
@@ -399254,6 +399406,8 @@ wykop.pl$badfilter
 ||ob.sd559908.js.htttrack.com^
 ! AdGuard DNS Filter
 ||ob.tracking.capitalistriseup.com^
+! AdGuard DNS Filter, EasyList
+||ob32ul1h8bj3tjz2g7x.rest^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||oba.rus-km.ru^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -399276,6 +399430,8 @@ wykop.pl$badfilter
 ||obbpynvgqolcf.space^
 ! AdGuard DNS Filter
 ||obbtix.eolo.it^
+! AdGuard DNS Filter, EasyList
+||obcdpmnqsraxq.online^
 ! AdGuard DNS Filter, EasyList
 ||obcludeguignol.cfd^
 ! HaGeZi Normal
@@ -399958,7 +400114,7 @@ wykop.pl$badfilter
 ||oceanpeacefully.com^
 ! HaGeZi Normal
 ||oceanvillagesouthampton.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||ocelhaxcuulfb.space^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||ocelot.anthroquiches.fr^
@@ -401402,6 +401558,8 @@ wykop.pl$badfilter
 ||ofj2hy6pnue65ftoc.cfd^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||ofjamkwak.com^
+! AdGuard DNS Filter, EasyList
+||ofjfztoqeyzpj.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||ofjujdmsylvmo.website^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -401870,7 +402028,7 @@ wykop.pl$badfilter
 ||oh.woodboxfilasse.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||ohabyhzhqzinz.space^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||ohacnvhxgst.com^
 ! AdGuard DNS Filter
 ||ohaeh.osmotics.com^
@@ -404628,6 +404786,8 @@ wykop.pl$badfilter
 ||onemob.mobi^
 ! AdGuard DNS Filter
 ||onemontay.ru^
+! HaGeZi Normal
+||onemorebump.com^
 ! AdGuard DNS Filter, EasyPrivacy
 ||onenet.gakujutsu.com^
 ! HaGeZi Normal
@@ -404794,7 +404954,7 @@ wykop.pl$badfilter
 ||onfirstshow.site^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||onfluencer.net^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||ong769nzhzf1l4xt7.rest^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||ongaromusket.com^
@@ -405441,6 +405601,8 @@ wykop.pl$badfilter
 ! HaGeZi Normal
 ||onlysonsde.com^
 ! HaGeZi Normal
+||onlystreets.com^
+! HaGeZi Normal
 ||onlythebestshop.com^
 ! Dan Pollock
 ||onlytoday.biz^
@@ -405718,6 +405880,8 @@ wykop.pl$badfilter
 ||onxjax.agjeans.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||onxnzmhsvuimn.com^
+! HaGeZi Normal
+||onxofsotglto.in^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||onxosrmu.in^
 ! AdGuard DNS Filter
@@ -405824,6 +405988,8 @@ wykop.pl$badfilter
 ||oofamidst.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||ooflesshelved.qpon^
+! AdGuard DNS Filter, EasyList
+||oofmhbmqdn.com^
 ! HaGeZi Normal
 ||oofos--canada.com^
 ! HaGeZi Normal
@@ -408124,6 +408290,8 @@ wykop.pl$badfilter
 ||origami.secure.ownlocal.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||origanhunyak.cyou^
+! AdGuard DNS Filter, EasyList
+||origanswaiver.cfd^
 ! Dan Pollock
 ||origer.info^
 ! EasyPrivacy
@@ -408190,6 +408358,8 @@ wykop.pl$badfilter
 ||orinryesope.org^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||orioluscooped.qpon^
+! HaGeZi Normal
+||orion-warenhandel.com^
 ! HaGeZi Normal
 ||orion-warenhandel.de^
 ! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
@@ -409914,7 +410084,7 @@ wykop.pl$badfilter
 ||outheelrelict.com^
 ! HaGeZi Normal
 ||outhisabsuxe.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||outholdsighful.cyou^
 ! AdGuard DNS Filter, EasyList
 ||outhornaccusal.qpon^
@@ -410262,6 +410432,8 @@ wykop.pl$badfilter
 ||ovardu.com^$document
 ! EasyList
 ||ovardu.com^$popup
+! AdGuard DNS Filter, EasyList
+||ovb2kip1noo2lnl8on3.rest^
 ! HaGeZi Normal
 ||ovbdckecb.com^
 ! HaGeZi Normal
@@ -410734,6 +410906,8 @@ wykop.pl$badfilter
 ||owjeofsebxvrd.space^
 ! AdGuard DNS Filter, EasyList
 ||owknilagsjupz.space^
+! AdGuard DNS Filter, EasyList
+||owkqerfjhnsnu.space^
 ! HaGeZi Normal
 ||owkrhql.com^
 ! AdGuard DNS Filter, HaGeZi Normal
@@ -410962,7 +411136,7 @@ wykop.pl$badfilter
 ||oxbrakepasso.cyou^
 ! AdGuard DNS Filter, EasyPrivacy
 ||oxbskt.autotrader.com.au^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||oxbtkqmotycfo.online^
 ! HaGeZi Normal
 ||oxbudunderworld.com^
@@ -411510,6 +411684,8 @@ wykop.pl$badfilter
 ||ozvvmicixrh.com^
 ! HaGeZi Normal
 ||ozvxadosic.com^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||ozwpbggfsqkwc.space^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||ozwvd.com^
 ! HaGeZi Normal
@@ -416782,7 +416958,7 @@ wykop.pl$badfilter
 ||pbmusf.com^
 ! AdGuard DNS Filter, HaGeZi Normal, Peter Lowe
 ||pbnet.ru^
-! AdGuard DNS Filter
+! AdGuard DNS Filter, HaGeZi Normal
 ||pbo8y8igrp.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||pboadsgyalldd.site^
@@ -418308,7 +418484,7 @@ wykop.pl$badfilter
 ||pentalime.com^
 ! HaGeZi Normal
 ||penticeurushi.com^
-! EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||pentiteoutrede.qpon^
 ! EasyPrivacy
 ||penton.com/analytics/
@@ -418482,6 +418658,8 @@ wykop.pl$badfilter
 ||perchlief.cyou^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||percoidmaza.qpon^
+! AdGuard DNS Filter, EasyList
+||percussedgeman.cfd^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||percussivedrip.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -419676,6 +419854,8 @@ wykop.pl$badfilter
 ||pghub.io^$third-party
 ! AdGuard DNS Filter, HaGeZi Normal
 ||pgiguiqult.com^
+! AdGuard DNS Filter, EasyList
+||pgiqjtnbbrngx.website^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||pgisdxbicrxqi.online^
 ! HaGeZi Normal
@@ -421186,6 +421366,8 @@ wykop.pl$badfilter
 ||piedrahuskiesdeboned.cfd^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||pieejami.tilde.ai^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||piefortcreaker.cyou^
 ! AdGuard DNS Filter, EasyList
 ||pieholla.shop^
 ! Dan Pollock
@@ -421908,6 +422090,8 @@ wykop.pl$badfilter
 ||pioneersxs.com^
 ! EasyPrivacy
 ||pionmj.companyshop24.de^
+! EasyList
+||piotedsanta.cyou^
 ! HaGeZi Normal
 ||piousoxrealistic.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -422016,6 +422200,8 @@ wykop.pl$badfilter
 ||piqcg.sokolovelaw.com^
 ! HaGeZi Normal
 ||piqdzyvz.com^
+! AdGuard DNS Filter, EasyList
+||piqnntfysezsa.online^
 ! HaGeZi Normal
 ||piqo.app^
 ! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
@@ -422188,7 +422374,7 @@ wykop.pl$badfilter
 ||piteevoo.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||piteousprinciple.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||pithphorate.shop^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||pithsoutfortfunori.cyou^
@@ -426973,6 +427159,8 @@ wykop.pl$badfilter
 ! EasyList
 ||players.radioonlinehd.net^$domain=flamecomics.xyz
 ! HaGeZi Normal
+||playerscache.com^
+! HaGeZi Normal
 ||playersecretion.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||playerseo.club^
@@ -427322,8 +427510,6 @@ wykop.pl$badfilter
 ||plesk.page/*?phone=$doc
 ! HaGeZi Normal
 ||plethoramobile.com^
-! HaGeZi Normal
-||plettsporo.cyou^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||pleuratempean.shop^
 ! HaGeZi Normal
@@ -427384,6 +427570,8 @@ wykop.pl$badfilter
 ||pliken.com^
 ! HaGeZi Normal
 ||pliki.audiostereo.pl^
+! HaGeZi Normal
+||plinko-bonuscasino.fr^
 ! HaGeZi Normal
 ||plinkojeuenligne.fr^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -428425,8 +428613,6 @@ wykop.pl$badfilter
 ! EasyPrivacy
 ||poder360.com.br/_tracker
 ! HaGeZi Normal
-||poderdaybl.cyou^
-! HaGeZi Normal
 ||podgolfalways.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||podialstates.cfd^
@@ -428970,7 +429156,7 @@ wykop.pl$badfilter
 ||polletreams.cfd^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||pollingramblefunctions.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||pollisttpkdisty.qpon^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||pollpublicly.com^
@@ -432498,6 +432684,8 @@ wykop.pl$badfilter
 ||presentation-hkg1.turn.com^
 ! HaGeZi Normal
 ||presentationbishop.com^
+! AdGuard DNS Filter, EasyList
+||presentationplenty.com^
 ! AdAway, AdGuard DNS Filter, HaGeZi Normal
 ||presentationtracking.netflix.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -432676,7 +432864,7 @@ wykop.pl$badfilter
 ||pretty-site.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||pretty-sluts-nearby.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||pretty-soft.com^
 ! HaGeZi Normal
 ||pretty-weekend.pro^
@@ -435748,6 +435936,8 @@ wykop.pl$badfilter
 ||provify.io^$third-party
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||provincegreensfur.com^
+! HaGeZi Normal
+||provingmagic.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||provingrubin.qpon^
 ! HaGeZi Normal
@@ -438266,6 +438456,8 @@ wykop.pl$badfilter
 ||punkteinflensburgabfragen.de^
 ! HaGeZi Normal
 ||punkvibez.co^
+! EasyList
+||punnersloopier.cyou^
 ! AdGuard DNS Filter, EasyList
 ||punneryirrs.qpon^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -440764,6 +440956,8 @@ wykop.pl$badfilter
 ||qamurtajzovce.site^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||qanatstrypsin.cyou^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||qanbzrgbcafeo.online^
 ! HaGeZi Normal
 ||qantas.demdex.net^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -440850,6 +441044,8 @@ wykop.pl$badfilter
 ||qbaka.net^$third-party
 ! AdGuard DNS Filter
 ||qbaks.steepandcheap.com^
+! AdGuard DNS Filter, EasyList
+||qbdgmnnxeqtpn.website^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||qbdlijgzxscfa.site^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -441034,7 +441230,7 @@ wykop.pl$badfilter
 ||qcalq.whirleypopshop.com^
 ! HaGeZi Normal
 ||qcasino.cc^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||qcatcrgovpdzt.online^
 ! HaGeZi Normal
 ||qcavrasarod.in^
@@ -441420,6 +441616,8 @@ wykop.pl$badfilter
 ||qesrnpogpignd.store^
 ! HaGeZi Normal
 ||qeteof.com^
+! AdGuard DNS Filter, EasyList
+||qeucvuuzkyvul.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||qeujnihdvzsnv.online^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -441972,6 +442170,8 @@ wykop.pl$badfilter
 ||qiji1.jdwx.info^
 ! HaGeZi Normal
 ||qijpaih.cn^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||qijpiaycupoxh.website^
 ! HaGeZi Normal
 ||qikapsgf.com^
 ! HaGeZi Normal
@@ -442032,6 +442232,8 @@ wykop.pl$badfilter
 ||qip.ru^$doc
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||qipaspjivpupa.website^
+! AdGuard DNS Filter, EasyList
+||qipglhhdbgedc.space^
 ! HaGeZi Normal
 ||qipmpapi.com^
 ! HaGeZi Normal
@@ -442834,6 +443036,8 @@ wykop.pl$badfilter
 ||qnzczf.idc-otsuka.jp^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||qnzkkbshdriki.site^
+! AdGuard DNS Filter, EasyList
+||qnzlsvmomqihe.space^
 ! AdGuard DNS Filter
 ||qnzma.beforeyouspeakcoffee.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -444280,8 +444484,6 @@ wykop.pl$badfilter
 ||quber.ru^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||qubhjnodheizn.site^
-! HaGeZi Normal
-||qubilane.site^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||qubisticss.com^
 ! HaGeZi Normal
@@ -444812,7 +445014,7 @@ wykop.pl$badfilter
 ||quirklogic.actonservice.com^
 ! HaGeZi Normal
 ||quirky-answer.pro^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||quirky-product.pro^
 ! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
 ||quirkybliss.com^
@@ -446504,6 +446706,8 @@ wykop.pl$badfilter
 ||rabbit.radicalxchange.org^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||rabbit.upwardhomes.net^
+! HaGeZi Normal
+||rabbitboots.com^
 ! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
 ||rabbitbreath.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -447736,6 +447940,8 @@ wykop.pl$badfilter
 ||raritystandforester.com^
 ! EasyPrivacy
 ||rarnational.raisingareader.org^
+! AdGuard DNS Filter, EasyList
+||rarolsav.in^
 ! HaGeZi Normal
 ||raronpnimkuf.com^
 ! HaGeZi Normal
@@ -448328,6 +448534,8 @@ wykop.pl$badfilter
 ||rbjnuporihrye.store^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||rbjwels.xyz^
+! AdGuard DNS Filter, EasyList
+||rbkdjzbflecky.space^
 ! HaGeZi Normal
 ||rbkidelmug.com^
 ! HaGeZi Normal
@@ -450942,6 +451150,8 @@ wykop.pl$badfilter
 ||reetamvampyreslumps.cfd^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||reetlesmirtle.shop^
+! EasyList
+||reevingcsc.cyou^
 ! EasyPrivacy
 ||reevoo.com/track_url/
 ! AdGuard DNS Filter
@@ -451924,6 +452134,8 @@ wykop.pl$badfilter
 ||rel.msn.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||relaamlrijdxq.site^
+! AdGuard DNS Filter, EasyList
+||relacestunca.cfd^
 ! EasyPrivacy
 ||relacionamento.edpcomunicacao.com.br^
 ! HaGeZi Normal
@@ -455409,6 +455621,8 @@ wykop.pl$badfilter
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||rhclcbvwtdvfa.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||rhcrybpcpbaua.online^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||rhcvbndidmyqt.site^
 ! HaGeZi Normal
 ||rhcvsocqxcuuv.com^
@@ -457806,8 +458020,6 @@ wykop.pl$badfilter
 ||robotgarages.com^
 ! HaGeZi Normal
 ||robotikstore.com^
-! HaGeZi Normal
-||robotnoti.space^
 ! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal, Peter Lowe
 ||robotrefinery.com^
 ! HaGeZi Normal, Peter Lowe
@@ -462336,6 +462548,8 @@ wykop.pl$badfilter
 ||rules3.aatkit.com^
 ! HaGeZi Normal
 ||rulive.ru^
+! EasyList
+||rullwoodris.qpon^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||ruloc.com^
 ! AdGuard DNS Filter
@@ -463742,7 +463956,7 @@ wykop.pl$badfilter
 ||rysebet.com^
 ! HaGeZi Normal
 ||rysjiqfk.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||rysnxhxpavzct.website^
 ! HaGeZi Normal
 ||rysrnxvc.com^
@@ -469387,6 +469601,8 @@ wykop.pl$badfilter
 ! HaGeZi Normal
 ||sarktur.com^
 ! HaGeZi Normal
+||sarl-castelmag.com^
+! HaGeZi Normal
 ||sarlcresmar.com^
 ! HaGeZi Normal
 ||sarlprofildiffusion.com^
@@ -469502,7 +469718,7 @@ wykop.pl$badfilter
 ||sasontnwc.net^$popup
 ! HaGeZi Normal
 ||sass.com.ua^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||sassierciphers.shop^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||sasteanpainted.shop^
@@ -469814,6 +470030,8 @@ wykop.pl$badfilter
 ||sawap.equifax.com^
 ! HaGeZi Normal
 ||sawbehind.com^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||sawbuckpilule.shop^
 ! HaGeZi Normal
 ||sawfashionnew.com^
 ! AdGuard DNS Filter, HaGeZi Normal
@@ -471720,6 +471938,8 @@ wykop.pl$badfilter
 ||screwdriverblizzard.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||screwerfriseur.cyou^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||screwerpimlico.shop^
 ! AdGuard DNS Filter, EasyList
 ||screwyhotly.cyou^
 ! Dan Pollock
@@ -475920,6 +476140,8 @@ wykop.pl$badfilter
 ||sendhtml.net^
 ! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
 ||sendinblast.com^
+! AdGuard DNS Filter, EasyList
+||sendingcoursecryable.cyou^
 ! HaGeZi Normal
 ||sendingpanel.com^
 ! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
@@ -476224,6 +476446,8 @@ wykop.pl$badfilter
 ||senqlwrxttbmy.website^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||senrieadqahra.site^
+! HaGeZi Normal
+||sensacijapoland.site^
 ! Dan Pollock
 ||sensahome.fr^
 ! HaGeZi Normal
@@ -483981,6 +484205,8 @@ wykop.pl$badfilter
 ! AdGuard DNS Filter, HaGeZi Normal
 ||setrpferd.eggersmann-shop.de^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||settbayeta.qpon^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||setteehabitananhimae.cyou^
 ! AdAway
 ||setting.adzcore.com^
@@ -484516,6 +484742,8 @@ wykop.pl$badfilter
 ||sf88trk.com^
 ! AdGuard DNS Filter
 ||sfa.standardfusion.com^
+! AdGuard DNS Filter, EasyList
+||sfaazgosczit.in^
 ! HaGeZi Normal
 ||sfabkilfy.com^
 ! Dan Pollock
@@ -492354,6 +492582,8 @@ wykop.pl$badfilter
 ||sherpaefs.cfd^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||sherpasackage.com^
+! AdGuard DNS Filter, EasyList
+||sherrisophrys.qpon^
 ! HaGeZi Normal
 ||sherum.com^
 ! HaGeZi Normal
@@ -495582,6 +495812,8 @@ wykop.pl$badfilter
 ||silentinevitable.com^
 ! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
 ||silentjackal.com^
+! HaGeZi Normal
+||silentsingle.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||silentvalleyhill.com^
 ! HaGeZi Normal
@@ -496422,6 +496654,8 @@ wykop.pl$badfilter
 ||sirsilly.com^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||sirsplajp.com^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||sirupedheatful.cfd^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||sis.facesittingbbw.com^
 ! AdAway
@@ -498638,6 +498872,8 @@ wykop.pl$badfilter
 ||sloanlyfans.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||slobendorsement.com^
+! AdGuard DNS Filter, EasyList
+||slockenoakstipful.qpon^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||slodgedefrost.qpon^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -508742,6 +508978,8 @@ wykop.pl$badfilter
 ||sneawin.com^
 ! HaGeZi Normal
 ||sneaxsmm.com^
+! EasyList
+||snecketrilletsratters.cyou^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||sneddedwigdom.cyou^
 ! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
@@ -513150,6 +513388,8 @@ wykop.pl$badfilter
 ||specialty-pharma.biz^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||specialty75.com^
+! HaGeZi Normal
+||specialtypin.com^
 ! Dan Pollock
 ||specialworld.com.au^
 ! HaGeZi Normal
@@ -513982,6 +514222,8 @@ wykop.pl$badfilter
 ||spletlauding.cfd^
 ! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
 ||splicebook.com^
+! HaGeZi Normal
+||spliceclub.com^
 ! AdAway, AdGuard DNS Filter, HaGeZi Normal
 ||splicky.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -514996,6 +515238,8 @@ wykop.pl$badfilter
 ||spxemr-launches.appsflyersdk.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||spxsvrvxwouyp.site^
+! AdGuard DNS Filter, EasyList
+||spxtxxccyymzj.website^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||spy.epornleak.com^
 ! HaGeZi Normal
@@ -519126,8 +519370,6 @@ wykop.pl$badfilter
 ||ss.rcmiberica.es^
 ! AdGuard DNS Filter
 ||ss.readyrx.com^
-! HaGeZi Normal
-||ss.realgreen.com^
 ! AdGuard DNS Filter
 ||ss.recoactiv.de^
 ! AdGuard DNS Filter
@@ -530680,6 +530922,8 @@ wykop.pl$badfilter
 ||staid-gain.com^
 ! HaGeZi Normal
 ||staid-property.pro^
+! EasyList
+||staidlyglouts.cyou^
 ! HaGeZi Normal
 ||staikudrik.com^
 ! HaGeZi Normal
@@ -544091,8 +544335,6 @@ wykop.pl$badfilter
 ! EasyPrivacy
 ||stentel.actonservice.com^
 ! HaGeZi Normal
-||stenuassen.cyou^
-! HaGeZi Normal
 ||step-costa.gl.at.ply.gg^
 ! AdAway
 ||step-service.crossinstall.io^
@@ -544344,6 +544586,8 @@ wykop.pl$badfilter
 ||sthoutte.com^
 ! EasyList
 ||sthoutte.com^$popup
+! AdGuard DNS Filter, EasyList
+||sthqkewgwdgky.online^
 ! HaGeZi Normal
 ||stichaur.net^
 ! HaGeZi Normal
@@ -544944,7 +545188,7 @@ wykop.pl$badfilter
 ||stopswrittentshirt.com^
 ! HaGeZi Normal
 ||stopthewar.live^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||stoptkupper.cyou^
 ! HaGeZi Normal
 ||stopundstart.de^
@@ -547260,8 +547504,6 @@ wykop.pl$badfilter
 ||sub3.abcbest.info^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||subag.freexxxbase.com^
-! HaGeZi Normal
-||subapspamp.cyou^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||subaquastandel.shop^
 ! HaGeZi Normal
@@ -549296,6 +549538,8 @@ wykop.pl$badfilter
 ||surfe.pro^$third-party
 ! AdGuard DNS Filter
 ||surfearner.com^
+! AdGuard DNS Filter, EasyList
+||surfedmissis.shop^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||surfedosierbirdlet.cyou^
 ! EasyPrivacy
@@ -550349,6 +550593,8 @@ wykop.pl$badfilter
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||swarddename.shop^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||swardsdammit.shop^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||swarfamlikar.com^
 ! EasyPrivacy
 ||swarm.video/j79z9kzty.js
@@ -550722,7 +550968,7 @@ wykop.pl$badfilter
 ||swift6060.com^
 ! HaGeZi Normal
 ||swiftcode.work^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||swiftemergency.pro^
 ! HaGeZi Normal
 ||swiftforgavetwice.com^
@@ -550752,6 +550998,8 @@ wykop.pl$badfilter
 ||swiftypecdn.com/te.js$third-party
 ! AdGuard DNS Filter, EasyList
 ||swigclinid.qpon^
+! EasyList
+||swiggedtetrode.shop^
 ! HaGeZi Normal
 ||swilyrqvxrbqh.net^
 ! HaGeZi Normal
@@ -554832,6 +555080,8 @@ wykop.pl$badfilter
 ||t89ll.com^
 ! uBO Badware
 ||t89ll.com^$doc
+! AdGuard DNS Filter, EasyList
+||t8b8zfme8zkk7xqjyv.cfd^
 ! Dan Pollock
 ||t8t7frium3.s.ad6media.fr^
 ! AdGuard DNS Filter, HaGeZi Normal
@@ -554966,7 +555216,7 @@ wykop.pl$badfilter
 ||tabloidincapable.com^
 ! HaGeZi Normal
 ||tabmo.io^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||tabogtirazessence.qpon^
 ! HaGeZi Normal
 ||taboola-ocm.com^
@@ -557354,7 +557604,7 @@ wykop.pl$badfilter
 ||tambetilkadres.vip^
 ! HaGeZi Normal
 ||tambetresmigirisim.vip^
-! EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||tamburrchauffuncope.cfd^
 ! HaGeZi Normal
 ||tamdmavu.com^
@@ -561108,7 +561358,7 @@ wykop.pl$badfilter
 ||telamoncom.actonservice.com^
 ! Dan Pollock
 ||telangana-news24.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||telangpreened.cfd^
 ! AdAway
 ||telaria.adhaven.com^
@@ -561224,7 +561474,7 @@ wykop.pl$badfilter
 ||telegrram.hl.cn^
 ! AdGuard DNS Filter, EasyList
 ||teleiaplumierostmark.cfd^
-! EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||teleibelock.com^
 ! HaGeZi Normal
 ||telekom-dresden.de^
@@ -562163,8 +562413,6 @@ wykop.pl$badfilter
 ! HaGeZi Normal, Peter Lowe
 ||temelio.com^
 ! HaGeZi Normal
-||temeptya.wiki^
-! HaGeZi Normal
 ||temiakazon.com^
 ! HaGeZi Normal
 ||temitayoadegoke.com^
@@ -562501,8 +562749,6 @@ wykop.pl$badfilter
 ! HaGeZi Normal
 ||tepept.com^
 ! HaGeZi Normal
-||tepgjta.work^
-! HaGeZi Normal
 ||tepid-beat.pro^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||tepid-permission.com^
@@ -562526,8 +562772,6 @@ wykop.pl$badfilter
 ||tepusi888.cn^
 ! AdGuard DNS Filter
 ||tepwxt.bonescoffee.com^
-! HaGeZi Normal
-||tepytanc.cloud^
 ! AdGuard DNS Filter, EasyList
 ||teqdutdxiwzwd.one^
 ! HaGeZi Normal
@@ -563191,7 +563435,7 @@ wykop.pl$badfilter
 ! EasyPrivacy
 ||tetori-colorme.com/share/js/tracking.js
 ! HaGeZi Normal
-||tetpyag.top^
+||tetpyag.shop^
 ! AdGuard DNS Filter
 ||tetquatang.vn^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -564081,6 +564325,8 @@ wykop.pl$badfilter
 ! HaGeZi Normal
 ||the-royals-netflix.pages.dev^
 ! HaGeZi Normal
+||the-rynexoouro.com^
+! HaGeZi Normal
 ||the-sobha-townpark-madison-heights.in^
 ! HaGeZi Normal
 ||the-tesler-app.com^
@@ -564428,7 +564674,7 @@ wykop.pl$badfilter
 ||theestatehouse.co.uk^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||theetheks.com^
-! EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||theetsaumur.shop^
 ! HaGeZi Normal
 ||theeversite.com^
@@ -564658,6 +564904,8 @@ wykop.pl$badfilter
 ||thekitchn.com/jAYekY18/init.js
 ! HaGeZi Normal
 ||thekobalttool.com^
+! HaGeZi Normal
+||thekraftix-surge.org^
 ! HaGeZi Normal
 ||thelabeel.com^
 ! EasyPrivacy
@@ -566080,6 +566328,8 @@ wykop.pl$badfilter
 ||thuynganhang.xyz^
 ! AdGuard DNS Filter
 ||thuytrieukiemtien.online^
+! AdGuard DNS Filter, EasyList
+||thvkfixnszmmf.site^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||thvojufzktuml.website^
 ! AdGuard DNS Filter, HaGeZi Normal
@@ -566288,6 +566538,8 @@ wykop.pl$badfilter
 ||ticvui.alexandani.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||tidaiwtflooz.com^
+! HaGeZi Normal
+||tidaldrops.com^
 ! AdAway
 ||tidaltv.com.akadns.net^
 ! AdAway, AdGuard DNS Filter, EasyList, HaGeZi Normal, Peter Lowe
@@ -567588,6 +567840,8 @@ wykop.pl$badfilter
 ||tivqggcgnqlom.space^
 ! HaGeZi Normal
 ||tivra.online^
+! HaGeZi Normal
+||tivronexai-gpt.org^
 ! AdGuard DNS Filter
 ||tiw.totem-flaine.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -569362,6 +569616,8 @@ wykop.pl$badfilter
 ||tmzjpz-cdn-settings.appsflyersdk.com^
 ! HaGeZi Normal
 ||tmzjpz-launches.appsflyersdk.com^
+! AdGuard DNS Filter, EasyList
+||tmzrgou7311hu6om.rest^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||tmztsogzhbbwg.com^
 ! HaGeZi Normal
@@ -569942,7 +570198,7 @@ wykop.pl$badfilter
 ||todacell.com^
 ! AdGuard DNS Filter
 ||todayapp.tv^
-! EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||todayembarks.qpon^
 ! HaGeZi Normal
 ||todayil.com^
@@ -570114,7 +570370,7 @@ wykop.pl$badfilter
 ||toffifeeaktion.de^
 ! HaGeZi Normal
 ||tofilego.site^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||tofilescalary.cfd^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||tofiletumasha.cyou^
@@ -570368,6 +570624,8 @@ wykop.pl$badfilter
 ||tolldive.com^
 ! HaGeZi Normal
 ||tolleapotheke101.com^
+! AdGuard DNS Filter, EasyList
+||tolledakund.cfd^
 ! EasyList
 ||tollfreeforwarding.com^$third-party
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -571550,7 +571808,7 @@ wykop.pl$badfilter
 ||topsurfer.com^
 ! Dandelion Sprout
 ||topswp.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||topsyfaeries.shop^
 ! HaGeZi Normal
 ||toptanfirsati.com^
@@ -588790,6 +589048,8 @@ wykop.pl$badfilter
 ||tsu.tmchemicals.co.uk^
 ! AdGuard DNS Filter
 ||tsu.tryhard-gear.com^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||tsuccwavchpvh.website^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||tsuh.cn^
 ! AdGuard DNS Filter, EasyList
@@ -590526,6 +590786,8 @@ wykop.pl$badfilter
 ||tw1.ru/Orange/$doc
 ! HaGeZi Normal
 ||tw1.ru^
+! HaGeZi Normal
+||tw1tter.com^
 ! Dan Pollock
 ||tw2.adserver.yahoo.com^
 ! HaGeZi Normal
@@ -590636,6 +590898,8 @@ wykop.pl$badfilter
 ||tweowhvrim.review^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||twerpuveitic.com^
+! AdGuard DNS Filter, EasyList
+||twesexmxzlcim.site^
 ! AdGuard DNS Filter
 ||tweurx.baltic.se^
 ! HaGeZi Normal
@@ -590790,6 +591054,8 @@ wykop.pl$badfilter
 ||twistneedylever.com^
 ! HaGeZi Normal
 ||twistoo.co^
+! HaGeZi Normal
+||twisty.net^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||twistyscash.com^
 ! EasyList
@@ -590800,6 +591066,8 @@ wykop.pl$badfilter
 ||twitch.tv^$xhr,3p,domain=controlc.com
 ! HaGeZi Normal
 ||twitchadsolutions.com^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||twitchegotistical.com^
 ! Dan Pollock
 ||twitchindoor.best^
 ! HaGeZi Normal
@@ -591998,6 +592266,8 @@ wykop.pl$badfilter
 ||u4443.84.spylog.com^
 ! Dan Pollock
 ||u4556.11.spylog.com^
+! AdGuard DNS Filter, EasyList
+||u45kpbfton8cffw6qvp9g1pulgf8.cfd^
 ! EasyPrivacy, HaGeZi Normal
 ||u46.pnc.com^
 ! HaGeZi Normal
@@ -593302,6 +593572,8 @@ wykop.pl$badfilter
 ||uesv3jjf6.com^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||uetx75ibcu.com^
+! AdGuard DNS Filter, EasyList
+||uetztoyueidyz.online^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||ueuee.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -596948,6 +597220,8 @@ wykop.pl$badfilter
 ||unhighallanschemy.qpon^
 ! HaGeZi Normal
 ||unhomologic-krystle-sighingly.ngrok-free.dev^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||unhoodsgamine.cyou^
 ! AdGuard DNS Filter, EasyList
 ||unhoodtorrone.shop^
 ! AdGuard DNS Filter, EasyList
@@ -597652,6 +597926,8 @@ wykop.pl$badfilter
 ||unpackstaleintended.com^
 ! HaGeZi Normal
 ||unparlaccer.com^
+! EasyList
+||unpavelamplet.cfd^
 ! AdGuard DNS Filter, EasyList
 ||unpenscoroll.cfd^
 ! EasyList
@@ -598730,8 +599006,6 @@ wykop.pl$badfilter
 ||uploadmix.net^
 ! HaGeZi Normal
 ||uploads.codesandbox.io^
-! HaGeZi Normal
-||uploads.strikinglycdn.com^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||uplog.inews.qq.com^
 ! HaGeZi Normal
@@ -599478,8 +599752,6 @@ wykop.pl$badfilter
 ||url-redirect.com^
 ! EasyPrivacy
 ||url.density.exchange^
-! HaGeZi Normal
-||url.emailprotection.link^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||url.isimsepeti.net^
 ! HaGeZi Normal
@@ -600746,6 +601018,8 @@ wykop.pl$badfilter
 ||usvhlnrwdosj.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||usvrkrkqfnzbh.online^
+! AdGuard DNS Filter, EasyList
+||usvzmdlvbunkz.website^
 ! AdAway
 ||usw-ca2.adsrvr.org^
 ! HaGeZi Normal
@@ -602892,6 +603166,8 @@ wykop.pl$badfilter
 ||uysnells.shop^
 ! HaGeZi Normal
 ||uyt4.com^
+! AdGuard DNS Filter, EasyList
+||uytlqsttxotoe.space^
 ! HaGeZi Normal
 ||uytynu-cdn-settings.appsflyersdk.com^
 ! HaGeZi Normal
@@ -605644,6 +605920,8 @@ wykop.pl$badfilter
 ||vdkdxarnqiaedw.com^
 ! HaGeZi Normal
 ||vdkg.cc^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||vdkhkcnrddefp.online^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||vdkhv.lacoste.com^
 ! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
@@ -606074,6 +606352,8 @@ wykop.pl$badfilter
 ||velatestubb.com^
 ! HaGeZi Normal
 ||velcome-club.com^
+! HaGeZi Normal
+||velcoraline.com^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||veldpj.icu^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -606252,7 +606532,7 @@ wykop.pl$badfilter
 ||vengefulgrass.com^
 ! HaGeZi Normal
 ||vengefulswimming.pro^
-! EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||vengesagelaus.cyou^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||vengingtrental.com^
@@ -606819,6 +607099,8 @@ wykop.pl$badfilter
 ! AdGuard DNS Filter, EasyList
 ||vertigovitalitywieldable.com^
 ! HaGeZi Normal
+||vertiguzha.link^
+! HaGeZi Normal
 ||vertiselevadores.com.br^
 ! uBO Badware
 ||vertiselevadores.com.br^$all
@@ -607230,6 +607512,8 @@ wykop.pl$badfilter
 ||vfthr.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||vftsnnkkoitbp.space^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||vfubcqlnnyovu.online^
 ! AdGuard DNS Filter, EasyPrivacy
 ||vfuk.mno.link^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -609797,6 +610081,8 @@ wykop.pl$badfilter
 ! HaGeZi Normal
 ||vingino-nl.top^
 ! HaGeZi Normal
+||vingino-sale.top^
+! HaGeZi Normal
 ||vingino.top^
 ! HaGeZi Normal
 ||vingrad.ru^
@@ -609932,6 +610218,8 @@ wykop.pl$badfilter
 ||violetcommercial.com^
 ! HaGeZi Normal
 ||violetconverted.com^
+! HaGeZi Normal
+||violetdemise.com^
 ! HaGeZi Normal
 ||violetgate.pro^
 ! HaGeZi Normal
@@ -612978,6 +613266,8 @@ wykop.pl$badfilter
 ||vomitgirl.org^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||vomitsaschernerka.cyou^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||vomxnttchueph.website^
 ! HaGeZi Normal
 ||vonaco.fr^
 ! AdGuard DNS Filter
@@ -613390,6 +613680,8 @@ wykop.pl$badfilter
 ||vowellm4.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||vowelshorae.cfd^
+! HaGeZi Normal
+||vowesselatha.cfd^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||vowsavageskim.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -615354,6 +615646,8 @@ wykop.pl$badfilter
 ||vy9fwpl1.xyz^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||vyabxutgyiidb.site^
+! AdGuard DNS Filter, EasyList
+||vyadfnsptcdbw.online^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||vyalyccsbpuse.space^
 ! AdGuard DNS Filter
@@ -616558,6 +616852,8 @@ wykop.pl$badfilter
 ||wadzao.briliiantsdate.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||waeddgujincxb.online^
+! AdGuard DNS Filter, EasyList
+||waegstalled.shop^
 ! HaGeZi Normal
 ||waehupuet.com^
 ! HaGeZi Normal
@@ -616590,6 +616886,8 @@ wykop.pl$badfilter
 ||waffenlager.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||waffingwoak.qpon^
+! HaGeZi Normal
+||wafflemakers.net^
 ! AdGuard DNS Filter
 ||waffles.cohnacrylics.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -617322,7 +617620,7 @@ wykop.pl$badfilter
 ||warez.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||warfarecontemn.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||warfareventfabled.qpon^
 ! EasyPrivacy
 ||warfieldtech.actonservice.com^
@@ -622981,6 +623279,8 @@ wykop.pl$badfilter
 ! AdAway
 ||wgo.mmstat.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||wgobznpzhfmvx.website^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||wgoeahf.com^
 ! AdGuard DNS Filter
 ||wgogmr.lisamayo.pl^
@@ -623014,6 +623314,8 @@ wykop.pl$badfilter
 ||wgvmiemzc4zuxlrjiqtiwvk4om.cfd^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||wgvmzdmasfoyu.store^
+! HaGeZi Normal
+||wgvqrcej.shop^
 ! AdGuard DNS Filter
 ||wgvyey.butor1.hu^
 ! AdGuard DNS Filter, EasyPrivacy
@@ -623234,6 +623536,8 @@ wykop.pl$badfilter
 ||whazrm9wa.com^
 ! HaGeZi Normal
 ||whazugho.com^
+! EasyList
+||whbfbktmafnff.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||whbjtvsrexgif.store^
 ! AdGuard DNS Filter, EasyList
@@ -623694,7 +623998,7 @@ wykop.pl$badfilter
 ||whiteveinier.shop^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||whiteysmullet.cyou^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||whittenbump.cyou^
 ! HaGeZi Normal
 ||whivymmauy.com^
@@ -624476,8 +624780,6 @@ wykop.pl$badfilter
 ||wigetmedia.com^
 ! EasyList
 ||wigetmedia.com^$popup
-! HaGeZi Normal
-||wiggiipost.cyou^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||wigglegloatshrill.com^
 ! HaGeZi Normal
@@ -625948,6 +626250,8 @@ wykop.pl$badfilter
 ||wkoyz.wlvkzwqmyjyov.top^
 ! AdGuard DNS Filter, EasyPrivacy
 ||wkpjgh.toysrus.pt^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||wkptbgyqbmrpk.online^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||wkpuhmkdupgee.website^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -628220,6 +628524,8 @@ wykop.pl$badfilter
 ||wqudcv.finnishdesignshop.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||wqujzrooysizj.website^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||wqvvexegauwps.website^
 ! AdGuard DNS Filter, EasyList
 ||wqvwqxstgqjyk.fun^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -628328,7 +628634,7 @@ wykop.pl$badfilter
 ||wrc-gh.org/redelivery$doc
 ! AdGuard DNS Filter
 ||wrc.shinhancard.com^
-! AdGuard DNS Filter, EasyList, HaGeZi Normal
+! AdGuard DNS Filter, EasyList
 ||wrc6iq6efhvlzn.rest^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||wrcbaiyrpmsza.website^
@@ -632109,6 +632415,8 @@ wykop.pl$badfilter
 ! Dan Pollock
 ||www.gaicodon.com^
 ! Dan Pollock
+||www.gaiis.com^
+! Dan Pollock
 ||www.gainwintz.com^
 ! EasyPrivacy
 ||www.game9time.com^
@@ -632494,6 +632802,8 @@ wykop.pl$badfilter
 ||www.iejonline.com^
 ! Dan Pollock
 ||www.iepelnazareno.com^
+! Dan Pollock
+||www.iesaber.com^
 ! Dan Pollock
 ||www.iesnare.co.uk^
 ! Dan Pollock
@@ -633517,6 +633827,8 @@ wykop.pl$badfilter
 ! Dan Pollock
 ||www.nospartenaires.com^
 ! Dan Pollock
+||www.nostalgicroses.com^
+! Dan Pollock
 ||www.notepad2.com^
 ! AdGuard DNS Filter, EasyPrivacy
 ||www.notice.assurancewireless.com^
@@ -633726,6 +634038,8 @@ wykop.pl$badfilter
 ||www.pass-1234.com^
 ! EasyPrivacy
 ||www.pass8heal.com^
+! Dan Pollock
+||www.patelshop.com^
 ! EasyPrivacy
 ||www.path-follower.com^
 ! EasyPrivacy
@@ -634024,6 +634338,8 @@ wykop.pl$badfilter
 ||www.quickbrowsersearch.com^
 ! Dan Pollock
 ||www.quintingwatches.com^
+! Dan Pollock
+||www.quipla.com^
 ! EasyPrivacy
 ||www.quoteafs.com^
 ! EasyPrivacy
@@ -638914,7 +639230,7 @@ wykop.pl$badfilter
 ||xfinity.com/event/
 ! HaGeZi Normal
 ||xfinitydigital.demdex.net^
-! AdGuard DNS Filter
+! AdGuard DNS Filter, HaGeZi Normal
 ||xfjy2fh28b.com^
 ! HaGeZi Normal
 ||xfkuix-cdn-settings.appsflyersdk.com^
@@ -643142,7 +643458,7 @@ wykop.pl$badfilter
 ||xtxtshop.com^
 ! AdGuard DNS Filter, EasyPrivacy
 ||xtxwva.intersport.com.tr^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||xtxytmqzywwfj.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||xtyokhrngzgza.online^
@@ -643280,6 +643596,8 @@ wykop.pl$badfilter
 ||xundupdf.com^
 ! HaGeZi Normal
 ||xunhua5.skin^
+! EasyList
+||xunmzrwndykji.online^
 ! AdGuard DNS Filter
 ||xunrvj.socooc.com^
 ! AdGuard DNS Filter, EasyPrivacy
@@ -644630,7 +644948,7 @@ wykop.pl$badfilter
 ||yaebhbyweyxvt.store^
 ! HaGeZi Normal
 ||yaeby.com^
-! EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||yaffscharing.cfd^
 ! AdGuard DNS Filter
 ||yag.ferreiratrader.com.br^
@@ -646840,6 +647158,8 @@ wykop.pl$badfilter
 ||ykiyhzbgnqkys.online^
 ! Dan Pollock
 ||ykjure.com^
+! AdGuard DNS Filter, EasyList
+||ykksslnwspjqt.online^
 ! AdGuard DNS Filter
 ||ykktwv.titivate.jp^
 ! HaGeZi Normal
@@ -647054,6 +647374,8 @@ wykop.pl$badfilter
 ||ylog.nimo.tv^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||ylogepubxynzu.space^
+! EasyList
+||ylpxrvkdcdmcb.site^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||ylr1xn2b4i.com^
 ! AdGuard DNS Filter, EasyPrivacy
@@ -647598,6 +647920,8 @@ wykop.pl$badfilter
 ||yomedia.vn^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||yomeno.xyz^
+! EasyList
+||yomfzneibguuz.website^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||yominhymned.qpon^
 ! HaGeZi Normal
@@ -648674,7 +648998,7 @@ wykop.pl$badfilter
 ||yrflgsqpywsmh.website^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||yrfnjvrlyt.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||yrfyazdbylynj.space^
 ! HaGeZi Normal
 ||yrg4i8-cdn-settings.appsflyersdk.com^
@@ -649824,6 +650148,8 @@ wykop.pl$badfilter
 ||yxqhuy.icu^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||yxrztudaxbejo.website^
+! AdGuard DNS Filter, EasyList
+||yxrzwtveozhfv.website^
 ! AdGuard DNS Filter, EasyPrivacy
 ||yxsdgi.bedworld.net^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -649894,7 +650220,7 @@ wykop.pl$badfilter
 ||yyauzedlqv.com^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||yyax.cn^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||yybbxctlo.com^
 ! AdGuard DNS Filter
 ||yybrtm.ru-mi.com^
@@ -650108,7 +650434,7 @@ wykop.pl$badfilter
 ||yzllux.xyz^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||yzmgilueybloe.site^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||yzmwfvmipafhj.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||yznvhiongucvp.site^
@@ -651074,7 +651400,7 @@ wykop.pl$badfilter
 ||zapcdn.space/zapret.js
 ! Dan Pollock, HaGeZi Normal
 ||zapcdn.space^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||zapcwcnbcnmjo.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||zapfgyqcktakq.site^
@@ -651234,6 +651560,8 @@ wykop.pl$badfilter
 ||zavirand.com^
 ! EasyList
 ||zavirand.com^$document
+! HaGeZi Normal
+||zavironelu.de^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||zavnnfijuylnu.site^
 ! HaGeZi Normal
@@ -651252,7 +651580,7 @@ wykop.pl$badfilter
 ||zaxade.com^
 ! HaGeZi Normal
 ||zaxakerom.com^
-! AdGuard DNS Filter
+! AdGuard DNS Filter, HaGeZi Normal
 ||zaxffxesykzvfs.com^
 ! HaGeZi Normal
 ||zaxotqbukoj.com^
@@ -651412,6 +651740,8 @@ wykop.pl$badfilter
 ||zbqibt-cdn-settings.appsflyersdk.com^
 ! HaGeZi Normal
 ||zbqibt-launches.appsflyersdk.com^
+! EasyList
+||zbqqetwrbamuo.site^
 ! AdGuard DNS Filter
 ||zbqww.vipbottles.co.uk^
 ! AdGuard DNS Filter
@@ -651742,7 +652072,7 @@ wykop.pl$badfilter
 ||zdl4o6sp3.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||zdmxehlpvvtta.site^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||zdnfiyknhvwtj.online^
 ! AdGuard DNS Filter
 ||zdnnue.clubllondon.com^
@@ -652846,6 +653176,8 @@ wykop.pl$badfilter
 ||zhgcahjbqiiuu.website^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||zhhmkiottyxgn.space^
+! AdGuard DNS Filter, EasyList
+||zhhykcijtjehl.space^
 ! HaGeZi Normal
 ||zhi1616.com^
 ! HaGeZi Normal
@@ -652922,7 +653254,7 @@ wykop.pl$badfilter
 ||zhongwangmy.cn^
 ! HaGeZi Normal
 ||zhongyuanyulechenghuiyuanzhuce.yf6688.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||zhorihsvqdcll.space^
 ! HaGeZi Normal
 ||zhousong.com^
@@ -654120,6 +654452,8 @@ wykop.pl$badfilter
 ||zmt.hellhorror.com^
 ! HaGeZi Normal
 ||zmubrh798zwoohe7jm8.cyou^
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
+||zmufejpcotsv.com^
 ! AdGuard DNS Filter
 ||zmvhh.arcticcool.com^
 ! AdGuard DNS Filter
@@ -654382,6 +654716,8 @@ wykop.pl$badfilter
 ||zohdzg-launches.appsflyersdk.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||zohlikopegrdz.space^
+! AdGuard DNS Filter, EasyList
+||zohmerfhmsdqa.website^
 ! HaGeZi Normal
 ||zohoinsights.eu^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -654842,6 +655178,8 @@ wykop.pl$badfilter
 ||zpnfabznyzmuc.site^
 ! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
 ||zpnrnr.ab-in-den-urlaub.de^
+! AdGuard DNS Filter, EasyList
+||zpomgsqyppbpx.online^
 ! AdGuard DNS Filter
 ||zppdh.teedays.com^
 ! AdGuard DNS Filter, EasyPrivacy
@@ -655800,7 +656138,7 @@ wykop.pl$badfilter
 ||zuzoqx.discountflooringdepot.co.uk^
 ! HaGeZi Normal
 ||zuzqimlzioj.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||zuzrwanpi.in^
 ! AdGuard DNS Filter
 ||zuzu.zuzufashionwear.com^
