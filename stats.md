@@ -1,6 +1,6 @@
 # Blocklist stats
 
-_Generated 2026-07-31 01:58:49 UTC_
+_Generated 2026-07-31 13:43:51 UTC_
 
 - **Total rules** = rules a source carries (after parsing to adblock form, including ones also present in other lists).
 - **Unique** = rules that ONLY that source provides (exclusive contribution).
@@ -10,30 +10,30 @@ _Generated 2026-07-31 01:58:49 UTC_
 
 | Source | Total rules | Unique | % unique |
 | --- | ---: | ---: | ---: |
-| AdGuard DNS Filter | 161,569 | 56,697 | 35.1% |
-| HaGeZi Normal | 180,483 | 81,829 | 45.3% |
-| AdAway | 6,540 | 3,464 | 53.0% |
-| OISD Big | 336,815 | 255,485 | 75.9% |
+| AdGuard DNS Filter | 161,697 | 56,688 | 35.1% |
+| HaGeZi Normal | 180,979 | 82,075 | 45.4% |
+| AdAway | 6,540 | 3,465 | 53.0% |
+| OISD Big | 337,021 | 255,648 | 75.9% |
 | Dan Pollock | 12,971 | 9,820 | 75.7% |
-| Peter Lowe | 7,058 | 3,830 | 54.3% |
+| Peter Lowe | 7,058 | 3,831 | 54.3% |
 | Dandelion Sprout | 480 | 290 | 60.4% |
-| EasyList | 60,224 | 9,339 | 15.5% |
-| EasyPrivacy | 55,621 | 26,762 | 48.1% |
-| uBO Ads | 1,774 | 1,728 | 97.4% |
-| uBO Privacy | 1,388 | 1,308 | 94.2% |
+| EasyList | 60,347 | 9,340 | 15.5% |
+| EasyPrivacy | 55,620 | 26,761 | 48.1% |
+| uBO Ads | 1,771 | 1,727 | 97.5% |
+| uBO Privacy | 1,389 | 1,309 | 94.2% |
 | uBO Badware | 4,186 | 4,140 | 98.9% |
-| uBO Quick Fixes | 91 | 82 | 90.1% |
+| uBO Quick Fixes | 92 | 83 | 90.2% |
 | uBO Unbreak | 1,931 | 1,926 | 99.7% |
 | uBO Resource Abuse | 37 | 36 | 97.3% |
-| **Sum (before dedup)** | **831,168** | | |
+| **Sum (before dedup)** | **832,119** | | |
 
 ## Deduplicated totals
 
 | Output | Rules |
 | --- | ---: |
-| Sum of all sources before dedup | 831,168 |
-| **DNSZeroList.txt** (all sources, deduped) | **588,950** |
-| **DNSZeroList_no_oisd.txt** (no OISD, deduped) | **333,465** |
+| Sum of all sources before dedup | 832,119 |
+| **DNSZeroList.txt** (all sources, deduped) | **589,496** |
+| **DNSZeroList_no_oisd.txt** (no OISD, deduped) | **333,848** |
 
-Deduplication removed 242,218 duplicate rule instances (29.1% of the raw total).
-Dropping OISD Big removes a further 255,485 rules (43.4% of the full list).
+Deduplication removed 242,623 duplicate rule instances (29.2% of the raw total).
+Dropping OISD Big removes a further 255,648 rules (43.4% of the full list).
