@@ -1,8 +1,8 @@
 ! Title: Zero Unified Blocklist
 ! Description: Deduplicated merge of multiple ad/tracker/malware lists for AdGuard Home.
-! Last modified: 2026-11-03 18:51:30 UTC
+! Last modified: 2026-11-04 04:02:10 UTC
 ! Sources: 15 included
-! Total rules: 499551 (blocks: 495637, exceptions: 3914)
+! Total rules: 499709 (blocks: 495795, exceptions: 3914)
 ! Cosmetic/scriptlet rules are stripped (not usable by DNS-level filtering).
 ! Each rule is preceded by a comment listing its source list(s).
 !
@@ -27,7 +27,7 @@ $csp=child-src 'none'; frame-src 'self' *; worker-src 'none',domain=fileone.tv|t
 ! EasyPrivacy
 $csp=child-src 'none'; frame-src *; worker-src 'none',domain=thepiratebay.org|vidoza.net
 ! EasyList
-$csp=script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.filecrypt.to/js/prototype.js https://static.filecrypt.to/js/container.js https://static.filecrypt.to/js/container_utils.js https://static.filecrypt.to/js/scriptaculous/ https://static.filecrypt.to/js/container/ https://*.cutcaptcha.net; connect-src 'self' https://*.cutcaptcha.net,domain=filecrypt.cc|filecrypt.co|filecrypt.to
+$csp=script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.filecrypt.to/js/prototype.js https://static.filecrypt.to/js/container.js https://static.filecrypt.to/js/container_utils.js https://static.filecrypt.to/js/scriptaculous/ https://static.filecrypt.to/js/container/ https://*.cutcaptcha.net https://challenges.cloudflare.com; connect-src 'self' https://*.cutcaptcha.net,domain=filecrypt.cc|filecrypt.co|filecrypt.to,~third-party
 ! EasyList
 $csp=script-src 'self' data: 'unsafe-inline' 'unsafe-hashes' 'unsafe-eval',domain=thumbs.pro
 ! uBO Badware
@@ -27078,6 +27078,8 @@ wykop.pl$badfilter
 ||1nvnkyg65.com^
 ! AdGuard DNS Filter, HaGeZi Normal, OISD Big
 ||1nvxl968le.com^
+! AdGuard DNS Filter
+||1ny5gaksj8.com^
 ! OISD Big
 ||1nzpr2.hbg.hebdenbridgedental.co.uk^
 ! AdGuard DNS Filter, HaGeZi Normal, OISD Big
@@ -32924,6 +32926,8 @@ wykop.pl$badfilter
 ||3k2frl8r79.com^
 ! OISD Big
 ||3k8.cc^
+! OISD Big
+||3k8p1s9m2a-qw444agreg-7u1m8c-2x8p1a.pages.dev^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||3kin8remefmhwq.cfd^
 ! OISD Big
@@ -33758,6 +33762,8 @@ wykop.pl$badfilter
 ||40voxia.net^
 ! HaGeZi Normal
 ||41-world.com^
+! OISD Big
+||41072.sbs^
 ! HaGeZi Normal, OISD Big
 ||411-spyware.com^
 ! Dan Pollock, OISD Big
@@ -43374,6 +43380,8 @@ wykop.pl$badfilter
 ||8txvx9252.2lwu2vhipe7ok2rc.cyou^
 ! OISD Big
 ||8ty8casino.fr^
+! OISD Big
+||8u7y4e.pics^
 ! AdGuard DNS Filter, EasyList
 ||8u9j9clpjox1y327p2omhp.rest^
 ! HaGeZi Normal
@@ -58578,6 +58586,8 @@ wykop.pl$badfilter
 ||abtshield.com^
 ! EasyPrivacy
 ||abtshield.com^$third-party
+! AdGuard DNS Filter, EasyList, OISD Big
+||abtsofhqtqdnl.online^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||abtthlftcjqoz.site^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
@@ -58694,6 +58704,8 @@ wykop.pl$badfilter
 ||abxajspanob.in^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||abxbcuordows.in^
+! AdGuard DNS Filter, EasyList, OISD Big
+||abxcsiahbpqmw.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||abxenldkpytji.online^
 ! AdGuard DNS Filter, EasyPrivacy
@@ -82762,6 +82774,8 @@ wykop.pl$badfilter
 ||aeg.112.2o7.net^
 ! AdGuard DNS Filter, HaGeZi Normal, OISD Big
 ||aeg.offerup-apis.com^
+! AdGuard DNS Filter, EasyList
+||aegbkonatretu.online^
 ! OISD Big
 ||aegeanbusinessreview.com^
 ! OISD Big
@@ -85362,7 +85376,7 @@ wykop.pl$badfilter
 ||afunnything.ddns.net^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||afutfjyhihsdy.space^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, OISD Big
 ||afvcrykaqo.in^
 ! HaGeZi Normal
 ||afvddb-cdn-settings.appsflyersdk.com^
@@ -91085,6 +91099,10 @@ wykop.pl$badfilter
 ! OISD Big
 ||aldi.aislewise.shop^
 ! OISD Big
+||aldi.akemartina.shop^
+! OISD Big
+||aldi.andreamart.shop^
+! OISD Big
 ||aldi.applenoa.com^
 ! OISD Big
 ||aldi.appleroa.com^
@@ -91233,6 +91251,8 @@ wykop.pl$badfilter
 ! OISD Big
 ||aldi.loyaltymart.shop^
 ! OISD Big
+||aldi.lucindamart.shop^
+! OISD Big
 ||aldi.producebay.shop^
 ! OISD Big
 ||aldi.produceport.shop^
@@ -91242,6 +91262,10 @@ wykop.pl$badfilter
 ||aldi.rebateisle.shop^
 ! OISD Big
 ||aldi.redskymart.shop^
+! OISD Big
+||aldi.tinamart.shop^
+! OISD Big
+||aldi.trevormart.shop^
 ! OISD Big
 ||aldideal.eyhjplot.shop^
 ! OISD Big
@@ -91682,6 +91706,8 @@ wykop.pl$badfilter
 ||aldiusa.uapick.shop^
 ! OISD Big
 ||aldiusa.wdpick.shop^
+! OISD Big
+||aldiusmarket.shop^
 ! OISD Big
 ||aldivaluemarket.com^
 ! OISD Big
@@ -93385,6 +93411,8 @@ wykop.pl$badfilter
 ! OISD Big
 ||allegro.912391293412.pl^
 ! OISD Big
+||allegro.912831295h.lol^
+! OISD Big
 ||allegro.92877ggg.rest^
 ! OISD Big
 ||allegro.9392130120.casa^
@@ -93425,15 +93453,21 @@ wykop.pl$badfilter
 ! OISD Big
 ||allegro.ife283981jugu.courses^
 ! OISD Big
+||allegro.ifeoi238-h45982.pics^
+! OISD Big
 ||allegro.ifert32471291h5.beer^
 ! OISD Big
 ||allegro.ifert934121gg4.casa^
 ! OISD Big
 ||allegro.ifeu723182.pl^
 ! OISD Big
+||allegro.iif8120987gg9.help^
+! OISD Big
 ||allegro.isma912j67.lat^
 ! OISD Big
 ||allegro.jmm5693.qpon^
+! OISD Big
+||allegro.kup-h459239.casa^
 ! OISD Big
 ||allegro.loh34871290j0j0.qpon^
 ! OISD Big
@@ -93679,11 +93713,15 @@ wykop.pl$badfilter
 ! OISD Big
 ||allegrolokalnie.6143897201.click^
 ! OISD Big
+||allegrolokalnie.6574325.top^
+! OISD Big
 ||allegrolokalnie.712461246129124.rest^
 ! OISD Big
 ||allegrolokalnie.757185151.click^
 ! OISD Big
 ||allegrolokalnie.7686.click^
+! OISD Big
+||allegrolokalnie.7804532.top^
 ! OISD Big
 ||allegrolokalnie.801736741.surf^
 ! OISD Big
@@ -93700,6 +93738,8 @@ wykop.pl$badfilter
 ||allegrolokalnie.894129019041.click^
 ! OISD Big
 ||allegrolokalnie.928372.pl^
+! OISD Big
+||allegrolokalnie.93027351.xyz^
 ! OISD Big
 ||allegrolokalnie.98oferta3846zxe399.forum^
 ! OISD Big
@@ -93719,7 +93759,11 @@ wykop.pl$badfilter
 ! OISD Big
 ||allegrolokalnie.dk-oferta729413.sbs^
 ! OISD Big
+||allegrolokalnie.dk-oferta817413.sbs^
+! OISD Big
 ||allegrolokalnie.dk-produkt251948.shop^
+! OISD Big
+||allegrolokalnie.fdjsjtrejyrk.eu.cc^
 ! OISD Big
 ||allegrolokalnie.i837fnjf746rn38hg47394.rest^
 ! OISD Big
@@ -93821,6 +93865,8 @@ wykop.pl$badfilter
 ! OISD Big
 ||allegrolokalnie.lokalna-ofeta79182.shop^
 ! OISD Big
+||allegrolokalnie.lokalna51892.cfd^
+! OISD Big
 ||allegrolokalnie.lokalne-ofety5906.click^
 ! OISD Big
 ||allegrolokalnie.lokalne12.cfd^
@@ -93915,6 +93961,8 @@ wykop.pl$badfilter
 ! OISD Big
 ||allegrolokalnie.oferta5039371.click^
 ! OISD Big
+||allegrolokalnie.oferta523459.shop^
+! OISD Big
 ||allegrolokalnie.oferta532843.click^
 ! OISD Big
 ||allegrolokalnie.oferta5381853.click^
@@ -93952,6 +94000,8 @@ wykop.pl$badfilter
 ||allegrolokalnie.offerta85814123.click^
 ! OISD Big
 ||allegrolokalnie.offka831821.click^
+! OISD Big
+||allegrolokalnie.ogloszeni30294.sbs^
 ! OISD Big
 ||allegrolokalnie.ogloszenie-437182.cfd^
 ! OISD Big
@@ -93999,6 +94049,8 @@ wykop.pl$badfilter
 ! OISD Big
 ||allegrolokalnie.pl-2wye3.sbs^
 ! OISD Big
+||allegrolokalnie.pl-421491.cfd^
+! OISD Big
 ||allegrolokalnie.pl-471752.shop^
 ! OISD Big
 ||allegrolokalnie.pl-472959.shop^
@@ -94044,6 +94096,10 @@ wykop.pl$badfilter
 ||allegrolokalnie.pl-986712.sbs^
 ! OISD Big
 ||allegrolokalnie.pl-987634.sbs^
+! OISD Big
+||allegrolokalnie.pl-aukcja-2589012.icu^
+! OISD Big
+||allegrolokalnie.pl-aukcja-4718013.sbs^
 ! OISD Big
 ||allegrolokalnie.pl-aukcja.me^
 ! OISD Big
@@ -94209,6 +94265,8 @@ wykop.pl$badfilter
 ! OISD Big
 ||allegrolokalnie.pl-oferta887631.shop^
 ! OISD Big
+||allegrolokalnie.pl-oferta901872526.sbs^
+! OISD Big
 ||allegrolokalnie.pl-oferta912783655.sbs^
 ! OISD Big
 ||allegrolokalnie.pl-oferta912974.click^
@@ -94275,6 +94333,8 @@ wykop.pl$badfilter
 ! OISD Big
 ||allegrolokalnie.pl-rny0m.sbs^
 ! OISD Big
+||allegrolokalnie.pl-rny4m.sbs^
+! OISD Big
 ||allegrolokalnie.pl-smart24.pl^
 ! OISD Big
 ||allegrolokalnie.pl-zakup.online^
@@ -94286,6 +94346,8 @@ wykop.pl$badfilter
 ||allegrolokalnie.pl01.me^
 ! OISD Big
 ||allegrolokalnie.pl01.pro^
+! OISD Big
+||allegrolokalnie.pl3424.shop^
 ! OISD Big
 ||allegrolokalnie.pl543.shop^
 ! OISD Big
@@ -94308,6 +94370,8 @@ wykop.pl$badfilter
 ||allegrolokalnie.pl9104719256.shop^
 ! OISD Big
 ||allegrolokalnie.pq8b9.click^
+! OISD Big
+||allegrolokalnie.produkt-2026-508322.sbs^
 ! OISD Big
 ||allegrolokalnie.produkt-2854593-2026.sbs^
 ! OISD Big
@@ -117836,7 +117900,7 @@ wykop.pl$badfilter
 ||api-n.outgrow.co^
 ! AdGuard DNS Filter
 ||api-napoli.store.sscnapoli.it^
-! AdGuard DNS Filter
+! AdGuard DNS Filter, OISD Big
 ||api-node.corvexa.cloud^
 ! OISD Big
 ||api-nodefix.pages.dev^
@@ -127102,6 +127166,8 @@ wykop.pl$badfilter
 ||aqgjgynufhoqp.site^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||aqgpvllbdjhmk.website^
+! OISD Big
+||aqhifj.nttwwatches.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||aqhz.xyz^
 ! AdGuard DNS Filter, HaGeZi Normal, OISD Big
@@ -130024,6 +130090,8 @@ wykop.pl$badfilter
 ||arzi.de^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||arzqciutdzcya.site^
+! AdGuard DNS Filter, EasyList
+||arzrjcskrmgfh.online^
 ! HaGeZi Normal
 ||arztebedarf.com^
 ! HaGeZi Normal
@@ -140250,6 +140318,8 @@ wykop.pl$badfilter
 ||ayaanassociates.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big, Peter Lowe
 ||ayads.co^
+! AdGuard DNS Filter, EasyList, OISD Big
+||ayadsdyieahbn.space^
 ! OISD Big
 ||ayahuascasortxxhopterist.info^
 ! OISD Big
@@ -141506,8 +141576,6 @@ wykop.pl$badfilter
 ||b.todaytix.com^
 ! HaGeZi Normal, OISD Big
 ||b.top4top.io^
-! OISD Big
-||b.trueanthem.com^
 ! AdGuard DNS Filter, HaGeZi Normal, OISD Big
 ||b.tryknowmad.com^
 ! AdGuard DNS Filter, HaGeZi Normal, OISD Big
@@ -144874,6 +144942,8 @@ wykop.pl$badfilter
 ||bananiniafashion.com^
 ! OISD Big
 ||bananziacasino.fr^
+! OISD Big
+||banauaorto.store^
 ! OISD Big
 ||banbif-com-pe.fortimailcloud.com^
 ! OISD Big
@@ -148570,6 +148640,8 @@ wykop.pl$badfilter
 ||bcles.com^
 ! EasyPrivacy
 ||bclicks.lyst.com^
+! OISD Big
+||bcliksupersale.com^
 ! OISD Big
 ||bclnc.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -155186,6 +155258,8 @@ wykop.pl$badfilter
 ||beverragbolt.cyou^
 ! OISD Big
 ||beversale-nl.com^
+! OISD Big
+||bevertipul.store^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||beveyckzdzheo.site^
 ! AdGuard DNS Filter
@@ -155868,6 +155942,8 @@ wykop.pl$badfilter
 ||bgpng.me^$third-party
 ! uBO Badware
 ||bgpnode-whatsapp.com^$doc
+! OISD Big
+||bgpp0h-x8ki-letl-twmt.n7.xano.io^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||bgqamxuxabntp.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
@@ -156080,6 +156156,8 @@ wykop.pl$badfilter
 ||bhbbsqtof.com^
 ! AdGuard DNS Filter
 ||bhbgd.silverjeans.ca^
+! AdGuard DNS Filter, EasyList
+||bhbydrisbxmnu.site^
 ! AdGuard DNS Filter, EasyPrivacy
 ||bhcfpo.elfa.se^
 ! OISD Big
@@ -170182,7 +170260,7 @@ wykop.pl$badfilter
 ||bqnycimizqnnd.website^
 ! AdGuard DNS Filter
 ||bqofy.dinosty.de^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, OISD Big
 ||bqohmtzgtwyvi.space^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||bqoiz.ingoodtaste.com^
@@ -175171,6 +175249,8 @@ wykop.pl$badfilter
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||bshewgrdjyqus.space^
 ! AdGuard DNS Filter
+||bshhyxoy62.com^
+! AdGuard DNS Filter
 ||bshlk.boutiquebb.co^
 ! OISD Big
 ||bshnews.com^
@@ -177002,6 +177082,8 @@ wykop.pl$badfilter
 ||btpx.callesconstrutora.com.br^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||btqfzogoopfda.online^
+! OISD Big
+||btquxp.nervelix.com^
 ! AdGuard DNS Filter, EasyList
 ||btqz5ehvpub65t.cfd^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
@@ -192196,6 +192278,8 @@ wykop.pl$badfilter
 ||cattop.xyz^
 ! OISD Big
 ||caturismo.com.ar^
+! AdGuard DNS Filter, EasyList
+||catvelkqzbchr.space^
 ! HaGeZi Normal
 ||catwebshop.com^
 ! OISD Big
@@ -197450,6 +197534,8 @@ wykop.pl$badfilter
 ||cenont.xyz^
 ! AdGuard DNS Filter, HaGeZi Normal, OISD Big
 ||cenoobi.run^
+! OISD Big
+||cenorado.com^
 ! OISD Big
 ||cenorawalletsystem.com^
 ! OISD Big
@@ -203523,6 +203609,8 @@ wykop.pl$badfilter
 ! AdGuard DNS Filter, EasyPrivacy
 ||ci.intuit.com^
 ! OISD Big
+||ci.minustrans.com^
+! OISD Big
 ||ci.nextlgsdp.com^
 ! AdGuard DNS Filter, EasyPrivacy
 ||ci.quickbooks.com^
@@ -205024,6 +205112,8 @@ wykop.pl$badfilter
 ||cjpccsnjqxbwf.site^
 ! AdGuard DNS Filter
 ||cjpeiq.rmgbuyukbeden.com^
+! AdGuard DNS Filter, EasyList, OISD Big
+||cjpgaszjnhhzh.space^
 ! OISD Big
 ||cjqhk.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
@@ -216635,6 +216725,8 @@ wykop.pl$badfilter
 ! HaGeZi Normal
 ||commedesgarconsstore.de^
 ! OISD Big
+||commefunzi.store^
+! OISD Big
 ||commejaim.fr^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||commemoratewisdomcontemn.com^
@@ -225534,6 +225626,8 @@ wykop.pl$badfilter
 ||countyconfigurationcalorie.com^
 ! OISD Big
 ||countylinesecurity.com^
+! OISD Big
+||countyodel.store^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||countyou.de^
 ! EasyPrivacy
@@ -227074,6 +227168,8 @@ wykop.pl$badfilter
 ||cozypochette.shop^
 ! HaGeZi Normal
 ||cozyslides.de^
+! OISD Big
+||cozytribez.com^
 ! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal, OISD Big
 ||cozytryst.com^
 ! OISD Big
@@ -232484,6 +232580,8 @@ wykop.pl$badfilter
 ||cserzx-launches.appsflyersdk.com^
 ! HaGeZi Normal
 ||cserzx-pia.appsflyersdk.com^
+! AdGuard DNS Filter, EasyList
+||csezczpngywzt.website^
 ! OISD Big
 ||csf-loireatlantique.fr^
 ! AdGuard DNS Filter, HaGeZi Normal
@@ -259452,6 +259550,8 @@ wykop.pl$badfilter
 ||ddrqd9eox.com^
 ! OISD Big
 ||ddrrccck.m.qxs.la^
+! EasyList
+||ddrrjhzhgkjqg.online^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||ddrsemxv.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
@@ -271344,6 +271444,8 @@ wykop.pl$badfilter
 ||dissybet.com^
 ! Dan Pollock, HaGeZi Normal, OISD Big, Peter Lowe
 ||dist.belnk.com^
+! OISD Big
+||distaamovi.store^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||distaliturite.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
@@ -274625,6 +274727,8 @@ wykop.pl$badfilter
 ! EasyPrivacy
 ||docs.github.com/events
 ! OISD Big
+||docs.idealcornbi.com^
+! OISD Big
 ||docs.ledgerpropertiesllc.com^
 ! OISD Big
 ||docs.revv.so^
@@ -277208,7 +277312,7 @@ wykop.pl$badfilter
 ||dotxwbdwktpeaoniphea.com^
 ! OISD Big
 ||dotxwbdwmvfoptjlcckb.com^
-! HaGeZi Normal, OISD Big
+! HaGeZi Normal
 ||dotyruntchan.com^
 ! EasyList
 ||dotyruntchan.com^$popup
@@ -278596,6 +278700,8 @@ wykop.pl$badfilter
 ||dqjjp5-cdn-settings.appsflyersdk.com^
 ! HaGeZi Normal
 ||dqjjp5-launches.appsflyersdk.com^
+! AdGuard DNS Filter, EasyList, OISD Big
+||dqjlsxiccfxvi.site^
 ! OISD Big
 ||dqkj-fq6-o46svx-qht-e3eofu.pages.dev^
 ! OISD Big
@@ -295486,6 +295592,8 @@ wykop.pl$badfilter
 ||elbep.xyz^
 ! AdGuard DNS Filter
 ||elbfn.cliqproducts.com^
+! EasyList
+||elbfsgwewfamv.website^
 ! OISD Big
 ||elbohio.us^
 ! Dan Pollock, OISD Big
@@ -305244,6 +305352,8 @@ wykop.pl$badfilter
 ||esopgh-launches.appsflyersdk.com^
 ! OISD Big
 ||esoponline.in^
+! OISD Big
+||esorbactua.store^
 ! HaGeZi Normal
 ||esotecde.shop^
 ! HaGeZi Normal
@@ -316977,6 +317087,8 @@ wykop.pl$badfilter
 ! OISD Big
 ||falmek.shop^
 ! OISD Big
+||falmurexo.shop^
+! OISD Big
 ||falnaro.shop^
 ! OISD Big
 ||falnex.shop^
@@ -324768,6 +324880,8 @@ wykop.pl$badfilter
 ||filibusterdump.info^
 ! OISD Big
 ||filicca.com^
+! OISD Big
+||filigranyu24pl.eu.cc^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||filingcarnivorousexclaim.com^
 ! OISD Big
@@ -326071,6 +326185,8 @@ wykop.pl$badfilter
 ! OISD Big
 ||finaxinvestmentservices.com^
 ! OISD Big
+||finazy3-aut44.sbs^
+! OISD Big
 ||finazy5-reprehenderit45.sbs^
 ! OISD Big
 ||finbittrade.net^
@@ -326300,6 +326416,8 @@ wykop.pl$badfilter
 ||findsmeasure.casa^
 ! HaGeZi Normal
 ||findssmogallery.shop^
+! OISD Big
+||findsvista.shop^
 ! OISD Big
 ||findthesite.com^
 ! AdGuard DNS Filter, EasyPrivacy
@@ -329076,7 +329194,7 @@ wykop.pl$badfilter
 ||fkczwsqlpdokj.online^
 ! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
 ||fkdaik.lightinthebox.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, OISD Big
 ||fkdeavpxkjuoa.space^
 ! OISD Big
 ||fkdplern.shop^
@@ -330270,6 +330388,8 @@ wykop.pl$badfilter
 ||flintbg.com^
 ! OISD Big
 ||flintcapstead.pro^
+! OISD Big
+||flintcottage.live^
 ! OISD Big
 ||flintcredholm.live^
 ! HaGeZi Normal, OISD Big
@@ -338168,7 +338288,7 @@ wykop.pl$badfilter
 ||freeaddposting.com^
 ! EasyList
 ||freeadultcomix.com^$third-party
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, OISD Big
 ||freealremark.org^
 ! OISD Big
 ||freealts.pw^
@@ -343674,6 +343794,8 @@ wykop.pl$badfilter
 ||fx-master-bot.com^
 ! OISD Big
 ||fx.aleks-orlov.com^
+! OISD Big
+||fx.egyptyo.com^
 ! AdGuard DNS Filter
 ||fx.fixfy.eu^
 ! OISD Big
@@ -347602,6 +347724,8 @@ wykop.pl$badfilter
 ||garden-machines-shop.com^
 ! HaGeZi Normal
 ||garden-machines.com^
+! OISD Big
+||garden-market.lovable.app^
 ! HaGeZi Normal
 ||garden-of-excellence.com^
 ! HaGeZi Normal
@@ -348864,7 +348988,7 @@ wykop.pl$badfilter
 ||gaxduni.shop^
 ! OISD Big
 ||gaxeda.info^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, OISD Big
 ||gaxejjfvhogej.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||gaxkyokrghyts.online^
@@ -353847,6 +353971,8 @@ wykop.pl$badfilter
 ! OISD Big
 ||gevinakonapp.live^
 ! OISD Big
+||gevneuraai.net^
+! OISD Big
 ||gevo-gale.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||gevqylgklqzso.site^
@@ -358004,6 +358130,8 @@ wykop.pl$badfilter
 ||glizauvo.net^$popup
 ! HaGeZi Normal, OISD Big
 ||glizoakri.net^
+! AdGuard DNS Filter, EasyList, OISD Big
+||gljnvnqgrnhwm.website^
 ! OISD Big
 ||gljoinery.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
@@ -359504,6 +359632,8 @@ wykop.pl$badfilter
 ||gmmofapfvshys.space^
 ! AdGuard DNS Filter
 ||gmmrg.wavea.au^
+! EasyList
+||gmmrnnunwgabr.site^
 ! OISD Big
 ||gmmwork.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
@@ -363962,6 +364092,8 @@ wykop.pl$badfilter
 ||goldtradetech.digital^
 ! OISD Big
 ||goldtradingsquad.net^
+! OISD Big
+||goldtt-vo.click^
 ! HaGeZi Normal
 ||goldurncalando.com^
 ! OISD Big
@@ -364300,8 +364432,6 @@ wykop.pl$badfilter
 ||gongarexpress.com^
 ! OISD Big
 ||gongkong800.com^
-! OISD Big
-||gonglue1.com^
 ! HaGeZi Normal
 ||gongxifc.com^
 ! OISD Big
@@ -366582,6 +366712,8 @@ wykop.pl$badfilter
 ||gpplus-app.hotdoc.com.au^
 ! EasyPrivacy
 ||gppppq.newcars.com^
+! EasyList
+||gpppzpcnfxvld.website^
 ! OISD Big
 ||gppslmcuwg.net^
 ! OISD Big
@@ -366902,6 +367034,8 @@ wykop.pl$badfilter
 ||gqdajtjwzbikn.space^
 ! AdGuard DNS Filter
 ||gqdui.weareplufl.com^
+! AdGuard DNS Filter, EasyList, OISD Big
+||gqdwbcvnltcmy.website^
 ! OISD Big
 ||gqehegqgkdpf.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
@@ -383683,6 +383817,10 @@ wykop.pl$badfilter
 ! OISD Big
 ||guest-pends8752.com^
 ! OISD Big
+||guest-reserv-591047.com^
+! OISD Big
+||guest-reserv-739482.com^
+! OISD Big
 ||guest-stayinfo.cc^
 ! OISD Big
 ||guest.bz-ds.net^
@@ -384432,7 +384570,7 @@ wykop.pl$badfilter
 ||guslew.webcindario.com^
 ! AdGuard DNS Filter
 ||gusoclji.com^
-! EasyList
+! AdGuard DNS Filter, EasyList, OISD Big
 ||gusonzwqabdjh.space^
 ! HaGeZi Normal
 ||gusozpamc.in^
@@ -400615,6 +400753,8 @@ wykop.pl$badfilter
 ! OISD Big
 ||homlatanie.shop^
 ! OISD Big
+||homlataniej.com^
+! OISD Big
 ||homlavip.shop^
 ! OISD Big
 ||homlawarm-pl.shop^
@@ -406872,6 +407012,8 @@ wykop.pl$badfilter
 ||hvd-rtp12.net.mydays.de^
 ! HaGeZi Normal, OISD Big
 ||hvd-store.com^
+! OISD Big
+||hvdcq.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||hvdt8.chimeratool.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -409034,6 +409176,8 @@ wykop.pl$badfilter
 ||i4track.net^
 ! HaGeZi Normal
 ||i4usc.com^
+! OISD Big
+||i4uw50.dhalieninc.com^
 ! HaGeZi Normal
 ||i4zhushou.hl.cn^
 ! HaGeZi Normal
@@ -410278,8 +410422,6 @@ wykop.pl$badfilter
 ||icecasino73.com^
 ! HaGeZi Normal, OISD Big
 ||iceccasino.pl^
-! OISD Big
-||icecheats.space^
 ! OISD Big
 ||iceclimatizacao.com.br^
 ! OISD Big
@@ -411894,6 +412036,8 @@ wykop.pl$badfilter
 ||iduehdh.w3spaces.com^
 ! AdGuard DNS Filter, EasyPrivacy
 ||iduk.barcodesgroup.com^
+! AdGuard DNS Filter, EasyList
+||idukyjiamozoj.space^
 ! OISD Big
 ||iduplo.pl^
 ! AdGuard DNS Filter, HaGeZi Normal
@@ -413144,6 +413288,8 @@ wykop.pl$badfilter
 ||ihcamp.ybtour.co.kr^
 ! HaGeZi Normal
 ||ihclam.cn^
+! AdGuard DNS Filter, EasyList, OISD Big
+||ihcmxwwdihsdi.site^
 ! AdGuard DNS Filter, EasyPrivacy
 ||ihcrqa.sonnenklar.tv^
 ! AdGuard DNS Filter, HaGeZi Normal
@@ -413536,6 +413682,8 @@ wykop.pl$badfilter
 ||iiqcrulsiqo.firebaseapp.com^
 ! OISD Big
 ||iiqcrulsiqo.web.app^
+! AdGuard DNS Filter, EasyList
+||iiqeinuntxfil.website^
 ! AdGuard DNS Filter, EasyPrivacy
 ||iiqtru.aunworks.jp^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
@@ -420676,6 +420824,8 @@ wykop.pl$badfilter
 ||inencr.woodhouseclothing.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||ineoocqxztbzj.site^
+! AdGuard DNS Filter
+||inequation23.com^
 ! HaGeZi Normal
 ||inerrableholddownthrow.com^
 ! HaGeZi Normal
@@ -425225,6 +425375,8 @@ wykop.pl$badfilter
 ! OISD Big
 ||inpost.pl-paymoney4.eu.cc^
 ! OISD Big
+||inpost.pl-pays-confirmation.shop^
+! OISD Big
 ||inpost.pl-payx-confirmation.eu.cc^
 ! OISD Big
 ||inpost.plpay-protranz.biz^
@@ -429328,6 +429480,8 @@ wykop.pl$badfilter
 ||inyoitepimbina.qpon^
 ! HaGeZi Normal, OISD Big
 ||inyoketuber.com^
+! AdGuard DNS Filter
+||inyourpocket.co.uk^
 ! HaGeZi Normal
 ||inzhqn-cdn-settings.appsflyersdk.com^
 ! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
@@ -433494,6 +433648,8 @@ wykop.pl$badfilter
 ||iucjylgndrri.com^
 ! HaGeZi Normal
 ||iuckyluck.net^
+! AdGuard DNS Filter, EasyList, OISD Big
+||iucwyrvskyyvn.space^
 ! HaGeZi Normal
 ||iuddgy-cdn-settings.appsflyersdk.com^
 ! HaGeZi Normal
@@ -433550,6 +433706,8 @@ wykop.pl$badfilter
 ||iukdm.iheartdogs.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||iukrelfkscaiy.space^
+! AdGuard DNS Filter, EasyList
+||iukscjnyfplhp.site^
 ! AdGuard DNS Filter
 ||iukwqj.ecco-verde.it^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
@@ -438697,6 +438855,8 @@ wykop.pl$badfilter
 ! OISD Big
 ||jexenward.com^
 ! OISD Big
+||jexmoravi.shop^
+! OISD Big
 ||jexmuna.shop^
 ! OISD Big
 ||jexneeuil.com^
@@ -439568,6 +439728,8 @@ wykop.pl$badfilter
 ||jhucgajukrvhauskjvuweyi-wgsxjyhjhwcs.teemill.com^
 ! Dan Pollock
 ||jhumour.cjt1.net^
+! AdGuard DNS Filter, EasyList, OISD Big
+||jhuqoqpfxpnay.site^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||jhuzffeiiargq.space^
 ! AdGuard DNS Filter
@@ -445498,7 +445660,7 @@ wykop.pl$badfilter
 ||jujtcq.amnibus.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||jujuismrealize.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, OISD Big
 ||jukcdvsgozbiy.space^
 ! HaGeZi Normal
 ||jukcha.com^
@@ -447374,6 +447536,8 @@ wykop.pl$badfilter
 ||jyqkijp.icu^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||jyqoncmjnooia.online^
+! AdGuard DNS Filter, EasyList
+||jyrafgoybxyxl.space^
 ! AdGuard DNS Filter
 ||jyrccx.audicus.com^
 ! HaGeZi Normal
@@ -448896,6 +449060,8 @@ wykop.pl$badfilter
 ||kaldunora.com^
 ! OISD Big
 ||kalduremovexa.pro^
+! OISD Big
+||kaldurexo.shop^
 ! OISD Big
 ||kaleelektronik.com^
 ! OISD Big
@@ -458905,6 +459071,8 @@ wykop.pl$badfilter
 ! OISD Big
 ||kofreroganankoz.com^
 ! OISD Big
+||kofteciyusufas.com^
+! OISD Big
 ||kofteciyusufsasa.com^
 ! OISD Big
 ||kofupeaktiko24.today^
@@ -461534,6 +461702,8 @@ wykop.pl$badfilter
 ||krw.yrehdfer.com^
 ! OISD Big
 ||krwmailsignin.weebly.com^
+! AdGuard DNS Filter, EasyList
+||krwmjjcvurbmq.online^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||krwwcwlkiresb.site^
 ! HaGeZi Normal
@@ -463626,6 +463796,8 @@ wykop.pl$badfilter
 ||kvwssal.icu^
 ! AdGuard DNS Filter, HaGeZi Normal, OISD Big
 ||kvxc7buwv3.com^
+! AdGuard DNS Filter, EasyList
+||kvxjmbatompst.website^
 ! OISD Big
 ||kvxtt5.hbg.hebdenbridgedental.co.uk^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
@@ -464618,6 +464790,8 @@ wykop.pl$badfilter
 ||kzlkozlm.shop^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||kzltdxgdppoif.online^
+! EasyList
+||kzmbwwoxkelzr.website^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||kzmirznxdwrzu.site^
 ! HaGeZi Normal
@@ -465367,6 +465541,8 @@ wykop.pl$badfilter
 ! AdGuard DNS Filter, HaGeZi Normal, OISD Big
 ||l2qdfaq62o.com^
 ! OISD Big
+||l2rayg.ctrlrmusic.com^
+! OISD Big
 ||l2stst2pb2f0r2sr06k1.sbs^
 ! HaGeZi Normal
 ||l2top.ru^
@@ -465386,6 +465562,8 @@ wykop.pl$badfilter
 ||l3ct3c-conversions.appsflyersdk.com^
 ! AdGuard DNS Filter, HaGeZi Normal, OISD Big
 ||l3j3glzp6g.com^
+! OISD Big
+||l3m6q8b.pics^
 ! HaGeZi Normal
 ||l3ms1d-cdn-settings.appsflyersdk.com^
 ! HaGeZi Normal
@@ -475350,6 +475528,8 @@ wykop.pl$badfilter
 ||lidleurope.com^
 ! OISD Big
 ||lidleuros.com^
+! OISD Big
+||lidlflash.com^
 ! HaGeZi Normal, OISD Big
 ||lidlfr.com^
 ! OISD Big
@@ -483130,6 +483310,8 @@ wykop.pl$badfilter
 ||lmz2wh-conversions.appsflyersdk.com^
 ! AdGuard DNS Filter
 ||lmzjp.adkf.com^
+! AdGuard DNS Filter, EasyList
+||lmzjqsanmfnaw.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||lmzuqfelmvtab.space^
 ! HaGeZi Normal
@@ -509502,6 +509684,8 @@ wykop.pl$badfilter
 ||lxcdn.dl.files.xiaomi.net^
 ! AdGuard DNS Filter
 ||lxckra.lottemart.com^
+! AdGuard DNS Filter, EasyList, OISD Big
+||lxcnkjbyglfvy.site^
 ! HaGeZi Normal
 ||lxcvt.shop^
 ! OISD Big
@@ -514496,6 +514680,8 @@ wykop.pl$badfilter
 ||majetkovin-app.live^
 ! OISD Big
 ||majetkovin.live^
+! OISD Big
+||majetownia.com^
 ! HaGeZi Normal
 ||majiainc.com^
 ! uBO Badware
@@ -530266,6 +530452,8 @@ wykop.pl$badfilter
 ||mcurrentlysea.info^$popup
 ! OISD Big
 ||mcvapes.co.za^
+! OISD Big
+||mcvbrokers.com^
 ! AdGuard DNS Filter
 ||mcvqa.100ways.com^
 ! AdAway, OISD Big
@@ -530354,6 +530542,8 @@ wykop.pl$badfilter
 ||md959w.hbg.hebdenbridgedental.co.uk^
 ! AdGuard DNS Filter, HaGeZi Normal, OISD Big
 ||mda.zadn.vn^
+! AdGuard DNS Filter, EasyList
+||mdajruktywqce.online^
 ! Dan Pollock, OISD Big
 ||mdamarillo.112.2o7.net^
 ! HaGeZi Normal, OISD Big
@@ -552176,6 +552366,8 @@ wykop.pl$badfilter
 ||mlsxit.asiatours.dk^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||mlsys.xyz^
+! AdGuard DNS Filter, EasyList
+||mltbtapkgslck.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||mltdiyzprltqk.website^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
@@ -555116,6 +555308,8 @@ wykop.pl$badfilter
 ||moj-panel.edgeone.app^
 ! OISD Big
 ||moja-dostawann.com^
+! OISD Big
+||moja-paczka.tiloveg.site^
 ! OISD Big
 ||moja-przesylkass.com^
 ! OISD Big
@@ -558442,6 +558636,8 @@ wykop.pl$badfilter
 ||mournenterprise.com^
 ! HaGeZi Normal
 ||mournerslath.com^
+! OISD Big
+||mournhungr.store^
 ! HaGeZi Normal
 ||mourny-clostheme.com^
 ! EasyList
@@ -568030,6 +568226,8 @@ wykop.pl$badfilter
 ||mzzpm5574l6qw7z7j.cyou^
 ! OISD Big
 ||mzzpmtrs.shop^
+! AdGuard DNS Filter
+||mzzueflt.com^
 ! HaGeZi Normal
 ||mzzuvq-cdn-settings.appsflyersdk.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
@@ -570910,6 +571108,8 @@ wykop.pl$badfilter
 ||natutool.com^
 ! HaGeZi Normal
 ||natuuroutlet.com^
+! OISD Big
+||natver.top^
 ! AdGuard DNS Filter
 ||natvxgkbb.9pz1.tech^
 ! OISD Big
@@ -572364,6 +572564,8 @@ wykop.pl$badfilter
 ||ndnxln.alfaconcursos.com.br^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||ndnyknzzfrjyp.site^
+! AdGuard DNS Filter, EasyList
+||ndodxaoumjajd.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||ndourapfeafmy.space^
 ! HaGeZi Normal, OISD Big, Peter Lowe
@@ -578912,6 +579114,8 @@ wykop.pl$badfilter
 ||nh5jrpa7u.com^
 ! OISD Big
 ||nh7gv1-197-2hg91-c71b9-eykf2.pages.dev^
+! OISD Big
+||nh7h6r.kimnickless.com^
 ! HaGeZi Normal
 ||nh88trk.com^
 ! AdGuard DNS Filter, HaGeZi Normal, OISD Big
@@ -580958,6 +581162,8 @@ wykop.pl$badfilter
 ||nj.gov-oay.help^
 ! HaGeZi Normal, OISD Big
 ||nj.t.bcsp2p.baidu.com^
+! OISD Big
+||nj8rrs.kimnickless.com^
 ! OISD Big
 ||njahmedzero2002.hopto.org^
 ! EasyPrivacy
@@ -590716,6 +590922,8 @@ wykop.pl$badfilter
 ||o9keuu-cdn-settings.appsflyersdk.com^
 ! HaGeZi Normal
 ||o9keuu-launches.appsflyersdk.com^
+! AdGuard DNS Filter
+||o9m5znv8ta.com^
 ! AdGuard DNS Filter, HaGeZi Normal, OISD Big
 ||o9qdqbu6nu.com^
 ! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal
@@ -593821,7 +594029,11 @@ wykop.pl$badfilter
 ! OISD Big
 ||oferta-7382911.cfd^
 ! OISD Big
+||oferta-74332118.cfd^
+! OISD Big
 ||oferta-7452412.cfd^
+! OISD Big
+||oferta-7542155.cfd^
 ! OISD Big
 ||oferta-75920433.cfd^
 ! OISD Big
@@ -594600,6 +594812,8 @@ wykop.pl$badfilter
 ||offres-annonces-lbc-62189.fr^
 ! OISD Big
 ||offres-hisense.fr^
+! OISD Big
+||offrilavas.store^
 ! OISD Big
 ||offroadceramic.com^
 ! OISD Big
@@ -595616,7 +595830,7 @@ wykop.pl$badfilter
 ||ohtqpg.morphyrichards.co.uk^
 ! OISD Big
 ||ohtulehtadee.hit.gemius.pl^
-! EasyList
+! AdGuard DNS Filter, EasyList, OISD Big
 ||ohtunuswezbap.space^
 ! HaGeZi Normal
 ||ohtxuvovztte.in^
@@ -595720,7 +595934,7 @@ wykop.pl$badfilter
 ||oifthjnpbzycw.online^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||oifyyeiuwnpzc.space^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, OISD Big
 ||oigreykofphcz.site^
 ! OISD Big
 ||oihdgpxipqavpxaumvg.com^
@@ -597434,6 +597648,8 @@ wykop.pl$badfilter
 ||olx.pl-paycor.club^
 ! OISD Big
 ||olx.pl-paymoney.eu.cc^
+! OISD Big
+||olx.pl-pays-confirmation.shop^
 ! OISD Big
 ||olx.pl-skrpay.world^
 ! OISD Big
@@ -605680,6 +605896,8 @@ wykop.pl$badfilter
 ||orlenn.ink^
 ! OISD Big
 ||orlenplatform.com^
+! OISD Big
+||orlenprimex-sbs.pages.dev^
 ! HaGeZi Normal
 ||orlenshop.de^
 ! OISD Big
@@ -606140,7 +606358,7 @@ wykop.pl$badfilter
 ||orvillehogtie.com^
 ! OISD Big
 ||orvistore.shop^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, OISD Big
 ||orviwiatndnfy.website^
 ! OISD Big
 ||orvixentplatform.com^
@@ -608294,6 +608512,8 @@ wykop.pl$badfilter
 ||ourrwtime.weebly.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||ourselvesincompetentlearned.com^
+! AdGuard DNS Filter, EasyList
+||ourskrbjjnpar.site^
 ! HaGeZi Normal, OISD Big
 ||oursoonethair.net^
 ! EasyPrivacy
@@ -630109,6 +630329,8 @@ wykop.pl$badfilter
 ! AdGuard DNS Filter, HaGeZi Normal
 ||pjkyxrd15e.ru^
 ! OISD Big
+||pjlska-bitradex.com^
+! OISD Big
 ||pjlska-bitradex.top^
 ! OISD Big
 ||pjlskabitradex.net^
@@ -630533,6 +630755,8 @@ wykop.pl$badfilter
 ! OISD Big
 ||pl-64744f099200oferta843784347888.top^
 ! OISD Big
+||pl-665333028722oferta88702f92727.lat^
+! OISD Big
 ||pl-681867227.shop^
 ! OISD Big
 ||pl-73841212-oferta.shop^
@@ -630833,6 +631057,8 @@ wykop.pl$badfilter
 ! OISD Big
 ||pl-otsochodzi.shop^
 ! OISD Big
+||pl-paczka3245123.sbs^
+! OISD Big
 ||pl-paymoney1.eu.cc^
 ! OISD Big
 ||pl-paymoney3.eu.cc^
@@ -630884,6 +631110,8 @@ wykop.pl$badfilter
 ||pl-sklep3oferty945968898.shop^
 ! OISD Big
 ||pl-smart234523.sbs^
+! OISD Big
+||pl-smart8127346.sbs^
 ! OISD Big
 ||pl-ticektnumber712932193912.com^
 ! OISD Big
@@ -631552,6 +631780,8 @@ wykop.pl$badfilter
 ||planemusic.com^
 ! OISD Big
 ||planen-aws.s3.eu-west-1.amazonaws.com^
+! OISD Big
+||planesibil.store^
 ! OISD Big
 ||planet-secure.ru^
 ! OISD Big
@@ -634422,6 +634652,10 @@ wykop.pl$badfilter
 ||plkurier.top^
 ! AdGuard DNS Filter, EasyPrivacy
 ||pll.pearlinsurance.com^
+! OISD Big
+||pll453fds32433sd30d23408.shop^
+! OISD Big
+||pll453fds32433sd30d23495.shop^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||pllah.com^
 ! OISD Big
@@ -637431,6 +637665,8 @@ wykop.pl$badfilter
 ! OISD Big
 ||poliga.com^
 ! OISD Big
+||poligdirot.store^
+! OISD Big
 ||poliglu.com^
 ! OISD Big
 ||poligonbaltas.com^
@@ -637752,6 +637988,8 @@ wykop.pl$badfilter
 ||polskabittrade.pro^
 ! OISD Big
 ||polskabreq.lovable.app^
+! OISD Big
+||polskacapital-si.com^
 ! OISD Big
 ||polskacapital.com^
 ! OISD Big
@@ -639600,6 +639838,8 @@ wykop.pl$badfilter
 ||porqbb.icu^
 ! AdGuard DNS Filter, EasyPrivacy
 ||porqhi.topictravel.nl^
+! OISD Big
+||porsche-careers.com^
 ! AdGuard DNS Filter
 ||porsche.euroshop.com.pe^
 ! EasyPrivacy
@@ -647011,6 +647251,8 @@ wykop.pl$badfilter
 ! AdGuard DNS Filter, HaGeZi Normal, OISD Big
 ||profile.everydayporn.com^
 ! OISD Big
+||profile.gratiotesa.com^
+! OISD Big
 ||profile.lgvgh.com^
 ! AdAway
 ||profile.localytics.com^
@@ -650400,7 +650642,7 @@ wykop.pl$badfilter
 ||psikologimarketing.com^
 ! OISD Big
 ||psikologlistesi.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, OISD Big
 ||psilemjexhttc.site^
 ! EasyPrivacy
 ||psilikaki.openapp.link^
@@ -654937,6 +655179,8 @@ wykop.pl$badfilter
 ! OISD Big
 ||puccinis.shop^
 ! OISD Big
+||puccpl.shop^
+! OISD Big
 ||puce-ankle-boots.shop^
 ! OISD Big
 ||puce-bag.shop^
@@ -655248,6 +655492,8 @@ wykop.pl$badfilter
 ||puls.lv^
 ! EasyPrivacy
 ||puls.lv^$third-party
+! OISD Big
+||pulsactive-ai.com^
 ! OISD Big
 ||pulsactiventa.com^
 ! OISD Big
@@ -656434,6 +656680,8 @@ wykop.pl$badfilter
 ||purprints.com^
 ! HaGeZi Normal
 ||purprints.net^
+! OISD Big
+||purpucommi.store^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||purpurekummel.com^
 ! AdGuard DNS Filter
@@ -663448,6 +663696,8 @@ wykop.pl$badfilter
 ||qsogqnmqpjvxdxa-dot-charming-sky-2700.appspot.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||qsomqlmliiuwu.online^
+! AdGuard DNS Filter, EasyList
+||qspqdyprlwuep.online^
 ! OISD Big
 ||qspwyoku.shop^
 ! OISD Big
@@ -666259,8 +666509,6 @@ wykop.pl$badfilter
 ! EasyPrivacy
 ||qumaef.conects.com^
 ! OISD Big
-||qumas-ai-app.com^
-! OISD Big
 ||qumasai.io^
 ! OISD Big
 ||qumceepm.dermals.org^
@@ -667576,6 +667824,8 @@ wykop.pl$badfilter
 ||qzej5p-launches.appsflyersdk.com^
 ! HaGeZi Normal
 ||qzej5p-register.appsflyersdk.com^
+! AdGuard DNS Filter, EasyList, OISD Big
+||qzfjenkimltmx.site^
 ! AdGuard DNS Filter
 ||qzfrzp.bewooden.cz^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
@@ -676156,6 +676406,8 @@ wykop.pl$badfilter
 ||registrate12re.webcindario.com^
 ! AdAway, HaGeZi Normal, OISD Big
 ||registration.gimbal.com^
+! OISD Big
+||registration.mywebinarinviteevent.com^
 ! AdGuard DNS Filter, EasyPrivacy
 ||registration.promatis.com^
 ! AdAway, HaGeZi Normal, OISD Big
@@ -677136,6 +677388,8 @@ wykop.pl$badfilter
 ||releaseforlife.com^
 ! AdGuard DNS Filter, EasyPrivacy, HaGeZi Normal, OISD Big
 ||releasepath.com^
+! OISD Big
+||releasetu.top^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||releasewriggle.com^
 ! OISD Big
@@ -683075,6 +683329,8 @@ wykop.pl$badfilter
 ! OISD Big
 ||riappsanti.store^
 ! OISD Big
+||riaprunrem.store^
+! OISD Big
 ||riaretracu.store^
 ! HaGeZi Normal
 ||riarialuvluv2023.com^
@@ -683450,6 +683706,8 @@ wykop.pl$badfilter
 ||rid3481.org^
 ! OISD Big
 ||rida9949.ddns.net^
+! OISD Big
+||ridalomec.com^
 ! HaGeZi Normal
 ||riddedwanyoro.top^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
@@ -685638,7 +685896,7 @@ wykop.pl$badfilter
 ||rmf.hit.gemius.pl^
 ! AdGuard DNS Filter
 ||rmfah.guudies.co^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, OISD Big
 ||rmfdjplxffznf.website^
 ! AdGuard DNS Filter
 ||rmffg.tadibrothers.com^
@@ -694986,6 +695244,8 @@ wykop.pl$badfilter
 ||rvvkb.mizzenandmain.com^
 ! AdGuard DNS Filter
 ||rvvpbf.xcom-shop.ru^
+! AdGuard DNS Filter, EasyList
+||rvvsnowgyqzeg.site^
 ! HaGeZi Normal
 ||rvwa77-conversions.appsflyersdk.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
@@ -695748,6 +696008,8 @@ wykop.pl$badfilter
 ||rylko-casualshoes.shop^
 ! OISD Big
 ||rylko-rabat.shop^
+! OISD Big
+||rylkofootwear.shop^
 ! OISD Big
 ||rylkohubs.shop^
 ! OISD Big
@@ -705644,8 +705906,6 @@ wykop.pl$badfilter
 ||sc.bellator.com^
 ! AdGuard DNS Filter, EasyPrivacy
 ||sc.blurb.fr^
-! OISD Big
-||sc.c1s.su^
 ! AdGuard DNS Filter
 ||sc.caffe2go.com^
 ! AdGuard DNS Filter, EasyPrivacy
@@ -742817,6 +743077,8 @@ wykop.pl$badfilter
 ! OISD Big
 ||sign-in-to-xfinitycom.weeblysite.com^
 ! OISD Big
+||sign-protected-documents.ink^
+! OISD Big
 ||sign-useracount-signin.aba.vg^
 ! EasyPrivacy
 ||sign.use-neo.com^
@@ -743044,6 +743306,8 @@ wykop.pl$badfilter
 ||signin.billingaccountcenter.com^
 ! OISD Big
 ||signin.disnyplus.acc-recov-center.xtesa.64-23-174-192.cpanel.site^
+! OISD Big
+||signin.gratiotesa.com^
 ! OISD Big
 ||signin.officepaymentportal.com^
 ! AdGuard DNS Filter
@@ -748972,7 +749236,7 @@ wykop.pl$badfilter
 ||slpubmedias.tf1.fr^$media,1p,redirect=noopmp3-0.1s
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||slqcfosyuqqsj.site^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, OISD Big
 ||slqdkguiypxzu.online^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||slqhoitusidsr.site^
@@ -766476,6 +766740,8 @@ wykop.pl$badfilter
 ||sosolmqlfotub.space^
 ! OISD Big
 ||sosoxnzocpioua7qogte.maherstcottage.com.au^
+! OISD Big
+||sospemesme.store^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||sospirochan.cyou^
 ! OISD Big
@@ -767114,6 +767380,8 @@ wykop.pl$badfilter
 ||sowve.com^$popup
 ! OISD Big
 ||soxczai.shop^
+! AdGuard DNS Filter, EasyList
+||soxdnwdhgsuom.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||soxfokwppwqpm.website^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
@@ -769665,6 +769933,8 @@ wykop.pl$badfilter
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||spicy-effect.com^
 ! OISD Big
+||spicy-surface-565843.framer.app^
+! OISD Big
 ||spicychats.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||spicycopy.com^
@@ -770826,6 +771096,8 @@ wykop.pl$badfilter
 ||spjfv.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||spjrfcogai.com^
+! EasyList
+||spjtlgxmhogip.space^
 ! HaGeZi Normal, OISD Big
 ||spjyayokvsgbnwr.com^
 ! AdGuard DNS Filter, EasyPrivacy
@@ -771008,6 +771280,8 @@ wykop.pl$badfilter
 ||spmail86.com^
 ! AdGuard DNS Filter
 ||spmail88.com^
+! AdGuard DNS Filter, EasyList, OISD Big
+||spmdauzpayeda.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||spmqfymfgbfha.space^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
@@ -772668,6 +772942,8 @@ wykop.pl$badfilter
 ||sqcapital-ai.com^
 ! OISD Big
 ||sqcapital-ai.net^
+! AdGuard DNS Filter, EasyList, OISD Big
+||sqccqjeqebguz.site^
 ! AdGuard DNS Filter
 ||sqcmgr.nils.ru^
 ! AdGuard DNS Filter
@@ -781664,6 +781940,8 @@ wykop.pl$badfilter
 ||ssense.com/58Asv359/init.js
 ! HaGeZi Normal
 ||ssense.vip^
+! AdGuard DNS Filter, EasyList
+||sseokjeybwdsf.site^
 ! Dan Pollock
 ||ssephora.fr^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
@@ -828586,6 +828864,8 @@ wykop.pl$badfilter
 ||svjpghwlxvmgv.online^
 ! AdGuard DNS Filter
 ||svjpq.samedelman.ca^
+! AdGuard DNS Filter, EasyList, OISD Big
+||svjvuwevdwqxv.space^
 ! AdGuard DNS Filter, HaGeZi Normal
 ||svk-native.ru^
 ! OISD Big
@@ -836396,7 +836676,7 @@ wykop.pl$badfilter
 ||tadmak.com^
 ! AdGuard DNS Filter, OISD Big
 ||tadmv.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, OISD Big
 ||tadodpfikom.in^
 ! OISD Big
 ||tadogem.com^
@@ -844512,6 +844792,8 @@ wykop.pl$badfilter
 ||tegrarcmgui.org^
 ! OISD Big
 ||teguhburning.blogspot.nl^
+! OISD Big
+||tegvet.7yeuh37.pics^
 ! AdGuard DNS Filter, EasyList, OISD Big
 ||tegymvxaqpdoj.site^
 ! OISD Big
@@ -845527,6 +845809,8 @@ wykop.pl$badfilter
 ! OISD Big
 ||teleindpow.help^
 ! OISD Big
+||teleindpow.yoga^
+! OISD Big
 ||teleinomsx.shop^
 ! OISD Big
 ||teleinpros.club^
@@ -846030,7 +846314,7 @@ wykop.pl$badfilter
 ||telemetry.eastus2.arcdataservices.com^
 ! HaGeZi Normal
 ||telemetry.ebsco.com^
-! AdGuard DNS Filter, HaGeZi Normal
+! AdGuard DNS Filter, HaGeZi Normal, OISD Big
 ||telemetry.ecosoft.group^
 ! HaGeZi Normal
 ||telemetry.edrlab.org^
@@ -850204,7 +850488,7 @@ wykop.pl$badfilter
 ||tetrreeffsfseeewwefrrfw.site^
 ! HaGeZi Normal
 ||tettacrown.com^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, OISD Big
 ||tettvlflcprdr.site^
 ! OISD Big
 ||teturner.com^
@@ -853192,6 +853476,8 @@ wykop.pl$badfilter
 ||theannoyingsite.com^
 ! uBO Badware
 ||theannoyingsite.com^$all
+! OISD Big
+||theapexmeridianai.com^
 ! HaGeZi Normal
 ||theapkhunter.com^
 ! Dan Pollock, OISD Big
@@ -858890,6 +859176,8 @@ wykop.pl$badfilter
 ||timingdownvolatile.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||timingrunaway.com^
+! OISD Big
+||timinmerte.store^
 ! EasyPrivacy
 ||timinternet.it/timmobilestatic/img/*.gif?
 ! EasyPrivacy
@@ -861272,6 +861560,8 @@ wykop.pl$badfilter
 ||tln-transport.de^
 ! OISD Big
 ||tlnetworkingsolutions.com^
+! AdGuard DNS Filter, EasyList
+||tlnmttmhpcarf.online^
 ! OISD Big
 ||tlnvault.com^
 ! AdGuard DNS Filter
@@ -891208,6 +891498,8 @@ wykop.pl$badfilter
 ||tx9k796ufrtxx4n4vxtm.cfd^
 ! OISD Big
 ||tx9mkhhbb.cc.rs6.net^
+! AdGuard DNS Filter, EasyList, OISD Big
+||txapmczlkxoux.space^
 ! OISD Big
 ||txart.me^
 ! AdGuard DNS Filter, EasyPrivacy
@@ -894708,6 +895000,8 @@ wykop.pl$badfilter
 ||ugby1uh.eu.cc^
 ! HaGeZi Normal, OISD Big
 ||ugcbrainient-a.akamaihd.net^
+! EasyList
+||ugcsgjbpzrqvn.website^
 ! AdGuard DNS Filter
 ||ugcsmk.aeschbach-chaussures.ch^
 ! AdGuard DNS Filter, EasyPrivacy
@@ -911500,7 +911794,7 @@ wykop.pl$badfilter
 ||vaylien88.com^
 ! AdGuard DNS Filter
 ||vaylientay79.com^
-! EasyList
+! AdGuard DNS Filter, EasyList, OISD Big
 ||vaylkkybnfbbn.site^
 ! AdGuard DNS Filter
 ||vaymb.org^
@@ -914012,6 +914306,8 @@ wykop.pl$badfilter
 ||velveqwtarch.shop^
 ! OISD Big
 ||velverio.shop^
+! OISD Big
+||velverolife.com^
 ! OISD Big
 ||velvet-glide.com^
 ! OISD Big
@@ -916558,6 +916854,8 @@ wykop.pl$badfilter
 ||vfljt.coffeeandmotivation.com^
 ! EasyPrivacy
 ||vfmahn.slevomat.cz^
+! AdGuard DNS Filter
+||vfmlgaxxc4.com^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||vfmqozdgawaii.website^
 ! AdGuard DNS Filter
@@ -919778,6 +920076,8 @@ wykop.pl$badfilter
 ||vimrcluqfmwih.site^
 ! OISD Big
 ||vimusic.net^
+! AdGuard DNS Filter, EasyList, OISD Big
+||vimvqukyxpaso.site^
 ! AdGuard DNS Filter
 ||vimxpd.calcadoslaroche.com.br^
 ! OISD Big
@@ -940958,6 +941258,8 @@ wykop.pl$badfilter
 ||wfjcsraqoiwxw.online^
 ! OISD Big
 ||wfjgknjiaiwu.com^
+! AdGuard DNS Filter, EasyList
+||wfjltfxsgdjkk.online^
 ! HaGeZi Normal
 ||wfk-klimatechnik.com^
 ! AdGuard DNS Filter
@@ -951728,6 +952030,8 @@ wykop.pl$badfilter
 ||www-google-vipp.com^
 ! HaGeZi Normal
 ||www-google.com.cn^
+! OISD Big
+||www-grok.com^
 ! OISD Big
 ||www-hyperfoundations.com^
 ! OISD Big
@@ -962604,7 +962908,7 @@ wykop.pl$badfilter
 ||xgxncacvhbfud.site^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal
 ||xgxokdvjgzmoo.space^
-! AdGuard DNS Filter, EasyList
+! AdGuard DNS Filter, EasyList, OISD Big
 ||xgyfzcnypzvas.space^
 ! OISD Big
 ||xgysd.com^
@@ -963892,6 +964196,8 @@ wykop.pl$badfilter
 ||xldaurngxd.com^
 ! OISD Big
 ||xldd.com^
+! AdGuard DNS Filter, EasyList
+||xldkomuhpflxj.online^
 ! AdGuard DNS Filter, EasyPrivacy
 ||xldnzg.trendhim.de^
 ! OISD Big
@@ -973522,7 +973828,7 @@ wykop.pl$badfilter
 ||yglxd.com^
 ! AdGuard DNS Filter, EasyPrivacy
 ||ygmpia.worten.pt^
-! EasyList
+! AdGuard DNS Filter, EasyList, OISD Big
 ||ygnkikbxptrce.website^
 ! HaGeZi Normal
 ||ygnooddg.shop^
@@ -986199,6 +986505,12 @@ wykop.pl$badfilter
 ! OISD Big
 ||zkkzrbom.shop^
 ! OISD Big
+||zkladyobel.shop^
+! OISD Big
+||zkladyobelka.shop^
+! OISD Big
+||zkladyobelko.shop^
+! OISD Big
 ||zkladyobelkw.shop^
 ! OISD Big
 ||zkladyobelkz.shop^
@@ -990366,6 +990678,8 @@ wykop.pl$badfilter
 ||zxgiuambpdqtx.online^
 ! AdGuard DNS Filter, EasyList, HaGeZi Normal, OISD Big
 ||zxgokjzrugpms.online^
+! AdGuard DNS Filter, EasyList
+||zxgzgkqiqaqck.online^
 ! HaGeZi Normal
 ||zxhm5q-cdn-settings.appsflyersdk.com^
 ! HaGeZi Normal
@@ -990932,6 +991246,8 @@ wykop.pl$badfilter
 ||zysuvysaj.pro^
 ! OISD Big
 ||zysybao.pro^
+! EasyList
+||zytfycpmnlzio.online^
 ! OISD Big
 ||zytolio.pro^
 ! Dan Pollock
